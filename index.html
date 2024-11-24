@@ -267,6 +267,15 @@
                                 "temperature": 0.5, // 设置AI思维扩展度
                                 "presence_penalty": 2
                             }
+                            // 语音调用方法如下：
+                            baseUrl:https://fast-horse-44.deno.dev/v1/audio/speech 
+                            GET 请求 参数解释如下：
+                            model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好
+                            model 支持模型名 可在 https://github.com/xl-alt/json/blob/main/speaker.json 里面查看
+                            voice 代表语速 语调
+                            input 输入的字符或者文字
+                            示例请求：https://fast-horse-44.deno.dev/v1/audio/speech?model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好
+                            输出： file.mp3
                         </code></pre>
                     </div>
                 </section>
