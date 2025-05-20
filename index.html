@@ -47,27 +47,121 @@
         <div class="flex flex-col min-h-screen bg-gradient-to-b from-blue-50 to-white">
             <main class="flex-grow">
                 <section class="container mx-auto px-4 py-16 text-center">
-                    <h1 class="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4 animate-fade-in-up">
-                        Happyapi-一站式API</h1>
+                    <!-- <h1 class="text-4xl font-extrabold tracking-tight lg:text-8xl mb-4 animate-fade-in-up">
+                        Happyapi-一站式API</h1> -->
+                    <p style="font-size: 3rem; font-weight: bold;">
+                        HappyAPI - One-stop Aggregated API
+                    </p>
                     <p
                         class="text-lg mb-8 max-w-2xl mx-auto text-muted-foreground animate-fade-in-up animation-delay-400">
 
-                        <br>
-                        <br>
-                        <span style="font-weight: bold;">网站交流群01 743336487 (已满) 网站交流群02 177413724 (已满)</span><br>
-                        <span style="font-weight: bold;">网站交流群03 960341140 (已满) 网站交流群04 954483522 (已满)</span><br>
-                        <span style="font-weight: bold;">网站交流群05 820451995 (未满)</span><br>
-                        <br>
-                        <span style="font-weight: bold; color: red;">网站通知(2025-05-19)🎉🎉</span><br>
-                        <span
-                            style="">
-                            模型更新列表：
-                            <br/>
-                            1. 谷歌模型Gemini 2.5 falsh与pro系列现稳定可以大量刷了，更低价格，更低倍率。
-                            2. 绘画模型sora gptimage 系列低至2分一次，支持叠图，绘图，局部修改，指定图像宽高比等，稳定快速，欢迎对接。
-                            3. grok 系列模型近期存量较大，可大量并发刷。
-                            4. 二次中转代理可以私聊群主，无需任何技术，无需任何服务器（群主代部署，需自备域名）。
-                        </span>
+                        <!-- 网站通知与交流群结构化展示 开始 -->
+                    <div class="mb-8 max-w-2xl mx-auto text-muted-foreground animate-fade-in-up animation-delay-400">
+
+                        <!-- 网站交流群表格 -->
+                        <div class="mb-6">
+                            <!-- <h2 class="text-xl font-bold mb-2">网站交流群</h2> -->
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full border border-gray-300 rounded-lg text-center"
+                                    style="width: 100%;">
+                                    <thead class="bg-gray-100">
+                                        <tr>
+                                            <th class="py-2 px-4 border-b">QQ群</th>
+                                            <th class="py-2 px-4 border-b">群号</th>
+                                            <th class="py-2 px-4 border-b">状态</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="py-2 px-4 border-b">网站交流群01</td>
+                                            <td class="py-2 px-4 border-b">743336487</td>
+                                            <td class="py-2 px-4 border-b text-red-500">已满</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4 border-b">网站交流群02</td>
+                                            <td class="py-2 px-4 border-b">177413724</td>
+                                            <td class="py-2 px-4 border-b text-red-500">已满</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4 border-b">网站交流群03</td>
+                                            <td class="py-2 px-4 border-b">960341140</td>
+                                            <td class="py-2 px-4 border-b text-red-500">已满</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-2 px-4 border-b">网站交流群04</td>
+                                            <td class="py-2 px-4 border-b">954483522</td>
+                                            <td class="py-2 px-4 border-b text-red-500">已满</td>
+                                        </tr>
+                                        <tr style="font-weight: 700;">
+                                            <td class="py-2 px-4 border-b">网站交流群05</td>
+                                            <td class="py-2 px-4 border-b">820451995</td>
+                                            <td class="py-2 px-4 border-b text-green-500 font-bold">未满</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- 网站通知 -->
+                        <div id="notificationsList"
+                            style="width: 100%; background: #ffffff;  text-align: left; padding: 10px 20px;">
+                            <div
+                                style="display: flex; align-items: center; border-bottom: 1px solid #e1e8ed; padding: 12px 0; transition: background-color 0.3s ease;">
+                                <!-- <div
+                                    style="flex-shrink: 0; width: 36px; height: 36px; background: #3498db; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; font-size: 18px; user-select: none;">
+                                    N</div> -->
+                                <div style="flex-grow: 1;">
+                                    <p style="font-weight: 600; font-size: 16px; margin: 0 0 4px 0;">【1】 Gemini 模型更新</p>
+                                    <p style="margin: 0; color: #7f8c8d; font-size: 14px;">谷歌模型 Gemini 2.5 flash 与 pro 系列现稳定可以大量刷了，更低价格，更低倍率。</p>
+                                </div>
+                                <!-- <div style="font-size: 12px; color: #bdc3c7; margin-left: 15px; white-space: nowrap;">
+                                    10:35</div> -->
+                            </div>
+                            <div
+                                style="display: flex; align-items: center; border-bottom: 1px solid #e1e8ed; padding: 12px 0; transition: background-color 0.3s ease;">
+                                <!-- <div
+                                    style="flex-shrink: 0; width: 36px; height: 36px; background: #e67e22; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; font-size: 18px; user-select: none;">
+                                    M</div> -->
+                                <div style="flex-grow: 1;">
+                                    <p style="font-weight: 600; font-size: 16px; margin: 0 0 4px 0;">【2】绘画低价使用</p>
+                                    <p style="margin: 0; color: #7f8c8d; font-size: 14px;">绘画模型 sora gptimage 系列低至 2 分一次，支持叠图、绘图、局部修改、指定图像宽高比等，稳定快速，欢迎对接。</p>
+                                </div>
+                                <!-- <div style="font-size: 12px; color: #bdc3c7; margin-left: 15px; white-space: nowrap;">
+                                    09:50</div> -->
+                            </div>
+                            <div
+                                style="display: flex; align-items: center; border-bottom: 1px solid #e1e8ed; padding: 12px 0; transition: background-color 0.3s ease;">
+                                <!-- <div
+                                    style="flex-shrink: 0; width: 36px; height: 36px; background: #e67e22; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; font-size: 18px; user-select: none;">
+                                    M</div> -->
+                                <div style="flex-grow: 1;">
+                                    <p style="font-weight: 600; font-size: 16px; margin: 0 0 4px 0;">【3】并发无限制</p>
+                                    <p style="margin: 0; color: #7f8c8d; font-size: 14px;">grok 系列模型近期存量较大，可大量并发刷。</p>
+                                </div>
+                                <!-- <div style="font-size: 12px; color: #bdc3c7; margin-left: 15px; white-space: nowrap;">
+                                    09:50</div> -->
+                            </div>
+                            <div id="dropdownNotification"
+                                style="cursor: pointer; display: flex; align-items: center; padding: 12px 0; user-select: none; font-weight: 700;" >
+                                <!-- <div
+                                    style="flex-shrink: 0; width: 36px; height: 36px; background: #e74c3c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; font-size: 18px;">
+                                    A</div> -->
+                                <div style="flex-grow: 1;">
+                                    <p style="font-weight: 600; font-size: 16px; margin: 0 0 4px 0;">二次中转代理服务 ▼</p>
+                                    <p style="margin: 0; color: #7f8c8d; font-size: 14px;">如果您想要中转代理happyapi服务，您将获得以下权益...</p>
+                                    <div id="dropdownContent"
+                                        style="margin-top: 10px; font-size: 13px;  display: none; line-height: 1.4;">
+                                        <p>1. 加入代理happyapi中转，无需任何技术，无需任何服务器，获得属于您的专属中转站(newapi)。tip: 需要自备域名即可。</p>
+                                        <p>2. 立即获得500刀一周试营业额度。</p>
+                                        <p>3. 免费一周gpt、sora绘画服务支持。</p>
+                                    </div>
+                                </div>
+                                <div style="font-size: 12px; color: #bdc3c7; margin-left: 15px; white-space: nowrap;">2025-05-20
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
                     </p>
                     <p>
@@ -277,6 +371,12 @@
                             input 输入的字符或者文字
                             示例请求：https://fast-horse-44.deno.dev/v1/audio/speech?model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好
                             输出： file.mp3
+
+
+                            // 绘画模型说明
+                            1. 站点绘画模型均为chat格式，对话式生成图片,非官网generate生成格式
+                            2. 绘画支持原图修改，传图请参考openai CHAT格式传图
+                            3. 绘画支持自定义宽高，如“帮我画一只猫【3：2】”，“【】”必须按照此符号输入
                         </code></pre>
                     </div>
                 </section>
@@ -294,7 +394,9 @@
                                         <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
                                             alt="功能1"
                                             class="rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                                        <a class="mt-2 text-center text-sm font-medium" href="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png" target="_blank" rel="noopener noreferrer">点击放大图片1</a>
+                                        <a class="mt-2 text-center text-sm font-medium"
+                                            href="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
+                                            target="_blank" rel="noopener noreferrer">点击放大图片1</a>
                                     </p>
                                 </div>
 
@@ -309,7 +411,9 @@
                                         <img src="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png"
                                             alt="功能1"
                                             class="rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                                        <a class="mt-2 text-center text-sm font-medium" href="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png" target="_blank" rel="noopener noreferrer">点击放大图片2</a>
+                                        <a class="mt-2 text-center text-sm font-medium"
+                                            href="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png"
+                                            target="_blank" rel="noopener noreferrer">点击放大图片2</a>
                                     </p>
                                 </div>
                             </div>
@@ -322,7 +426,9 @@
                                         <img src="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png"
                                             alt="功能1"
                                             class="rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                                        <a class="mt-2 text-center text-sm font-medium" href="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png" target="_blank" rel="noopener noreferrer">点击放大图片3</a>
+                                        <a class="mt-2 text-center text-sm font-medium"
+                                            href="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png"
+                                            target="_blank" rel="noopener noreferrer">点击放大图片3</a>
                                     </p>
                                 </div>
                             </div>
@@ -628,7 +734,31 @@
         </div>
     </div>
 </body>
-
+<script>
+    const dropdown = document.getElementById('dropdownNotification');
+    const dropdownContent = document.getElementById('dropdownContent');
+    dropdown.addEventListener('click', () => {
+      if (dropdownContent.style.display === 'none') {
+        dropdownContent.style.display = 'block';
+        dropdown.querySelector('p').textContent = '二次中转代理服务 ▲';
+      } else {
+        dropdownContent.style.display = 'none';
+        dropdown.querySelector('p').textContent = '二次中转代理服务 ▼';
+      }
+    });
+    // Optional: Hover effect for all notifications except dropdown
+    const notifications = document.querySelectorAll('#notificationsList > div');
+    notifications.forEach((el) => {
+      if (el !== dropdown) {
+        el.addEventListener('mouseenter', () => {
+          el.style.backgroundColor = '#ecf0f1';
+        });
+        el.addEventListener('mouseleave', () => {
+          el.style.backgroundColor = 'transparent';
+        });
+      }
+    });
+  </script>
 <body>
 </body>
 
