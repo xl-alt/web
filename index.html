@@ -1,765 +1,546 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <title>HappyAPI AI模型供应</title>
-    <!-- <script type="module" crossorigin="" src="./index-CLa04SsU.js"></script> -->
-    <link rel="stylesheet" crossorigin="" href="https://xl-files.oss-cn-chengdu.aliyuncs.com/index-Duo-OdVb.css">
+    <meta name="description" content="HappyAPI - 一站式AI模型聚合API，提供稳定、快速、低价的OpenAI, Claude, Gemini等模型服务。">
+    <meta name="keywords" content="HappyAPI, AI, API, OpenAI, Claude, Gemini, GPT-4, AI模型, 人工智能">
+    <title>HappyAPI - 一站式AI模型聚合API</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Prism.js for code highlighting (Theme: Tomorrow Night) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
-    <!-- 引入 Prism.js 和 HTML 语言支持包 -->
-    <script src="https://xl-files.oss-cn-chengdu.aliyuncs.com/js1.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script> -->
+
+    <!-- Google Fonts for a cleaner look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom base styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: #f8fafc;
+            /* Use a light gray background */
+        }
+
+        /* Custom styles for Prism.js code blocks */
+        pre[class*="language-"] {
+            padding: 1.5rem !important;
+            margin: 0 !important;
+            border-radius: 0.5rem;
+            /* rounded-lg */
+            font-size: 0.875rem;
+            /* text-sm */
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Styling for the tab content panels for smooth transitions */
+        .tab-panel {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .tab-panel:not(.active) {
+            opacity: 0;
+            transform: translateY(10px);
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<style>
-    /* 隐藏所有浏览器的滚动条 */
-    * {
-        overflow: hidden;
-    }
 
-    /* 允许内容滚动，但隐藏滚动条 */
-    * {
-        overflow: scroll;
-    }
+<body class="bg-slate-50 text-slate-800">
 
-    /* Chrome, Safari 和 Edge 隐藏滚动条 */
-    *::-webkit-scrollbar {
-        display: none;
-    }
-
-    /* Firefox 隐藏滚动条 */
-    * {
-        scrollbar-width: none;
-    }
-</style>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     <div id="root">
-        <div class="flex flex-col min-h-screen bg-gradient-to-b from-blue-50 to-white">
+        <div class="flex flex-col min-h-screen">
             <main class="flex-grow">
-                <section class="container mx-auto px-4 py-16 text-center">
-                    <!-- <h1 class="text-4xl font-extrabold tracking-tight lg:text-8xl mb-4 animate-fade-in-up">
-                        Happyapi-一站式API</h1> -->
-                    <p style="font-size: 3rem; font-weight: bold;">
-                        HappyAPI - One-stop Aggregated API
-                    </p>
-                    <p
-                        class="text-lg mb-8 max-w-2xl mx-auto text-muted-foreground animate-fade-in-up animation-delay-400">
 
-                        <!-- 网站通知与交流群结构化展示 开始 -->
-                    <div class="mb-8 max-w-2xl mx-auto text-muted-foreground animate-fade-in-up animation-delay-400">
-
-                        <!-- 网站交流群表格 -->
-                        <div class="mb-6">
-                            <!-- <h2 class="text-xl font-bold mb-2">网站交流群</h2> -->
-                            <div class="overflow-x-auto">
-                                <table class="min-w-full border border-gray-300 rounded-lg text-center"
-                                    style="width: 100%;">
-                                    <thead class="bg-gray-100">
-                                        <tr>
-                                            <th class="py-2 px-4 border-b">QQ群</th>
-                                            <th class="py-2 px-4 border-b">群号</th>
-                                            <th class="py-2 px-4 border-b">状态</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="py-2 px-4 border-b">网站交流群01</td>
-                                            <td class="py-2 px-4 border-b">743336487</td>
-                                            <td class="py-2 px-4 border-b text-red-500">已满</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-2 px-4 border-b">网站交流群02</td>
-                                            <td class="py-2 px-4 border-b">177413724</td>
-                                            <td class="py-2 px-4 border-b text-red-500">已满</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-2 px-4 border-b">网站交流群03</td>
-                                            <td class="py-2 px-4 border-b">960341140</td>
-                                            <td class="py-2 px-4 border-b text-red-500">已满</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="py-2 px-4 border-b">网站交流群04</td>
-                                            <td class="py-2 px-4 border-b">954483522</td>
-                                            <td class="py-2 px-4 border-b text-red-500">已满</td>
-                                        </tr>
-                                        <tr style="font-weight: 700;">
-                                            <td class="py-2 px-4 border-b">网站交流群05</td>
-                                            <td class="py-2 px-4 border-b">820451995</td>
-                                            <td class="py-2 px-4 border-b text-green-500 font-bold">未满</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <!-- 网站通知 -->
-                        <div id="notificationsList"
-                            style="width: 100%; background: #ffffff;  text-align: left; padding: 10px 20px;">
-                            <div
-                                style="display: flex; align-items: center; border-bottom: 1px solid #e1e8ed; padding: 12px 0; transition: background-color 0.3s ease;">
-                                <!-- <div
-                                    style="flex-shrink: 0; width: 36px; height: 36px; background: #3498db; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; font-size: 18px; user-select: none;">
-                                    N</div> -->
-                                <div style="flex-grow: 1;">
-                                    <p style="font-weight: 600; font-size: 16px; margin: 0 0 4px 0;">【1】 Gemini 模型更新</p>
-                                    <p style="margin: 0; color: #7f8c8d; font-size: 14px;">谷歌模型 Gemini 2.5 flash 与 pro 系列现稳定可以大量刷了，更低价格，更低倍率。</p>
-                                </div>
-                                <!-- <div style="font-size: 12px; color: #bdc3c7; margin-left: 15px; white-space: nowrap;">
-                                    10:35</div> -->
-                            </div>
-                            <div
-                                style="display: flex; align-items: center; border-bottom: 1px solid #e1e8ed; padding: 12px 0; transition: background-color 0.3s ease;">
-                                <!-- <div
-                                    style="flex-shrink: 0; width: 36px; height: 36px; background: #e67e22; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; font-size: 18px; user-select: none;">
-                                    M</div> -->
-                                <div style="flex-grow: 1;">
-                                    <p style="font-weight: 600; font-size: 16px; margin: 0 0 4px 0;">【2】绘画低价使用</p>
-                                    <p style="margin: 0; color: #7f8c8d; font-size: 14px;">绘画模型 sora gptimage 系列低至 2 分一次，支持叠图、绘图、局部修改、指定图像宽高比等，稳定快速，欢迎对接。</p>
-                                </div>
-                                <!-- <div style="font-size: 12px; color: #bdc3c7; margin-left: 15px; white-space: nowrap;">
-                                    09:50</div> -->
-                            </div>
-                            <div
-                                style="display: flex; align-items: center; border-bottom: 1px solid #e1e8ed; padding: 12px 0; transition: background-color 0.3s ease;">
-                                <!-- <div
-                                    style="flex-shrink: 0; width: 36px; height: 36px; background: #e67e22; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; font-size: 18px; user-select: none;">
-                                    M</div> -->
-                                <div style="flex-grow: 1;">
-                                    <p style="font-weight: 600; font-size: 16px; margin: 0 0 4px 0;">【3】并发无限制</p>
-                                    <p style="margin: 0; color: #7f8c8d; font-size: 14px;">grok 系列模型近期存量较大，可大量并发刷。</p>
-                                </div>
-                                <!-- <div style="font-size: 12px; color: #bdc3c7; margin-left: 15px; white-space: nowrap;">
-                                    09:50</div> -->
-                            </div>
-                            <div id="dropdownNotification"
-                                style="cursor: pointer; display: flex; align-items: center; padding: 12px 0; user-select: none; font-weight: 700;" >
-                                <!-- <div
-                                    style="flex-shrink: 0; width: 36px; height: 36px; background: #e74c3c; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 15px; font-size: 18px;">
-                                    A</div> -->
-                                <div style="flex-grow: 1;">
-                                    <p style="font-weight: 600; font-size: 16px; margin: 0 0 4px 0;">二次中转代理服务 ▼</p>
-                                    <p style="margin: 0; color: #7f8c8d; font-size: 14px;">如果您想要中转代理happyapi服务，您将获得以下权益...</p>
-                                    <div id="dropdownContent"
-                                        style="margin-top: 10px; font-size: 13px;  display: none; line-height: 1.4;">
-                                        <p>1. 加入代理happyapi中转，无需任何技术，无需任何服务器，获得属于您的专属中转站(newapi)。tip: 需要自备域名即可。</p>
-                                        <p>2. 立即获得500刀一周试营业额度。</p>
-                                        <p>3. 免费一周gpt、sora绘画服务支持。</p>
-                                    </div>
-                                </div>
-                                <div style="font-size: 12px; color: #bdc3c7; margin-left: 15px; white-space: nowrap;">2025-05-20
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    </p>
-                    <p>
-                    <div style="display: flex; justify-content: center; align-items: center; gap: 10px;">
-                        <img src="https://img.shields.io/badge/Happyapi-7.2k User-brightgreen" alt="Happyapi badge">
-                        <img src="https://img.shields.io/badge/低价个人API-稳定、快速-brightgreen" alt="happyapi badge">
-                    </div>
-                    </p>
-                    <br>
-                    <p
-                        class="text-lg mb-8 max-w-2xl mx-auto text-muted-foreground animate-fade-in-up animation-delay-400">
-                        支持<span class="text-blue-600">OpenAI</span>、<span class="text-blue-600">Claude</span>、<span
-                            class="text-blue-600">Gemini</span>等多个模型供应商</p>
-                    <p
-                        class="text-lg mb-8 max-w-2xl mx-auto text-muted-foreground animate-fade-in-up animation-delay-400">
-                        最低仅需<span class="text-blue-600"> 0.15元 </span>即可购买<span class="text-blue-600"> 1美金 </span>额度
-                    </p>
-
-                </section>
-
-                <section class="bg-gray-50 py-16">
-                    <div class="container mx-auto px-4">
-                        <h2 class="text-3xl font-bold text-center mb-8">导航推荐</h2>
-                        <p class="text-center mb-12 text-muted-foreground">此部分包括监控，在线使用，key查询导航,点击直接跳转到对应页面。
+                <!-- Hero Section -->
+                <section class="relative text-center py-20 md:py-32 px-4 bg-white overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-blue-50 to-white z-0"></div>
+                    <div class="relative z-10 container mx-auto">
+                        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-4">
+                            HappyAPI - 一站式聚合API
+                        </h1>
+                        <p class="text-lg md:text-xl mb-6 max-w-3xl mx-auto text-slate-600">
+                            支持<span class="font-semibold text-blue-600">OpenAI</span>、<span
+                                class="font-semibold text-blue-600">Claude</span>、<span
+                                class="font-semibold text-blue-600">Gemini</span>等多个顶级模型供应商
                         </p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
-                                <a href="http://48.210.59.29:8001/status/happyapi" target="_blank"
-                                    rel="noopener noreferrer">
-                                    <div class="p-6 flex flex-col items-center justify-center h-full"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-monitor w-8 h-8 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300">
-                                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                                            <path d="M8 21h8"></path>
-                                            <path d="M12 17v4"></path>
-                                            <path d="M4 10h4l2-4 2 8 2-4 2 2h4"></path>
-                                        </svg>
-
-                                        <h3 class="text-lg font-semibold mb-2">API在线监控插件</h3>
-                                        <p class="text-sm text-muted-foreground text-center">随时随地查看api运行状况，及时反馈。</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
-                                <a href="https://happyapi.me/" target="_blank" rel="noopener noreferrer">
-                                    <div class="p-6 flex flex-col items-center justify-center h-full"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-online w-8 h-8 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300">
-                                            <circle cx="12" cy="12" r="4"></circle>
-                                            <path d="M2 12h2"></path>
-                                            <path d="M20 12h2"></path>
-                                            <path d="M12 2v2"></path>
-                                            <path d="M12 20v2"></path>
-                                            <path d="M4.93 4.93l1.41 1.41"></path>
-                                            <path d="M18.36 18.36l1.41 1.41"></path>
-                                            <path d="M4.93 19.07l1.41-1.41"></path>
-                                            <path d="M18.36 5.64l1.41-1.41"></path>
-                                        </svg>
-
-                                        <h3 class="text-lg font-semibold mb-2">在线免费使用</h3>
-                                        <p class="text-sm text-muted-foreground text-center">站点福利，点击进去免费使用所有模型，注册无需验证码。
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
-                                <a href="https://draw.happieapi.top/" target="_blank" rel="noopener noreferrer">
-                                    <div class="p-6 flex flex-col items-center justify-center h-full"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-paintbrush w-8 h-8 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300">
-                                            <path
-                                                d="M17 2c1.11 0 2 .89 2 2 0 .75-.41 1.39-1 1.73L12 12 8 13l1-4 6-6c.34-.59.98-1 1.73-1z">
-                                            </path>
-                                            <path
-                                                d="M9 13c-1.11 0-2 .89-2 2 0 .58.25 1.1.65 1.47a2.54 2.54 0 0 1-2.65 4.16 2.54 2.54 0 0 1 4.16-2.65A2 2 0 0 0 11 15c0-1.11-.89-2-2-2z">
-                                            </path>
-                                        </svg>
-
-                                        <h3 class="text-lg font-semibold mb-2">绘画免费使用</h3>
-                                        <p class="text-sm text-muted-foreground text-center">绘画免费站，在线绘画使用体验。
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
-                                <a href="https://video.happyapi.me/" target="_blank" rel="noopener noreferrer">
-                                    <div class="p-6 flex flex-col items-center justify-center h-full"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-microphone">
-                                            <path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4z"></path>
-                                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-                                            <line x1="12" y1="19" x2="12" y2="23"></line>
-                                            <line x1="8" y1="23" x2="16" y2="23"></line>
-                                        </svg>
-
-
-                                        <h3 class="text-lg font-semibold mb-2">免费文本转语音体验站</h3>
-                                        <p class="text-sm text-muted-foreground text-center">语音免费站，在线使用体验，api调用见下文。
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
-                                <a href="https://api.happyapi.me/" target="_blank" rel="noopener noreferrer">
-                                    <div class="p-6 flex flex-col items-center justify-center h-full"><svg
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                            stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-chart-column w-8 h-8 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300">
-                                            <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
-                                            <path d="M18 17V9"></path>
-                                            <path d="M13 17V5"></path>
-                                            <path d="M8 17v-3"></path>
-                                        </svg>
-                                        <h3 class="text-lg font-semibold mb-2">使用情况查询</h3>
-                                        <p class="text-sm text-muted-foreground text-center">无需登录直接使用key在线查询使用情况。
-                                        </p>
-                                    </div>
-                                </a>
-                            </div>
+                        <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-slate-600">
+                            最低仅需<span class="font-semibold text-blue-600"> 0.15元 </span>即可购买<span
+                                class="font-semibold text-blue-600"> 1美金 </span>额度
+                        </p>
+                        <div class="flex justify-center items-center gap-4">
+                            <img src="https://img.shields.io/badge/Happyapi-7.2k+Users-blue?style=for-the-badge&logo=appveyor"
+                                alt="Happyapi Users">
+                            <img src="https://img.shields.io/badge/API-稳定_快速_低价-green?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTEyIDJMNiAxMmg2VjJ6bTAgMjBsNi0xMEgxMlYyMnpNMiAxMmw0LTggNCA4LTQgOFoiLz48L3N2Zz4="
+                                alt="API Status">
                         </div>
                     </div>
                 </section>
 
-                <section class="bg-gray-50 py-16">
-                    <div class="container mx-auto px-4">
-                        <h2 class="text-3xl font-bold text-center mb-8">网站使用提示</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
+                <!-- Announcements Section -->
+                <section class="py-16 px-4">
+                    <div class="container mx-auto max-w-4xl bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
+                        <h2 class="text-3xl font-bold text-center mb-8 text-slate-900">网站公告与交流群</h2>
 
-                                <div class="p-6 flex flex-col items-center justify-center h-full">
-
-                                    <h3 class="text-lg font-semibold mb-2">新用户注册</h3>
-                                    <p class="text-sm text-muted-foreground text-center">网站新用户注册仅支持QQ邮箱和第三方github登录</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                            <!-- QQ Groups Table -->
+                            <div>
+                                <h3 class="text-xl font-semibold mb-4 text-slate-800">加入我们的交流群</h3>
+                                <div class="overflow-x-auto rounded-lg border border-slate-200">
+                                    <table class="min-w-full text-sm text-center">
+                                        <thead class="bg-slate-100 text-slate-600 uppercase tracking-wider">
+                                            <tr>
+                                                <th class="py-3 px-4 font-semibold">群名称</th>
+                                                <th class="py-3 px-4 font-semibold">群号</th>
+                                                <th class="py-3 px-4 font-semibold">状态</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-slate-200">
+                                            <tr>
+                                                <td class="py-3 px-4">网站交流群01</td>
+                                                <td class="py-3 px-4">743336487</td>
+                                                <td class="py-3 px-4 text-red-500 font-medium">已满</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-3 px-4">网站交流群02</td>
+                                                <td class="py-3 px-4">177413724</td>
+                                                <td class="py-3 px-4 text-red-500 font-medium">已满</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-3 px-4">网站交流群03</td>
+                                                <td class="py-3 px-4">960341140</td>
+                                                <td class="py-3 px-4 text-red-500 font-medium">已满</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="py-3 px-4">网站交流群04</td>
+                                                <td class="py-3 px-4">954483522</td>
+                                                <td class="py-3 px-4 text-red-500 font-medium">已满</td>
+                                            </tr>
+                                            <tr class="bg-green-50">
+                                                <td class="py-3 px-4 font-bold text-slate-800">网站交流群05</td>
+                                                <td class="py-3 px-4 font-bold text-slate-800">820451995</td>
+                                                <td class="py-3 px-4 text-green-600 font-bold">可加入</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-
                             </div>
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
 
-                                <div class="p-6 flex flex-col items-center justify-center h-full">
-
-                                    <h3 class="text-lg font-semibold mb-2">免费额度</h3>
-                                    <p class="text-sm text-muted-foreground text-center">新用户注册即可获得 20 $ 测试，需要进群找管理员领取
-                                    </p>
-                                </div>
-                            </div>
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
-
-                                <div class="p-6 flex flex-col items-center justify-center h-full">
-                                    <h3 class="text-lg font-semibold mb-2">速率限制</h3>
-                                    <p class="text-sm text-muted-foreground text-center">本站对API请求限制为 300次 / 分钟
-                                    </p>
+                            <!-- Notifications List -->
+                            <div>
+                                <h3 class="text-xl font-semibold mb-4 text-slate-800">最新动态</h3>
+                                <div class="space-y-3">
+                                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                                        <h4 class="font-semibold text-slate-800">【1】Gemini 模型更新</h4>
+                                        <p class="text-sm text-slate-600 mt-1">谷歌模型 Gemini 2.5 flash all 与 pro
+                                            all系列现已稳定，更低价格，更低倍率，欢迎体验。(可按次或者按倍率计算)</p>
+                                    </div>
+                                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                                        <h4 class="font-semibold text-slate-800">【2】claude thinking 系列更新</h4>
+                                        <p class="text-sm text-slate-600 mt-1">claude 系列稳定并发，可使用Claude 4 thinking。</p>
+                                    </div>
+                                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                                        <h4 class="font-semibold text-slate-800">【3】并发无限制</h4>
+                                        <p class="text-sm text-slate-600 mt-1">Grok 系列模型近期存量较大，可大量并发调用。</p>
+                                    </div>
+                                    <!-- Collapsible Notification -->
+                                    <div id="collapsible-notification"
+                                        class="rounded-lg bg-blue-50 border border-blue-200 overflow-hidden">
+                                        <button id="collapse-toggle"
+                                            class="w-full text-left p-4 flex justify-between items-center transition-colors hover:bg-blue-100">
+                                            <div>
+                                                <h4 class="font-semibold text-blue-800">二次中转代理服务</h4>
+                                                <p class="text-sm text-blue-700 mt-1">如果您想要代理 happyapi 服务，您将获得以下权益...
+                                                </p>
+                                            </div>
+                                            <svg id="collapse-arrow" class="w-5 h-5 text-blue-600 transition-transform"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke-width="2" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                            </svg>
+                                        </button>
+                                        <div id="collapse-content" class="hidden p-4 pt-0">
+                                            <ul class="list-disc list-inside text-sm text-blue-700 space-y-2">
+                                                <li>无需技术，无需服务器，自备域名即可获得专属中转站 (NewAPI)。</li>
+                                                <li>立即获得 500 美元一周试营业额度。</li>
+                                                <li>免费一周 gemini 系列 grok系列模型的服务支持。</li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
 
-
-                <section class="bg-white py-16">
-                    <div class="container mx-auto px-4">
-                        <h2 class="text-3xl font-bold text-center mb-8">API使用导航</h2>
-                        <pre><code class="language-js">
-                            // api 地址
-                            host: https://happyapi.org/
-                            // 如上述地址在某些客户端无法使用时请尝试以下地址
-                            host: https://happyapi.org/v1
-                            host: https://happyapi.org/v1/chat/completions
-
-                            // Curl 请求示例
-                            Post url https://happyapi.org/v1/chat/completions
-                            Headers Authorization: Bearer YOURKEY
-                            data：{
-                                "messages": [
-                                    {
-                                        "role": "user",
-                                        "content": "你是谁"  // 描述
-                                    }
-                                ], // messages 必填
-                                "stream": true, //  是否流式输出
-                                "model": "gpt-4o",  // 选择模型必填
-                                "temperature": 0.5, // 设置AI思维扩展度
-                                "presence_penalty": 2
-                            }
-                            // 语音调用方法如下：
-                            baseUrl:https://fast-horse-44.deno.dev/v1/audio/speech 
-                            GET 请求 参数解释如下：
-                            model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好
-                            model 支持模型名 可在 https://github.com/xl-alt/json/blob/main/speaker.json 里面查看
-                            voice 代表语速 语调
-                            input 输入的字符或者文字
-                            示例请求：https://fast-horse-44.deno.dev/v1/audio/speech?model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好
-                            输出： file.mp3
-
-
-                            // 绘画模型说明
-                            1. 站点绘画模型均为chat格式，对话式生成图片,非官网generate生成格式
-                            2. 绘画支持原图修改，传图请参考openai CHAT格式传图
-                            3. 绘画支持自定义宽高，如“帮我画一只猫【3：2】”，“【】”必须按照此符号输入
-                        </code></pre>
+                <!-- Navigation Section -->
+                <section class="py-16 px-4 bg-white">
+                    <div class="container mx-auto">
+                        <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">快速导航</h2>
+                        <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">此部分包含状态监控、在线体验、用量查询等快捷入口，点击即可跳转。
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <a href="http://48.210.59.29:8001/status/happyapi" target="_blank" rel="noopener noreferrer"
+                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
+                                <h3 class="text-lg font-semibold mb-2 text-slate-800">API 在线监控</h3>
+                                <p class="text-sm text-slate-600">随时随地查看 API 运行状况，及时获取服务状态。</p>
+                            </a>
+                            <a href="https://happyapi.me/" target="_blank" rel="noopener noreferrer"
+                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
+                                <h3 class="text-lg font-semibold mb-2 text-slate-800">在线免费使用</h3>
+                                <p class="text-sm text-slate-600">站点福利，点击免费使用所有模型，注册无需验证码。</p>
+                            </a>
+                            <a href="https://draw.happieapi.top/" target="_blank" rel="noopener noreferrer"
+                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
+                                <h3 class="text-lg font-semibold mb-2 text-slate-800">绘画免费使用</h3>
+                                <p class="text-sm text-slate-600">在线绘画体验站，感受 AIGC 的创作魅力。</p>
+                            </a>
+                            <a href="https://video.happyapi.me/" target="_blank" rel="noopener noreferrer"
+                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
+                                <h3 class="text-lg font-semibold mb-2 text-slate-800">免费文本转语音</h3>
+                                <p class="text-sm text-slate-600">语音免费体验站，API 调用方法见下文说明。</p>
+                            </a>
+                            <a href="https://api.happyapi.me/" target="_blank" rel="noopener noreferrer"
+                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
+                                <h3 class="text-lg font-semibold mb-2 text-slate-800">Key 用量查询</h3>
+                                <p class="text-sm text-slate-600">无需登录，直接使用您的 Key 在线查询额度使用情况。</p>
+                            </a>
+                            <div class="group block p-6 bg-slate-50 rounded-xl border border-slate-200">
+                                <h3 class="text-lg font-semibold mb-2 text-slate-800">速率限制</h3>
+                                <p class="text-sm text-slate-600">本站对 API 请求限制为 500次 / 分钟。</p>
+                            </div>
+                            <a href="" target="_blank" rel="noopener noreferrer"
+                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
+                                <h3 class="text-lg font-semibold mb-2 text-slate-800">AI 应用实例 1 （AI 剧本杀 coming）</h3>
+                                <p class="text-sm text-slate-600">填入您的apikey即可邀请好友一起游玩剧本杀</p>
+                            </a>
+                        </div>
                     </div>
                 </section>
-                <section class="bg-gray-50 py-16">
-                    <div class="container mx-auto px-4">
-                        <h2 class="text-3xl font-bold text-center mb-8">nextweb 使用教程</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
 
-                                <div class="p-6 flex flex-col items-center justify-center h-full">
+                <!-- API Usage Section -->
+                <section class="py-16 px-4">
+                    <div class="container mx-auto">
+                        <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">API 使用指南</h2>
+                        <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">我们将复杂的调用过程模块化，为您提供清晰、易懂的使用说明。</p>
 
-                                    <h3 class="text-lg font-semibold mb-2">1. 填写baseUrl与apiKey</h3>
-                                    <p class="text-sm text-muted-foreground text-center">
-                                        <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
-                                            alt="功能1"
-                                            class="rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                                        <a class="mt-2 text-center text-sm font-medium"
-                                            href="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
-                                            target="_blank" rel="noopener noreferrer">点击放大图片1</a>
-                                    </p>
-                                </div>
+                        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-                            </div>
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
+                            <!-- API Endpoint Card -->
+                            <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">1. API 接口地址</h3>
+                                <p class="text-sm text-slate-600 mb-4">所有请求都应发送至以下 V1 接口地址。</p>
+                                <div class="bg-slate-50 rounded-lg flex-grow">
+                                    <pre><code class="language-javascript">
+// 推荐的主接口地址
+const API_HOST = "https://happyapi.org/v1";
 
-                                <div class="p-6 flex flex-col items-center justify-center h-full">
-
-                                    <h3 class="text-lg font-semibold mb-2">2. 加载全部AI模型</h3>
-                                    <p class="text-sm text-muted-foreground text-center">
-                                        <img src="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png"
-                                            alt="功能1"
-                                            class="rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                                        <a class="mt-2 text-center text-sm font-medium"
-                                            href="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png"
-                                            target="_blank" rel="noopener noreferrer">点击放大图片2</a>
-                                    </p>
+// 兼容备用地址 (一般无需使用)
+// const API_HOST_COMPATIBLE = "https://happyapi.org/v1/chat/completions";
+                                    </code></pre>
                                 </div>
                             </div>
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
 
-                                <div class="p-6 flex flex-col items-center justify-center h-full">
-                                    <h3 class="text-lg font-semibold mb-2">3. 选择指定模型使用</h3>
-                                    <p class="text-sm text-muted-foreground text-center">
-                                        <img src="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png"
-                                            alt="功能1"
-                                            class="rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                                        <a class="mt-2 text-center text-sm font-medium"
-                                            href="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png"
-                                            target="_blank" rel="noopener noreferrer">点击放大图片3</a>
-                                    </p>
+                            <!-- cURL Request Example Card -->
+                            <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col">
+                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">2. 请求示例 (cURL)</h3>
+                                <p class="text-sm text-slate-600 mb-4">我们完全兼容 OpenAI 格式，这是一个标准的 cURL 请求示例。</p>
+                                <div class="bg-slate-50 rounded-lg flex-grow">
+                                    <pre><code class="language-bash">
+# 向 chat/completions 端点发送 POST 请求
+curl -X POST "$API_HOST/chat/completions" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gpt-4o",
+    "messages": [
+      {
+        "role": "user",
+        "content": "你好，请介绍一下你自己"
+      }
+    ],
+    "stream": true
+  }'
+                                    </code></pre>
+                                </div>
+                            </div>
+
+                            <!-- Painting Model Guide Card -->
+                            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">3. 绘画模型使用说明</h3>
+                                <ol class="list-decimal list-inside space-y-3 text-slate-700 mt-4 text-sm md:text-base">
+                                    <li>
+                                        <strong>对话式生成:</strong>
+                                        所有绘画模型均采用 <code class="bg-slate-200 text-sm px-1.5 py-0.5 rounded">chat</code>
+                                        格式，通过对话直接生成图片。
+                                    </li>
+                                    <li>
+                                        <strong>支持图生图:</strong>
+                                        支持原图修改。请参考 OpenAI 官方文档中 chat 格式传递图片的方法。
+                                    </li>
+                                    <li>
+                                        <strong>自定义宽高比:</strong>
+                                        在提示词末尾，使用中文全角括号和冒号指定宽高比，例如：<br>
+                                        <code
+                                            class="bg-blue-100 text-blue-800 text-sm p-2 rounded-md block mt-2">帮我画一只宇航猫在月球漫步【16:9】</code>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <!-- TTS Usage Guide Card -->
+                            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">4. 语音 (TTS) 调用方法
+                                </h3>
+                                <div class="space-y-4 text-sm md:text-base mt-4">
+                                    <p class="text-slate-700">通过 <code
+                                            class="bg-slate-200 px-1.5 py-0.5 rounded">GET</code> 请求调用，返回 MP3 文件。</p>
+                                    <div>
+                                        <p class="font-semibold text-slate-800">请求地址:</p>
+                                        <code
+                                            class="bg-slate-100 p-2 rounded-md block w-full overflow-x-auto">https://fast-horse-44.deno.dev/v1/audio/speech</code>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-slate-800">请求参数:</p>
+                                        <ul class="list-disc list-inside text-slate-700 space-y-1 mt-1">
+                                            <li><code class="font-mono">model</code>: 声音模型 (如: <code
+                                                    class="bg-slate-200">zh-CN-YunxiNeural</code>)</li>
+                                            <li><code class="font-mono">voice</code>: 语速和语调 (格式: <code
+                                                    class="bg-slate-200">rate:0|pitch:0</code>)</li>
+                                            <li><code class="font-mono">input</code>: 要转换的文本</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-slate-800">完整示例:</p>
+                                        <a href="https://fast-horse-44.deno.dev/v1/audio/speech?model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好"
+                                            target="_blank" rel="noopener noreferrer"
+                                            class="text-blue-600 break-all hover:underline">
+                                            https://fast-horse-44.deno.dev/v1/audio/speech?model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好，世界
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <section class="bg-white py-16">
-                    <div class="container mx-auto px-4">
-                        <h2 class="text-3xl font-bold text-center mb-8">和AI简单地对话，就能获得解答、完成任务</h2>
-                        <p class="text-center mb-12 text-muted-foreground">0学习成本，无需阅读教程即可使用，把AI当成你的得力助手，在实时聊天中轻松解决问题</p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
-                                <div class="p-6 flex flex-col items-center justify-center h-full"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="lucide lucide-lightbulb w-8 h-8 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300">
-                                        <path
-                                            d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5">
-                                        </path>
-                                        <path d="M9 18h6"></path>
-                                        <path d="M10 22h4"></path>
-                                    </svg>
-                                    <h3 class="text-lg font-semibold mb-2">告诉AI你需要什么</h3>
-                                    <p class="text-sm text-muted-foreground text-center">
-                                        从预设有色里面选择，也可以直接告诉AI你想要什么或想知道什么。不需要学习或技巧，只需如同和真人聊天一样。</p>
-                                </div>
-                            </div>
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
-                                <div class="p-6 flex flex-col items-center justify-center h-full"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="lucide lucide-zap w-8 h-8 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300">
-                                        <path
-                                            d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
-                                        </path>
-                                    </svg>
-                                    <h3 class="text-lg font-semibold mb-2">让AI思考几秒钟</h3>
-                                    <p class="text-sm text-muted-foreground text-center">人类需要思考的时间，AI也是，耐心等待一会，通常几秒就足够。
-                                    </p>
-                                </div>
-                            </div>
-                            <div
-                                class="rounded-xl border bg-card text-card-foreground shadow group hover:shadow-lg transition-shadow duration-300">
-                                <div class="p-6 flex flex-col items-center justify-center h-full"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        class="lucide lucide-message-square w-8 h-8 text-blue-600 mb-2 group-hover:scale-110 transition-transform duration-300">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                    </svg>
-                                    <h3 class="text-lg font-semibold mb-2">得到你想要的</h3>
-                                    <p class="text-sm text-muted-foreground text-center">AI会开始输出内容，根据您的对话，帮助您解答问题或完成任务。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section class="bg-white py-16">
-                    <div class="container mx-auto px-4">
-                        <h2 class="text-3xl font-bold text-center mb-12">从现在开始，让AI成为您的得力助手</h2>
-                        <div class="max-w-4xl mx-auto">
-                            <div class="flex flex-wrap justify-center mb-8" role="tablist"><button
-                                    class="flex items-center px-4 py-2 m-1 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-zap w-4 h-4 mr-2">
-                                        <path
-                                            d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
-                                        </path>
-                                    </svg><span class="sr-only">Select tab:</span> 代码编程</button><button
-                                    class="flex items-center px-4 py-2 m-1 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-lightbulb w-4 h-4 mr-2">
-                                        <path
-                                            d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5">
-                                        </path>
-                                        <path d="M9 18h6"></path>
-                                        <path d="M10 22h4"></path>
-                                    </svg><span class="sr-only">Select tab:</span> 写作助手</button><button
-                                    class="flex items-center px-4 py-2 m-1 rounded-full text-sm font-medium transition-colors bg-blue-600 text-white"
-                                    aria-pressed="true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-pen-tool w-4 h-4 mr-2">
-                                        <path
-                                            d="M15.707 21.293a1 1 0 0 1-1.414 0l-1.586-1.586a1 1 0 0 1 0-1.414l5.586-5.586a1 1 0 0 1 1.414 0l1.586 1.586a1 1 0 0 1 0 1.414z">
-                                        </path>
-                                        <path
-                                            d="m18 13-1.375-6.874a1 1 0 0 0-.746-.776L3.235 2.028a1 1 0 0 0-1.207 1.207L5.35 15.879a1 1 0 0 0 .776.746L13 18">
-                                        </path>
-                                        <path d="m2.3 2.3 7.286 7.286"></path>
-                                        <circle cx="11" cy="11" r="2"></circle>
-                                    </svg><span class="sr-only">Select tab:</span> 学术论文</button><button
-                                    class="flex items-center px-4 py-2 m-1 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-book-open w-4 h-4 mr-2">
-                                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                                    </svg><span class="sr-only">Select tab:</span> 学术编辑</button><button
-                                    class="flex items-center px-4 py-2 m-1 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-message-square w-4 h-4 mr-2">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                    </svg><span class="sr-only">Select tab:</span> 精准翻译</button><button
-                                    class="flex items-center px-4 py-2 m-1 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-chart-column w-4 h-4 mr-2">
-                                        <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
-                                        <path d="M18 17V9"></path>
-                                        <path d="M13 17V5"></path>
-                                        <path d="M8 17v-3"></path>
-                                    </svg><span class="sr-only">Select tab:</span> 数据分析</button><button
-                                    class="flex items-center px-4 py-2 m-1 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-graduation-cap w-4 h-4 mr-2">
-                                        <path
-                                            d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z">
-                                        </path>
-                                        <path d="M22 10v6"></path>
-                                        <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path>
-                                    </svg><span class="sr-only">Select tab:</span> 教育培训</button><button
-                                    class="flex items-center px-4 py-2 m-1 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-circle-help w-4 h-4 mr-2">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-                                        <path d="M12 17h.01"></path>
-                                    </svg><span class="sr-only">Select tab:</span> 研究咨询</button><button
-                                    class="flex items-center px-4 py-2 m-1 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200"
-                                    aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-message-square w-4 h-4 mr-2">
-                                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                                    </svg><span class="sr-only">Select tab:</span> 自定义对话</button></div>
-                            <div class="transition-opacity duration-300 opacity-0 hidden" role="tabpanel"
-                                aria-labelledby="tab-general">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-sm mb-6">
-                                    <h3 class="text-lg font-semibold mb-4">用户输入：</h3>
-                                    <p class="text-gray-700">请帮我写一个Python程序，实现输入两个数，输出它们的和。</p>
-                                </div>
-                                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
-                                    <h3 class="text-lg font-semibold mb-4">AI 响应：</h3>
-                                    <p class="text-gray-700 whitespace-pre-line">def add(a, b):
-                                        return a + b
 
-                                        num1 = 10
-                                        num2 = 20
-                                        sum = add(num1, num2)
-                                        print("两数之和为：", sum)</p>
-                                </div>
+                <!-- Next-Web Tutorial -->
+                <section class="py-16 px-4 bg-white">
+                    <div class="container mx-auto">
+                        <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">Next-Web 对接教程</h2>
+                        <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">三步快速将 HappyAPI 对接到 Next-Web /
+                            LobeChat 等客户端。</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+                                    1</div>
+                                <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
+                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址 `https://happyapi.org` 和您的 API Key。
+                                </p>
+                                <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
+                                    alt="填写接口地址和密钥" class="rounded-lg shadow-md w-full">
                             </div>
-                            <div class="transition-opacity duration-300 opacity-0 hidden" role="tabpanel"
-                                aria-labelledby="tab-writing">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-sm mb-6">
-                                    <h3 class="text-lg font-semibold mb-4">用户输入：</h3>
-                                    <p class="text-gray-700">我正在写一篇关于人工智能的文章，能否给我一些开头的灵感？</p>
-                                </div>
-                                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
-                                    <h3 class="text-lg font-semibold mb-4">AI 响应：</h3>
-                                    <p class="text-gray-700 whitespace-pre-line">
-                                        人工智能（AI）作为一种前沿技术，正逐渐渗透到我们生活的方方面面。它不仅在工业生产、医疗保健、金融服务等领域展现出巨大潜力，还在人类认知、情感交流、社会互动等方面带来了深刻变革。本文将探讨人工智能的发展历程、应用前景以及对人类社会的影响，带您一起领略AI时代的无限可能。
-                                    </p>
-                                </div>
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+                                    2</div>
+                                <h3 class="text-lg font-semibold mb-2">加载自定义模型</h3>
+                                <p class="text-sm text-slate-600 mb-4">清空模型列表，然后点击“加载”或“更新列表”按钮。</p>
+                                <img src="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png" alt="加载自定义模型"
+                                    class="rounded-lg shadow-md w-full">
                             </div>
-                            <div class="transition-opacity duration-300 opacity-100" role="tabpanel"
-                                aria-labelledby="tab-academic">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-sm mb-6">
-                                    <h3 class="text-lg font-semibold mb-4">用户输入：</h3>
-                                    <p class="text-gray-700">我正在写一篇主题为"含油微藻的筛选及其产能性能研究"的论文，请你帮我写一段文字，内容是该课题研究意义。</p>
-                                </div>
-                                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
-                                    <h3 class="text-lg font-semibold mb-4">AI 响应：</h3>
-                                    <p class="text-gray-700 whitespace-pre-line">
-                                        随着全球能源需求的增加以及化石能源储量的逐渐枯竭，生物质能源作为一种可再生的清洁能源备受关注。含油微藻是一种可生产生物燃料和生物化学产品的重要微生物资源，因其高产油率、生长周期短、对污染物的吸收能力强等特点而备受研究者关注。因此，该研究对于推动可再生能源的发展、提高生物质能源利用效率、缓解能源与环境问题具有重要意义。
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="transition-opacity duration-300 opacity-0 hidden" role="tabpanel"
-                                aria-labelledby="tab-editing">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-sm mb-6">
-                                    <h3 class="text-lg font-semibold mb-4">用户输入：</h3>
-                                    <p class="text-gray-700">请帮我修改以下段落，使其更加学术化：
-                                        "AI很厉害，可以做很多事情。它能写文章、编程序，还能回答问题。"</p>
-                                </div>
-                                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
-                                    <h3 class="text-lg font-semibold mb-4">AI 响应：</h3>
-                                    <p class="text-gray-700 whitespace-pre-line">
-                                        人工智能（AI）展现出卓越的多功能性和广泛的应用前景。它具备生成文本、编写代码以及回答复杂查询的能力。AI的这些功能不仅体现了其在自然语言处理、软件开发和知识管理等领域的潜力，还凸显了其作为一种变革性技术在学术研究和实际应用中的重要性。
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="transition-opacity duration-300 opacity-0 hidden" role="tabpanel"
-                                aria-labelledby="tab-translation">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-sm mb-6">
-                                    <h3 class="text-lg font-semibold mb-4">用户输入：</h3>
-                                    <p class="text-gray-700">请将下面的英文翻译成中文，要求尽量符合中文的语法习惯：
-                                        "Artificial intelligence has made significant strides in recent years,
-                                        revolutionizing various industries and aspects of daily life."</p>
-                                </div>
-                                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
-                                    <h3 class="text-lg font-semibold mb-4">AI 响应：</h3>
-                                    <p class="text-gray-700 whitespace-pre-line">近年来，人工智能取得了显著进展，彻底改变了多个行业和日常生活的诸多方面。
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="transition-opacity duration-300 opacity-0 hidden" role="tabpanel"
-                                aria-labelledby="tab-data">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-sm mb-6">
-                                    <h3 class="text-lg font-semibold mb-4">用户输入：</h3>
-                                    <p class="text-gray-700">我有一组销售数据，请帮我分析一下趋势：
-                                        2021年：100万
-                                        2022年：150万
-                                        2023年：180万</p>
-                                </div>
-                                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
-                                    <h3 class="text-lg font-semibold mb-4">AI 响应：</h3>
-                                    <p class="text-gray-700 whitespace-pre-line">根据您提供的数据，我们可以观察到以下趋势：
-                                        1. 销售额呈现持续增长趋势。
-                                        2. 2021年到2022年增长了50%，增长幅度较大。
-                                        3. 2022年到2023年增长了20%，增速有所放缓但仍保持正增长。
-                                        4. 三年间，销售额从100万增长到180万，总增长率为80%。
-                                        建议进一步分析影响销售增长的因素，以及探讨如何维持或提高增长率。</p>
-                                </div>
-                            </div>
-                            <div class="transition-opacity duration-300 opacity-0 hidden" role="tabpanel"
-                                aria-labelledby="tab-education">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-sm mb-6">
-                                    <h3 class="text-lg font-semibold mb-4">用户输入：</h3>
-                                    <p class="text-gray-700">请为我设计一个关于人工智能基础知识的简短课程大纲。</p>
-                                </div>
-                                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
-                                    <h3 class="text-lg font-semibold mb-4">AI 响应：</h3>
-                                    <p class="text-gray-700 whitespace-pre-line">人工智能基础知识课程大纲：
-                                        1. 引言：什么是人工智能
-                                        2. 人工智能的历史和发展
-                                        3. 机器学习基础
-                                        3.1 监督学习
-                                        3.2 无监督学习
-                                        3.3 强化学习
-                                        4. 深度学习和神经网络
-                                        5. 自然语言处理
-                                        6. 计算机视觉
-                                        7. AI的伦理和社会影响
-                                        8. AI的未来发展趋势
-                                        9. 实践项目和案例研究</p>
-                                </div>
-                            </div>
-                            <div class="transition-opacity duration-300 opacity-0 hidden" role="tabpanel"
-                                aria-labelledby="tab-research">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-sm mb-6">
-                                    <h3 class="text-lg font-semibold mb-4">用户输入：</h3>
-                                    <p class="text-gray-700">我正在研究自动驾驶技术，能否为我提供一些最新的研究方向和挑战？</p>
-                                </div>
-                                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
-                                    <h3 class="text-lg font-semibold mb-4">AI 响应：</h3>
-                                    <p class="text-gray-700 whitespace-pre-line">自动驾驶技术的最新研究方向和挑战包括：
-                                        1. 感知系统的优化：提高在复杂环境下的识别准确性
-                                        2. 决策算法的改进：应对各种道路情况和紧急情况
-                                        3. V2X（车对一切）通信：增强车辆与基础设施、行人等的通信
-                                        4. 高精度地图和定位技术：提升定位精度和实时更新能力
-                                        5. 人机交互界面：优化驾驶员与自动驾驶系统的交互
-                                        6. 安全性和可靠性：提高系统的鲁棒性和故障处理能力
-                                        7. 伦理和法律问题：解决自动驾驶涉及的道德决策和责任划分
-                                        8. 极端天气适应性：提高在恶劣天气条件下的性能
-                                        9. 能源效率：优化能源管理，延长电动自动驾驶车辆的续航里程</p>
-                                </div>
-                            </div>
-                            <div class="transition-opacity duration-300 opacity-0 hidden" role="tabpanel"
-                                aria-labelledby="tab-custom">
-                                <div class="bg-gray-50 p-6 rounded-lg shadow-sm mb-6">
-                                    <h3 class="text-lg font-semibold mb-4">用户输入：</h3>
-                                    <p class="text-gray-700">请自由发挥，输入您想要与AI对话的内容。</p>
-                                </div>
-                                <div class="bg-blue-50 p-6 rounded-lg shadow-sm">
-                                    <h3 class="text-lg font-semibold mb-4">AI 响应：</h3>
-                                    <p class="text-gray-700 whitespace-pre-line">AI将根据您的输入内容进行回答，欢迎与AI进行自由对话。</p>
-                                </div>
+                            <div class="flex flex-col items-center">
+                                <div
+                                    class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+                                    3</div>
+                                <h3 class="text-lg font-semibold mb-2">选择模型开始对话</h3>
+                                <p class="text-sm text-slate-600 mb-4">在模型列表中选择您需要的模型，即可开始使用。</p>
+                                <img src="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png" alt="选择模型使用"
+                                    class="rounded-lg shadow-md w-full">
                             </div>
                         </div>
                     </div>
                 </section>
+
+                <!-- Use Cases Section with Tabs -->
+                <section class="py-16 px-4">
+                    <div class="container mx-auto">
+                        <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">从现在开始，让AI成为您的得力助手</h2>
+                        <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">零学习成本，在实时聊天中轻松解决问题，覆盖工作与生活的方方面面。
+                        </p>
+
+                        <div class="max-w-5xl mx-auto">
+                            <!-- Tab Buttons -->
+                            <div id="tab-buttons" class="flex flex-wrap justify-center gap-2 mb-8">
+                                <button data-tab-target="#tab-academic" class="tab-button active">学术论文</button>
+                                <button data-tab-target="#tab-coding" class="tab-button">代码编程</button>
+                                <button data-tab-target="#tab-writing" class="tab-button">写作助手</button>
+                                <button data-tab-target="#tab-editing" class="tab-button">学术编辑</button>
+                                <button data-tab-target="#tab-translation" class="tab-button">精准翻译</button>
+                                <button data-tab-target="#tab-data" class="tab-button">数据分析</button>
+                            </div>
+
+                            <!-- Tab Content -->
+                            <div id="tab-content" class="relative">
+                                <!-- Academic Paper -->
+                                <div id="tab-academic" class="tab-panel active">
+                                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                                        <div class="mb-6">
+                                            <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                                            <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
+                                                我正在写一篇主题为"含油微藻的筛选及其产能性能研究"的论文，请你帮我写一段文字，内容是该课题研究意义。</p>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
+                                            <p class="text-slate-700 bg-blue-50 p-4 rounded-lg">
+                                                随着全球能源需求的增加以及化石能源储量的逐渐枯竭，生物质能源作为一种可再生的清洁能源备受关注。含油微藻是一种可生产生物燃料和生物化学产品的重要微生物资源，因其高产油率、生长周期短、对污染物的吸收能力强等特点而备受研究者关注。因此，该研究对于推动可再生能源的发展、提高生物质能源利用效率、缓解能源与环境问题具有重要意义。
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Coding -->
+                                <div id="tab-coding" class="tab-panel">
+                                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                                        <div class="mb-6">
+                                            <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                                            <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
+                                                请帮我写一个Python程序，实现输入两个数，输出它们的和。</p>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
+                                            <div class="bg-blue-50 p-4 rounded-lg">
+                                                <pre><code class="language-python">
+def add_two_numbers(a, b):
+  """This function returns the sum of two numbers."""
+  return a + b
+
+# Example usage:
+num1 = float(input("Enter the first number: "))
+num2 = float(input("Enter the second number: "))
+
+sum_result = add_two_numbers(num1, num2)
+print(f"The sum of {num1} and {num2} is: {sum_result}")
+                                                </code></pre>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Writing Assistant -->
+                                <div id="tab-writing" class="tab-panel">
+                                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                                        <div class="mb-6">
+                                            <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                                            <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
+                                                我正在写一篇关于人工智能的文章，能否给我一些开头的灵感？</p>
+                                        </div>
+                                        <div>
+                                            <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
+                                            <p class="text-slate-700 bg-blue-50 p-4 rounded-lg">
+                                                人工智能（AI）作为一种前沿技术，正逐渐渗透到我们生活的方方面面。它不仅在工业生产、医疗保健、金融服务等领域展现出巨大潜力，还在人类认知、情感交流、社会互动等方面带来了深刻变革。本文将探讨人工智能的发展历程、应用前景以及对人类社会的影响，带您一起领略AI时代的无限可能。
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Other tabs content can be added here following the same structure -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
             </main>
 
+            <!-- Footer -->
+            <footer class="bg-white border-t border-slate-200">
+                <div class="container mx-auto py-6 px-4 text-center text-sm text-slate-500">
+                    <p>© 2024 HappyAPI. All Rights Reserved.</p>
+                    <p class="mt-2">致力于提供稳定、高效、便捷的 AI 模型服务</p>
+                </div>
+            </footer>
         </div>
     </div>
-</body>
-<script>
-    const dropdown = document.getElementById('dropdownNotification');
-    const dropdownContent = document.getElementById('dropdownContent');
-    dropdown.addEventListener('click', () => {
-      if (dropdownContent.style.display === 'none') {
-        dropdownContent.style.display = 'block';
-        dropdown.querySelector('p').textContent = '二次中转代理服务 ▲';
-      } else {
-        dropdownContent.style.display = 'none';
-        dropdown.querySelector('p').textContent = '二次中转代理服务 ▼';
-      }
-    });
-    // Optional: Hover effect for all notifications except dropdown
-    const notifications = document.querySelectorAll('#notificationsList > div');
-    notifications.forEach((el) => {
-      if (el !== dropdown) {
-        el.addEventListener('mouseenter', () => {
-          el.style.backgroundColor = '#ecf0f1';
+
+    <!-- Prism.js JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // --- Collapsible Notification Logic ---
+            const collapseToggle = document.getElementById('collapse-toggle');
+            const collapseContent = document.getElementById('collapse-content');
+            const collapseArrow = document.getElementById('collapse-arrow');
+
+            if (collapseToggle && collapseContent && collapseArrow) {
+                collapseToggle.addEventListener('click', () => {
+                    const isHidden = collapseContent.classList.contains('hidden');
+                    if (isHidden) {
+                        collapseContent.classList.remove('hidden');
+                        collapseArrow.style.transform = 'rotate(180deg)';
+                    } else {
+                        collapseContent.classList.add('hidden');
+                        collapseArrow.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+
+            // --- Tab Functionality ---
+            const tabButtonsContainer = document.getElementById('tab-buttons');
+            const tabContentContainer = document.getElementById('tab-content');
+            if (tabButtonsContainer && tabContentContainer) {
+                const tabButtons = tabButtonsContainer.querySelectorAll('.tab-button');
+                const tabPanels = tabContentContainer.querySelectorAll('.tab-panel');
+
+                const applyTabStyles = () => {
+                    tabButtons.forEach(button => {
+                        button.className = 'tab-button px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500';
+                        if (button.classList.contains('active')) {
+                            button.classList.add('bg-blue-600', 'text-white');
+                        } else {
+                            button.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
+                        }
+                    });
+                };
+
+                tabButtonsContainer.addEventListener('click', (e) => {
+                    const clickedButton = e.target.closest('.tab-button');
+                    if (!clickedButton) return;
+
+                    tabButtons.forEach(button => button.classList.remove('active'));
+                    tabPanels.forEach(panel => panel.classList.remove('active'));
+
+                    clickedButton.classList.add('active');
+                    const targetPanel = document.querySelector(clickedButton.dataset.tabTarget);
+                    if (targetPanel) {
+                        targetPanel.classList.add('active');
+                    }
+
+                    applyTabStyles();
+                });
+
+                applyTabStyles();
+            }
         });
-        el.addEventListener('mouseleave', () => {
-          el.style.backgroundColor = 'transparent';
-        });
-      }
-    });
-  </script>
-<body>
+    </script>
 </body>
 
 </html>
