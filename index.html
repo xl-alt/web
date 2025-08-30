@@ -141,6 +141,23 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <br>
+                                <div
+                                    style="background-color: #fef2f2; padding: 16px; border: 1px solid #f8d7da; border-radius: 8px; color: #721c24; font-family: 'Inter', sans-serif; text-align: center;">
+                                    <p style="font-size: 16px; font-weight: bold; margin-bottom: 8px;">
+                                        本站所有用户必须遵守《生成式人工智能服务管理暂行办法》 禁止一切违法违规行为
+                                    </p>
+                                    <p style="font-size: 14px; margin-bottom: 8px;">
+                                        禁止用于非法用途，如若发现本站将全力配合有关部门进行调查！
+                                    </p>
+                                    <p style="font-size: 14px; margin-bottom: 8px;">
+                                        违法客户请绕道,本站恕不接待,请不要以身试法！
+                                    </p>
+                                    <p style="font-size: 14px;">
+                                        本网站仅用于合法合规测试使用，使用者一切导致不良后果的行为与本站无关。
+                                    </p>
+                                </div>
+
                             </div>
 
                             <!-- Notifications List -->
@@ -148,9 +165,11 @@
                                 <h3 class="text-xl font-semibold mb-4 text-slate-800">最新动态</h3>
                                 <div class="space-y-3">
                                     <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-                                        <h4 class="font-semibold text-slate-800">【1】Gemini 模型更新</h4>
-                                        <p class="text-sm text-slate-600 mt-1">谷歌模型 Gemini 2.5 flash all 与 pro
-                                            all系列现已稳定，更低价格，更低倍率，欢迎体验。(可按次或者按倍率计算)</p>
+                                        <h4 class="font-semibold text-slate-800">【1】模型更新</h4>
+                                        <p class="text-sm text-slate-600 mt-1">deepseek-v3.1
+                                            新增思考过程，模型名deepseek-v3.1-think deepseek-ai/DeepSeek-V3.1-Think
+                                            非火山渠道，目前测试中...，非思考模型 deepseek-ai/DeepSeek-V3.1 deepseek-v3.1 火山渠道，速度快稳定！！！！
+                                        </p>
                                     </div>
                                     <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
                                         <h4 class="font-semibold text-slate-800">【2】claude thinking 系列更新</h4>
@@ -158,7 +177,8 @@
                                     </div>
                                     <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
                                         <h4 class="font-semibold text-slate-800">【3】并发无限制</h4>
-                                        <p class="text-sm text-slate-600 mt-1">Grok 系列模型近期存量较大，可大量并发调用。</p>
+                                        <p class="text-sm text-slate-600 mt-1">Grok 系列(包括grok-3/grok-4)模型近期存量较大，可大量并发调用。
+                                        </p>
                                     </div>
                                     <!-- Collapsible Notification -->
                                     <div id="collapsible-notification"
@@ -227,11 +247,6 @@
                                 <h3 class="text-lg font-semibold mb-2 text-slate-800">速率限制</h3>
                                 <p class="text-sm text-slate-600">本站对 API 请求限制为 500次 / 分钟。</p>
                             </div>
-                            <a href="https://low-ferret-19.deno.dev/" target="_blank" rel="noopener noreferrer"
-                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
-                                <h3 class="text-lg font-semibold mb-2 text-slate-800">AI 应用实例 1 （AI 剧本杀 coming）</h3>
-                                <p class="text-sm text-slate-600">填入您的apikey即可邀请好友一起游玩剧本杀</p>
-                            </a>
                         </div>
                     </div>
                 </section>
@@ -284,29 +299,62 @@ curl -X POST "$API_HOST/chat/completions" \
                             </div>
 
                             <!-- Painting Model Guide Card -->
-                            <div class="bg-white p-6 rounded-2xl shadow-lg">
-                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">3. 绘画模型使用说明</h3>
-                                <ol class="list-decimal list-inside space-y-3 text-slate-700 mt-4 text-sm md:text-base">
-                                    <li>
-                                        <strong>对话式生成:</strong>
-                                        所有绘画模型均采用 <code class="bg-slate-200 text-sm px-1.5 py-0.5 rounded">chat</code>
-                                        格式，通过对话直接生成图片。
-                                    </li>
-                                    <li>
-                                        <strong>支持图生图:</strong>
-                                        支持原图修改。请参考 OpenAI 官方文档中 chat 格式传递图片的方法。
-                                    </li>
-                                    <li>
-                                        <strong>自定义宽高比:</strong>
-                                        在提示词末尾（提示词使用英文效果更好哦！），使用英文中括号和冒号指定宽高比，例如：<br>
-                                        <code
-                                            class="bg-blue-100 text-blue-800 text-sm p-2 rounded-md block mt-2">帮我画一只宇航猫在月球漫步[16:9]</code>
-                                    </li>
-                                </ol>
+                            <div class="bg-white p-8 rounded-2xl shadow-lg col-span-1 lg:col-span-2">
+                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-3">3. 绘画模型使用说明</h3>
+                                <div class="space-y-6 mt-6 text-slate-700 text-sm md:text-base">
+                                    <!-- Chat Completions Endpoint -->
+                                    <div>
+                                        <h4 class="font-semibold text-lg text-slate-800 mb-2">① 对话式生成
+                                            (v1/chat/completions)</h4>
+                                        <p class="mb-3">通过标准对话接口即可生成图片，支持图生图（叠图）。传图格式与 OpenAI 官方文档完全一致。</p>
+                                        <p class="mb-3">注意: 图片宽高比仅支持像素比。例如1024:1024，是指宽1024，高1024像素。</p>
+                                        <p>在提示词末尾（提示词使用英文效果更好哦！），使用英文中括号和冒号指定宽高比，例如：<br>
+                                            <code
+                                                class="bg-blue-100 text-blue-800 text-sm p-2 rounded-md block mt-2">帮我画一只宇航猫在月球漫步[1024:1024]</code>
+                                        </p>
+                                    </div>
+
+                                    <!-- Image Generation Endpoint -->
+                                    <div>
+                                        <h4 class="font-semibold text-lg text-slate-800 mb-2">② 专业图片生成
+                                            (v1/images/generations)</h4>
+                                        <p class="mb-3">使用此接口进行文生图。负载示例如下：</p>
+                                        <div class="bg-slate-50 rounded-lg">
+                                            <pre><code class="language-json">
+
+{
+  "model": "flux.1-kontext-dev",           // 可选，指定模型的 ID，默认使用 "MODEL_ID_IMG2IMG"
+  "prompt": "a cat", // 描述图片编辑的文本，例如：替换背景
+  "size": "1024x1024",             // 可选，生成图片的尺寸，默认为 1024x1024
+  "response_format": "url"       // 返回格式，支持 "url"（返回图片 URL）或 "b64_json"（返回 base64 字符串）
+}
+                                            </code></pre>
+                                        </div>
+                                    </div>
+
+                                    <!-- Image Edits Endpoint -->
+                                    <div>
+                                        <h4 class="font-semibold text-lg text-slate-800 mb-2">③ 专业图片编辑 (v1/images/edits)
+                                        </h4>
+                                        <p class="mb-3">支持对单张图片进行编辑。图片可以是 URL 或 Base64 字符串。负载示例如下：</p>
+                                        <div class="bg-slate-50 rounded-lg">
+                                            <pre><code class="language-json">
+{
+  "model": "flux.1-kontext-dev",           // 可选，指定模型的 ID，默认使用 "MODEL_ID_IMG2IMG"
+  "image": "https://xl-files.oss-cn-chengdu.aliyuncs.com/images/img-1756543093582-76007ced-e710-4bc3-92ea-f79ff9304750.jpg",  // 要编辑的图片，可以是 base64 字符串或 URL
+  "prompt": "move to water", // 描述图片编辑的文本，例如：替换背景
+  "size": "1024x1024"             // 可选，生成图片的尺寸，默认为 1024x102
+  "response_format": "b64_json"   // 返回格式，支持 "url"（返回图片 URL）或 "b64_json"（返回 base64 字符串）
+}
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
+
                             <!-- TTS Usage Guide Card -->
-                            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                            <div class="bg-white p-6 rounded-2xl shadow-lg lg:col-span-2">
                                 <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">4. 语音 (TTS) 调用方法
                                 </h3>
                                 <div class="space-y-4 text-sm md:text-base mt-4">
