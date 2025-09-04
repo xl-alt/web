@@ -60,6 +60,210 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+
+
+
+
+
+
+
+
+
+        /* 标题渐变 & 闪烁 */
+        .gradient-title {
+            background: linear-gradient(90deg, #0f172a 0%, #0ea5e9 35%, #2563eb 60%, #0f172a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 220% 100%;
+            animation: shimmer 6s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%
+            }
+
+            100% {
+                background-position: 100% 50%
+            }
+        }
+
+        .hl {
+            color: #2563eb;
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: 4px
+        }
+
+        /* 漂浮光 */
+        @keyframes floatY {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(12px)
+            }
+        }
+
+        .animate-float {
+            animation: floatY 12s ease-in-out infinite
+        }
+
+        .animate-float-delayed {
+            animation: floatY 16s ease-in-out infinite .6s
+        }
+
+        /* 按钮 & 徽章 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 700;
+            border-radius: .9rem;
+            transition: .2s
+        }
+
+        .btn-primary {
+            padding: .8rem 1.15rem;
+            background: #2563eb;
+            color: #fff;
+            border: 1px solid #1e40af;
+            box-shadow: 0 14px 34px rgba(37, 99, 235, .25)
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            background: #1d4ed8
+        }
+
+        .btn-ghost {
+            padding: .75rem 1rem;
+            border: 1px solid #cbd5e1;
+            background: rgba(255, 255, 255, .9);
+            color: #0f172a
+        }
+
+        .btn-ghost:hover {
+            background: #fff
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            padding: .15rem .5rem;
+            border-radius: .5rem;
+            font-weight: 800
+        }
+
+        .pill-amber {
+            background: rgba(251, 191, 36, .18);
+            color: #92400e;
+            border: 1px solid rgba(251, 191, 36, .35)
+        }
+
+        .pill-blue {
+            background: rgba(59, 130, 246, .16);
+            color: #1e40af;
+            border: 1px solid rgba(59, 130, 246, .35)
+        }
+
+        /* 复制地址胶囊 */
+        .copy-pill {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .4rem .75rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(148, 163, 184, .6);
+            background: linear-gradient(180deg, rgba(255, 255, 255, .9), rgba(248, 250, 252, .9));
+            box-shadow: 0 6px 20px rgba(2, 6, 23, .05);
+            overflow: hidden
+        }
+
+        .copy-pill .shine {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(130deg, transparent 0%, rgba(255, 255, 255, .65) 35%, transparent 70%);
+            transform: translateX(-120%);
+            transition: transform .8s ease
+        }
+
+        .copy-pill:hover .shine {
+            transform: translateX(120%)
+        }
+
+        /* 信任条 */
+        .trust-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: .5rem;
+            border: 1px solid rgba(148, 163, 184, .35);
+            background: rgba(255, 255, 255, .8);
+            padding: .55rem .8rem;
+            border-radius: .8rem
+        }
+
+        .dot {
+            width: .5rem;
+            height: .5rem;
+            border-radius: 9999px
+        }
+
+        .dot-emerald {
+            background: #10b981
+        }
+
+        .dot-sky {
+            background: #0ea5e9
+        }
+
+        .dot-indigo {
+            background: #6366f1
+        }
+
+        /* 下滑提示按钮 */
+        .scroll-hint {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            border: 1px solid #cbd5e1;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: .85;
+            animation: bob 1.8s ease-in-out infinite
+        }
+
+        @keyframes bob {
+
+            0%,
+            100% {
+                transform: translateY(0)
+            }
+
+            50% {
+                transform: translateY(7px)
+            }
+        }
+
+        /* 低动效偏好 */
+        @media (prefers-reduced-motion: reduce) {
+
+            .animate-float,
+            .animate-float-delayed,
+            .gradient-title,
+            .scroll-hint {
+                animation: none
+            }
+        }
     </style>
 </head>
 
@@ -70,40 +274,127 @@
             <main class="flex-grow">
 
                 <!-- Hero Section -->
-                <section class="relative text-center py-20 md:py-32 px-4 bg-white overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-b from-blue-50 to-white z-0"></div>
-                    <div class="relative z-10 container mx-auto">
-                        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 mb-4">
-                            HappyAPI - 一站式聚合API
-                        </h1>
-                        <p class="text-lg md:text-xl mb-6 max-w-3xl mx-auto text-slate-600">
-                            支持<span class="font-semibold text-blue-600">OpenAI</span>、<span
-                                class="font-semibold text-blue-600">Claude</span>、<span
-                                class="font-semibold text-blue-600">Gemini</span>等多个顶级模型供应商
-                        </p>
-                        <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto text-slate-600">
-                            最低仅需<span class="font-semibold text-blue-600"> 0.15元 </span>即可购买<span
-                                class="font-semibold text-blue-600"> 1美金 </span>额度
-                        </p>
-                        <div class="flex justify-center items-center gap-4">
-                            <img src="https://img.shields.io/badge/Happyapi-7.2k+Users-blue?style=for-the-badge&logo=appveyor"
-                                alt="Happyapi Users">
-                            <img src="https://img.shields.io/badge/API-稳定_快速_低价-green?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZmZmZiI+PHBhdGggZD0iTTEyIDJMNiAxMmg2VjJ6bTAgMjBsNi0xMEgxMlYyMnpNMiAxMmw0LTggNCA4LTQgOFoiLz48L3N2Zz4="
-                                alt="API Status">
+                <!-- HERO / Masthead (Polished) -->
+                <section class="relative overflow-hidden">
+                    <!-- 背景：柔和网格 + 渐变光晕 -->
+                    <div aria-hidden="true" class="absolute inset-0 -z-10">
+                        <div
+                            class="absolute inset-0 bg-[radial-gradient(800px_400px_at_50%_0%,#dbeafe_15%,transparent_60%)]">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-b from-sky-50/80 via-white to-white"></div>
+                        <div
+                            class="pointer-events-none absolute -left-24 -top-24 w-[560px] h-[560px] rounded-full bg-sky-300/40 blur-3xl animate-float">
+                        </div>
+                        <div
+                            class="pointer-events-none absolute -right-20 top-32 w-[460px] h-[460px] rounded-full bg-indigo-300/35 blur-3xl animate-float-delayed">
+                        </div>
+                    </div>
+
+                    <div class="container mx-auto px-4 pt-24 md:pt-32 pb-16 text-center">
+                        <!-- 霜玻璃卡片 -->
+                        <div
+                            class="mx-auto max-w-4xl rounded-3xl border border-white/60 bg-white/60 backdrop-blur-2xl shadow-[0_20px_60px_rgba(2,6,23,0.08)] ring-1 ring-slate-200/50 px-6 md:px-10 py-10 md:py-14">
+                            <h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-slate-900">
+                                <span class="gradient-title pr-1">HappyAPI</span>
+                                <span class="opacity-90">— 一站式聚合 API</span>
+                            </h1>
+
+                            <p class="mt-4 text-base md:text-lg text-slate-600">
+                                支持 <span class="hl">OpenAI</span>、<span class="hl">Claude</span>、<span
+                                    class="hl">Gemini</span>、<span
+                                    class="hl">DeepSeek</span>、<span
+                                    class="hl">豆包</span> 等多个顶级模型供应商
+                            </p>
+
+                            <p class="mt-3 text-base md:text-lg text-slate-600">
+                                最低仅需 <span class="pill pill-amber">0.15 元</span> 即可购买 <span class="pill pill-blue">1
+                                    美金</span> 额度
+                            </p>
+
+                            <!-- CTA 按钮 -->
+                            <div class="mt-8 flex items-center justify-center gap-3">
+                                <a href="/console" class="btn btn-primary">
+                                    立即开始
+                                    <svg class="w-4 h-4 ml-1.5 -mr-0.5" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path d="M5 12h14M12 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                                <a href="#api-usage1" class="btn btn-ghost">查看用法</a>
+                            </div>
+
+                            <!-- 一键复制 Base URL -->
+                            <div class="mt-6 flex justify-center">
+                                <button id="copy-base" data-copy="https://happyapi.org/v1" class="copy-pill group">
+                                    <svg class="w-4 h-4 text-slate-500 group-hover:text-slate-700" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                    </svg>
+                                    <span class="font-mono text-slate-700">https://happyapi.org/v1</span>
+                                    <span class="hidden sm:inline text-slate-400 group-hover:text-slate-600">点击复制</span>
+                                    <span class="shine" aria-hidden="true"></span>
+                                </button>
+                            </div>
+
+                            <!-- 信任条 -->
+                            <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                                <div class="trust-item">
+                                    <span class="dot dot-emerald"></span> 7.2K+ 活跃用户
+                                </div>
+                                <div class="trust-item">
+                                    <span class="dot dot-sky"></span> 99.9% SLA 稳定
+                                </div>
+                                <div class="trust-item">
+                                    <span class="dot dot-indigo"></span> 高并发 · 低延迟
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 下滑提示 -->
+                        <div class="mt-10 flex justify-center">
+                            <button id="scroll-cta" type="button" data-target="#api-usage" data-offset="72" class="relative group inline-flex items-center justify-center w-10 h-10 rounded-full
+           border border-slate-300 bg-white/80 text-slate-500 backdrop-blur
+           shadow-sm transition-all duration-200
+           hover:text-slate-700 hover:border-slate-400 hover:shadow
+           active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400" aria-label="下滑查看更多">
+                                <!-- 外环高亮 -->
+                                <span
+                                    class="pointer-events-none absolute inset-0 rounded-full ring-0 group-hover:ring-4 ring-sky-200/60 transition-all duration-200"></span>
+                                <!-- 图标 -->
+                                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5 group-active:translate-y-1"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="m6 9 6 6 6-6" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </section>
 
+
                 <!-- Announcements Section -->
-                <section class="py-16 px-4">
-                    <div class="container mx-auto max-w-4xl bg-white p-6 sm:p-8 rounded-2xl shadow-lg">
-                        <h2 class="text-3xl font-bold text-center mb-8 text-slate-900">网站公告与交流群</h2>
+                <!-- Announcements Section (Enhanced) -->
+                <section class="py-16 px-4" id="api-usage">
+                    <div class="container mx-auto max-w-5xl bg-white p-6 sm:p-8 rounded-2xl shadow-lg overflow-hidden">
+                        <h2 class="text-3xl font-bold text-center mb-8 text-slate-900 reveal">网站公告与交流群</h2>
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                            <!-- QQ Groups Table -->
-                            <div>
-                                <h3 class="text-xl font-semibold mb-4 text-slate-800">加入我们的交流群</h3>
-                                <div class="overflow-x-auto rounded-lg border border-slate-200">
+                            <!-- QQ Groups Card -->
+                            <div class="reveal">
+                                <div class="flex items-center justify-between mb-3">
+                                    <h3 class="text-xl font-semibold text-slate-800">加入我们的交流群</h3>
+                                    <!-- <div class="relative">
+                                        <input id="qq-search" type="text" placeholder="搜索群名称 / 群号…"
+                                            class="peer pl-9 pr-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition" />
+                                        <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <circle cx="11" cy="11" r="8"></circle>
+                                            <path d="m21 21-4.3-4.3"></path>
+                                        </svg>
+                                    </div> -->
+                                </div>
+
+                                <div class="overflow-hidden rounded-xl border border-slate-200">
                                     <table class="min-w-full text-sm text-center">
                                         <thead class="bg-slate-100 text-slate-600 uppercase tracking-wider">
                                             <tr>
@@ -112,147 +403,412 @@
                                                 <th class="py-3 px-4 font-semibold">状态</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="bg-white divide-y divide-slate-200">
-                                            <tr>
+                                        <tbody id="qq-tbody" class="bg-white divide-y divide-slate-100">
+                                            <!-- 已满行 -->
+                                            <tr class="qq-row hover:bg-slate-50 transition" data-name="网站交流群01"
+                                                data-id="743336487" data-status="full">
                                                 <td class="py-3 px-4">网站交流群01</td>
-                                                <td class="py-3 px-4">743336487</td>
-                                                <td class="py-3 px-4 text-red-500 font-medium">已满</td>
+                                                <td class="py-3 px-4">
+                                                    <span class="font-medium text-slate-800">743336487</span>
+                                                    <button
+                                                        class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-700 transition"
+                                                        data-copy="743336487" title="复制群号">
+                                                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                        复制
+                                                    </button>
+                                                </td>
+                                                <td class="py-3 px-4">
+                                                    <span class="inline-flex items-center gap-1.5 text-red-600">
+                                                        <span
+                                                            class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                                                        已满
+                                                    </span>
+                                                </td>
                                             </tr>
-                                            <tr>
+
+                                            <tr class="qq-row hover:bg-slate-50 transition" data-name="网站交流群02"
+                                                data-id="177413724" data-status="full">
                                                 <td class="py-3 px-4">网站交流群02</td>
-                                                <td class="py-3 px-4">177413724</td>
-                                                <td class="py-3 px-4 text-red-500 font-medium">已满</td>
+                                                <td class="py-3 px-4">
+                                                    <span class="font-medium text-slate-800">177413724</span>
+                                                    <button
+                                                        class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-700 transition"
+                                                        data-copy="177413724" title="复制群号"><svg class="w-3.5 h-3.5"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                        复制</button>
+                                                </td>
+                                                <td class="py-3 px-4">
+                                                    <span class="inline-flex items-center gap-1.5 text-red-600">
+                                                        <span
+                                                            class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                                                        已满
+                                                    </span>
+                                                </td>
                                             </tr>
-                                            <tr>
+
+                                            <tr class="qq-row hover:bg-slate-50 transition" data-name="网站交流群03"
+                                                data-id="960341140" data-status="full">
                                                 <td class="py-3 px-4">网站交流群03</td>
-                                                <td class="py-3 px-4">960341140</td>
-                                                <td class="py-3 px-4 text-red-500 font-medium">已满</td>
+                                                <td class="py-3 px-4">
+                                                    <span class="font-medium text-slate-800">960341140</span>
+                                                    <button
+                                                        class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-700 transition"
+                                                        data-copy="960341140" title="复制群号"><svg class="w-3.5 h-3.5"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                        复制</button>
+                                                </td>
+                                                <td class="py-3 px-4">
+                                                    <span class="inline-flex items-center gap-1.5 text-red-600">
+                                                        <span
+                                                            class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                                                        已满
+                                                    </span>
+                                                </td>
                                             </tr>
-                                            <tr>
+
+                                            <tr class="qq-row hover:bg-slate-50 transition" data-name="网站交流群04"
+                                                data-id="954483522" data-status="full">
                                                 <td class="py-3 px-4">网站交流群04</td>
-                                                <td class="py-3 px-4">954483522</td>
-                                                <td class="py-3 px-4 text-red-500 font-medium">已满</td>
+                                                <td class="py-3 px-4">
+                                                    <span class="font-medium text-slate-800">954483522</span>
+                                                    <button
+                                                        class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-700 transition"
+                                                        data-copy="954483522" title="复制群号"><svg class="w-3.5 h-3.5"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                        复制</button>
+                                                </td>
+                                                <td class="py-3 px-4">
+                                                    <span class="inline-flex items-center gap-1.5 text-red-600">
+                                                        <span
+                                                            class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                                                        已满
+                                                    </span>
+                                                </td>
                                             </tr>
-                                            <tr class="bg-green-50">
+
+                                            <!-- 可加入行（高亮 + 按钮） -->
+                                            <tr class="qq-row hover:bg-green-50 transition bg-green-50/60 ring-1 ring-inset ring-green-100"
+                                                data-name="网站交流群05" data-id="820451995" data-status="open">
                                                 <td class="py-3 px-4 font-bold text-slate-800">网站交流群05</td>
-                                                <td class="py-3 px-4 font-bold text-slate-800">820451995</td>
-                                                <td class="py-3 px-4 text-green-600 font-bold">可加入</td>
+                                                <td class="py-3 px-4">
+                                                    <span class="font-bold text-slate-800">820451995</span>
+                                                    <button
+                                                        class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-green-200 hover:border-green-300 text-green-600 hover:text-green-700 transition"
+                                                        data-copy="820451995" title="复制群号"><svg class="w-3.5 h-3.5"
+                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                            stroke-width="2">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                                                            <path
+                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                            </path>
+                                                        </svg>
+                                                        复制</button>
+                                                </td>
+                                                <td class="py-3 px-4">
+                                                    <button
+                                                        class="join-btn inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-green-600 text-white text-xs font-semibold shadow hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                        data-id="820451995" title="点击复制群号并打开 QQ 下载页">
+                                                        <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                                                        立即加入
+                                                    </button>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                                <br>
-                                <div
-                                    style="background-color: #fef2f2; padding: 16px; border: 1px solid #f8d7da; border-radius: 8px; color: #721c24; font-family: 'Inter', sans-serif; text-align: center;">
-                                    <p style="font-size: 16px; font-weight: bold; margin-bottom: 8px;">
-                                        本站所有用户必须遵守《生成式人工智能服务管理暂行办法》 禁止一切违法违规行为
-                                    </p>
-                                    <p style="font-size: 14px; margin-bottom: 8px;">
-                                        禁止用于非法用途，如若发现本站将全力配合有关部门进行调查！
-                                    </p>
-                                    <p style="font-size: 14px; margin-bottom: 8px;">
-                                        违法客户请绕道,本站恕不接待,请不要以身试法！
-                                    </p>
-                                    <p style="font-size: 14px;">
-                                        本网站仅用于合法合规测试使用，使用者一切导致不良后果的行为与本站无关。
-                                    </p>
-                                </div>
 
+                                <!-- 红色告示条 -->
+                                <div
+                                    class="mt-4 rounded-xl border border-red-200 bg-red-50 text-red-800 p-4 leading-relaxed">
+                                    <p class="font-semibold">本站所有用户必须遵守《生成式人工智能服务管理暂行办法》，禁止一切违法违规行为。</p>
+                                    <p class="text-sm mt-1">禁止用于非法用途，如若发现本站将全力配合有关部门进行调查；违法客户请绕道，本网站仅用于合法合规测试。</p>
+                                </div>
                             </div>
 
-                            <!-- Notifications List -->
-                            <div>
-                                <h3 class="text-xl font-semibold mb-4 text-slate-800">最新动态</h3>
-                                <div class="space-y-3">
-                                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-                                        <h4 class="font-semibold text-slate-800">【1】模型更新</h4>
-                                        <p class="text-sm text-slate-600 mt-1">deepseek-v3.1
-                                            新增思考过程，模型名deepseek-v3.1-think deepseek-ai/DeepSeek-V3.1-Think
-                                            非火山渠道，目前测试中...，非思考模型 deepseek-ai/DeepSeek-V3.1 deepseek-v3.1 火山渠道，速度快稳定！！！！
-                                        </p>
-                                    </div>
-                                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-                                        <h4 class="font-semibold text-slate-800">【2】claude thinking 系列更新</h4>
-                                        <p class="text-sm text-slate-600 mt-1">claude 系列稳定并发，可使用Claude 4 thinking。</p>
-                                    </div>
-                                    <div class="p-4 rounded-lg bg-slate-50 border border-slate-200">
-                                        <h4 class="font-semibold text-slate-800">【3】并发无限制</h4>
-                                        <p class="text-sm text-slate-600 mt-1">Grok 系列(包括grok-3/grok-4)模型近期存量较大，可大量并发调用。
-                                        </p>
-                                    </div>
-                                    <!-- Collapsible Notification -->
-                                    <div id="collapsible-notification"
-                                        class="rounded-lg bg-blue-50 border border-blue-200 overflow-hidden">
-                                        <button id="collapse-toggle"
-                                            class="w-full text-left p-4 flex justify-between items-center transition-colors hover:bg-blue-100">
-                                            <div>
-                                                <h4 class="font-semibold text-blue-800">二次中转代理服务</h4>
-                                                <p class="text-sm text-blue-700 mt-1">如果您想要代理 happyapi 服务，您将获得以下权益...
-                                                </p>
-                                            </div>
-                                            <svg id="collapse-arrow" class="w-5 h-5 text-blue-600 transition-transform"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                stroke-width="2" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                            </svg>
-                                        </button>
-                                        <div id="collapse-content" class="hidden p-4 pt-0">
-                                            <ul class="list-disc list-inside text-sm text-blue-700 space-y-2">
-                                                <li>无需技术，无需服务器，自备域名即可获得专属中转站 (NewAPI)。</li>
+                            <!-- Updates / Notifications -->
+                            <div class="space-y-3 reveal">
+                                <h3 class="text-xl font-semibold mb-1 text-slate-800">最新动态</h3>
+
+                                <!-- 动态卡：带左侧进度条动画 -->
+                                <article
+                                    class="relative p-4 rounded-xl bg-slate-50 border border-slate-200 overflow-hidden group">
+                                    <span
+                                        class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 animate-[pulse_2s_ease-in-out_infinite]"></span>
+                                    <h4 class="font-semibold text-slate-800 flex items-center gap-2">
+                                        【1】模型更新 <span
+                                            class="text-xs px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">NEW</span>
+                                    </h4>
+                                    <p class="text-sm text-slate-600 mt-1">
+                                        deepseek-v3.1 新增思考过程（deepseek-ai/DeepSeek-V3.1-Think），非思考模型 DeepSeek-V3.1
+                                        火山渠道稳定可用。
+                                    </p>
+                                </article>
+
+                                <article
+                                    class="relative p-4 rounded-xl bg-slate-50 border border-slate-200 overflow-hidden group">
+                                    <span
+                                        class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-emerald-500 to-teal-500 animate-[pulse_2s_ease-in-out_infinite]"></span>
+                                    <h4 class="font-semibold text-slate-800">【2】Claude thinking 系列更新</h4>
+                                    <p class="text-sm text-slate-600 mt-1">Claude 系列稳定并发，可使用 Claude 4 thinking。</p>
+                                </article>
+
+                                <article
+                                    class="relative p-4 rounded-xl bg-slate-50 border border-slate-200 overflow-hidden group">
+                                    <span
+                                        class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-rose-500 to-orange-500 animate-[pulse_2s_ease-in-out_infinite]"></span>
+                                    <h4 class="font-semibold text-slate-800">【3】并发无限制</h4>
+                                    <p class="text-sm text-slate-600 mt-1">Grok 系列（含 grok-3 / grok-4）近期存量较大，支持大量并发调用。
+                                    </p>
+                                </article>
+
+                                <!-- 可折叠面板（保留你的原交互 + 平滑过渡） -->
+                                <div id="collapsible-notification"
+                                    class="rounded-xl bg-blue-50 border border-blue-200 overflow-hidden">
+                                    <button id="collapse-toggle"
+                                        class="w-full text-left p-4 flex justify-between items-center transition-colors hover:bg-blue-100">
+                                        <div>
+                                            <h4 class="font-semibold text-blue-800">二次中转代理服务</h4>
+                                            <p class="text-sm text-blue-700 mt-1">如果您想要代理 happyapi 服务，您将获得以下权益…</p>
+                                        </div>
+                                        <svg id="collapse-arrow" class="w-5 h-5 text-blue-600 transition-transform"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="2" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                                        </svg>
+                                    </button>
+                                    <div id="collapse-content"
+                                        class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                                        <div class="overflow-hidden">
+                                            <ul class="list-disc list-inside text-sm text-blue-700 space-y-2 p-4 pt-0">
+                                                <li>无需技术、无需服务器，域名即可获得专属中转站（NewAPI）。</li>
                                                 <li>立即获得 500 美元一周试营业额度。</li>
-                                                <li>免费一周 gemini 系列 grok系列模型的服务支持。</li>
+                                                <li>免费一周 Gemini / Grok 系列模型服务支持。</li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> <!-- /right -->
                         </div>
                     </div>
+
+                    <!-- Toast -->
+                    <div id="toast"
+                        class="fixed bottom-6 right-6 z-50 hidden min-w-[220px] max-w-xs text-sm px-4 py-3 rounded-lg shadow-lg bg-slate-900/90 text-white">
+                        <span id="toast-msg">已复制</span>
+                    </div>
                 </section>
+
 
                 <!-- Navigation Section -->
+                <!-- 快速导航 -->
                 <section class="py-16 px-4 bg-white">
                     <div class="container mx-auto">
-                        <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">快速导航</h2>
-                        <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">此部分包含状态监控、在线体验、用量查询等快捷入口，点击即可跳转。
+                        <h2 class="text-3xl font-bold text-center mb-3 text-slate-900">快速导航</h2>
+                        <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">
+                            此部分包含状态监控、在线体验、用量查询等快捷入口，点击即可跳转。
                         </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <a href="http://48.210.59.29:8001/status/happyapi" target="_blank" rel="noopener noreferrer"
-                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
-                                <h3 class="text-lg font-semibold mb-2 text-slate-800">API 在线监控</h3>
-                                <p class="text-sm text-slate-600">随时随地查看 API 运行状况，及时获取服务状态。</p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                            <!-- 1 API 在线监控 -->
+                            <a href="http://48.210.59.29:8001/status/happyapi" target="_blank" rel="noopener"
+                                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-sky-200/70 via-slate-100 to-transparent hover:from-sky-300/80 hover:via-indigo-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">
+                                <div
+                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5">
+                                    <div class="flex items-start gap-4">
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-sky-50 text-sky-600 ring-1 ring-sky-100">
+                                            <!-- monitor icon -->
+                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2">
+                                                <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                                                <path d="M7 20h10M12 16v4"></path>
+                                            </svg>
+                                        </span>
+                                        <div class="flex-1">
+                                            <div class="flex items-center gap-2">
+                                                <h3 class="text-lg font-semibold text-slate-800">API 在线监控</h3>
+                                                <span
+                                                    class="text-xs px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">实时</span>
+                                            </div>
+                                            <p class="mt-1 text-sm text-slate-600">
+                                                随时随地查看 API 运行状况，及时获取服务状态。
+                                            </p>
+                                        </div>
+                                        <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </a>
-                            <a href="https://happyapi.me/" target="_blank" rel="noopener noreferrer"
-                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
-                                <h3 class="text-lg font-semibold mb-2 text-slate-800">在线免费使用</h3>
-                                <p class="text-sm text-slate-600">站点福利，点击免费使用所有模型，注册无需验证码。</p>
+
+                            <!-- 2 在线免费使用 -->
+                            <a href="https://happyapi.me/" target="_blank" rel="noopener"
+                                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-violet-200/70 via-slate-100 to-transparent hover:from-violet-300/80 hover:via-fuchsia-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400">
+                                <div
+                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5">
+                                    <div class="flex items-start gap-4">
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
+                                            <!-- sparkles -->
+                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2">
+                                                <path
+                                                    d="M5 3v4M3 5h4M19 13v4m-2-2h4M9 7l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4z" />
+                                            </svg>
+                                        </span>
+                                        <div class="flex-1">
+                                            <h3 class="text-lg font-semibold text-slate-800">在线看免费使用</h3>
+                                            <p class="mt-1 text-sm text-slate-600">站点福利，免费使用所有模型，注册无需验证码。</p>
+                                        </div>
+                                        <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </a>
-                            <a href="https://draw.happieapi.top/" target="_blank" rel="noopener noreferrer"
-                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
-                                <h3 class="text-lg font-semibold mb-2 text-slate-800">绘画免费使用</h3>
-                                <p class="text-sm text-slate-600">在线绘画体验站，感受 AIGC 的创作魅力。</p>
+
+                            <!-- 3 绘画免费使用 -->
+                            <a href="https://draw.happieapi.top/" target="_blank" rel="noopener"
+                                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-pink-200/70 via-slate-100 to-transparent hover:from-pink-300/80 hover:via-rose-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400">
+                                <div
+                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5">
+                                    <div class="flex items-start gap-4">
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-pink-50 text-pink-600 ring-1 ring-pink-100">
+                                            <!-- palette -->
+                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2">
+                                                <path d="M12 3a9 9 0 1 0 9 9 3 3 0 0 1-3-3c0-1.657-1.79-3-4-3h-2z" />
+                                                <circle cx="7.5" cy="10.5" r="1" />
+                                                <circle cx="10.5" cy="7.5" r="1" />
+                                                <circle cx="14.5" cy="7.5" r="1" />
+                                                <circle cx="16.5" cy="10.5" r="1" />
+                                            </svg>
+                                        </span>
+                                        <div class="flex-1">
+                                            <h3 class="text-lg font-semibold text-slate-800">绘画免费使用</h3>
+                                            <p class="mt-1 text-sm text-slate-600">在线绘画体验站，感受 AIGC 的创作魅力。</p>
+                                        </div>
+                                        <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </a>
-                            <a href="https://video.happyapi.me/" target="_blank" rel="noopener noreferrer"
-                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
-                                <h3 class="text-lg font-semibold mb-2 text-slate-800">免费文本转语音</h3>
-                                <p class="text-sm text-slate-600">语音免费体验站，API 调用方法见下文说明。</p>
+
+                            <!-- 4 免费文本转语音 -->
+                            <a href="https://video.happyapi.me/" target="_blank" rel="noopener"
+                                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-amber-200/70 via-slate-100 to-transparent hover:from-amber-300/80 hover:via-orange-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400">
+                                <div
+                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5">
+                                    <div class="flex items-start gap-4">
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-amber-50 text-amber-600 ring-1 ring-amber-100">
+                                            <!-- speaker -->
+                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2">
+                                                <path d="M11 5l-4 4H3v6h4l4 4V5z" />
+                                                <path d="M15 9a3 3 0 0 1 0 6M19 7a6 6 0 0 1 0 10" />
+                                            </svg>
+                                        </span>
+                                        <div class="flex-1">
+                                            <h3 class="text-lg font-semibold text-slate-800">免费文本转语音</h3>
+                                            <p class="mt-1 text-sm text-slate-600">语音免费体验站，API 调用方法见下文说明。</p>
+                                        </div>
+                                        <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </a>
-                            <a href="https://api.happyapi.me/" target="_blank" rel="noopener noreferrer"
-                                class="group block p-6 bg-slate-50 rounded-xl border border-slate-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
-                                <h3 class="text-lg font-semibold mb-2 text-slate-800">Key 用量查询</h3>
-                                <p class="text-sm text-slate-600">无需登录，直接使用您的 Key 在线查询额度使用情况。</p>
+
+                            <!-- 5 Key 用量查询 -->
+                            <a href="https://api.happyapi.me/" target="_blank" rel="noopener"
+                                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-teal-200/70 via-slate-100 to-transparent hover:from-teal-300/80 hover:via-emerald-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
+                                <div
+                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5">
+                                    <div class="flex items-start gap-4">
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-teal-50 text-teal-600 ring-1 ring-teal-100">
+                                            <!-- key -->
+                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2">
+                                                <circle cx="7" cy="17" r="3" />
+                                                <path d="M10 17h6l4-4-3-3-4 4v3" />
+                                            </svg>
+                                        </span>
+                                        <div class="flex-1">
+                                            <h3 class="text-lg font-semibold text-slate-800">Key 用量查询</h3>
+                                            <p class="mt-1 text-sm text-slate-600">无需登录，直接使用您的 Key 在线查询额度使用情况。</p>
+                                        </div>
+                                        <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M5 12h14M12 5l7 7-7 7" />
+                                        </svg>
+                                    </div>
+                                </div>
                             </a>
-                            <div class="group block p-6 bg-slate-50 rounded-xl border border-slate-200">
-                                <h3 class="text-lg font-semibold mb-2 text-slate-800">速率限制</h3>
-                                <p class="text-sm text-slate-600">本站对 API 请求限制为 500次 / 分钟。</p>
+
+                            <!-- 6 速率限制（信息卡，无跳转） -->
+                            <div
+                                class="group p-[1px] rounded-2xl bg-gradient-to-br from-slate-200/70 via-slate-100 to-transparent reveal">
+                                <div
+                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm transition-all duration-200 group-hover:-translate-y-0.5">
+                                    <div class="flex items-start gap-4">
+                                        <span
+                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-50 text-slate-600 ring-1 ring-slate-200">
+                                            <!-- speedometer -->
+                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2">
+                                                <path d="M21 12a9 9 0 1 0-18 0 9 9 0 0 0 18 0Z" />
+                                                <path d="M12 7v5l3 3" />
+                                            </svg>
+                                        </span>
+                                        <div class="flex-1">
+                                            <h3 class="text-lg font-semibold text-slate-800">速率限制</h3>
+                                            <p class="mt-1 text-sm text-slate-600">本站对 API 请求限制为 <span
+                                                    class="font-semibold text-slate-800">500次 / 分钟</span>。</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </section>
 
+
                 <!-- API Usage Section -->
-                <section class="py-16 px-4">
+                <section class="py-16 px-4" id="api-usage1">
                     <div class="container mx-auto">
                         <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">API 使用指南</h2>
                         <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">我们将复杂的调用过程模块化，为您提供清晰、易懂的使用说明。</p>
@@ -532,26 +1088,146 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            /* ---- 滚入动效：IntersectionObserver ---- */
+            const reveals = document.querySelectorAll('.reveal');
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach((en) => {
+                    if (en.isIntersecting) {
+                        en.target.animate(
+                            [
+                                { opacity: 0, transform: 'translateY(12px)' },
+                                { opacity: 1, transform: 'translateY(0)' }
+                            ],
+                            { duration: 450, easing: 'ease-out', fill: 'forwards' }
+                        );
+                        io.unobserve(en.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+            reveals.forEach(el => io.observe(el));
 
-            // --- Collapsible Notification Logic ---
+            /* ---- 搜索过滤 ---- */
+            const searchInput = document.getElementById('qq-search');
+            const rows = Array.from(document.querySelectorAll('#qq-tbody .qq-row'));
+            const noHitEl = document.createElement('tr');
+            noHitEl.innerHTML = `
+    <td class="py-5 px-4 text-slate-500 text-center" colspan="3">
+      未找到匹配的群，请尝试其它关键词
+    </td>`;
+            searchInput?.addEventListener('input', () => {
+                const kw = searchInput.value.trim().toLowerCase();
+                let visible = 0;
+                rows.forEach(tr => {
+                    const name = tr.dataset.name?.toLowerCase() ?? '';
+                    const id = tr.dataset.id?.toLowerCase() ?? '';
+                    const match = !kw || name.includes(kw) || id.includes(kw);
+                    tr.style.display = match ? '' : 'none';
+                    if (match) visible++;
+                });
+                if (visible === 0) {
+                    if (!noHitEl.isConnected) document.getElementById('qq-tbody').appendChild(noHitEl);
+                } else {
+                    if (noHitEl.isConnected) noHitEl.remove();
+                }
+            });
+
+            /* ---- 复制群号 + Toast ---- */
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            let toastTimer = null;
+            function showToast(msg = '已复制') {
+                toastMsg.textContent = msg;
+                toast.classList.remove('hidden');
+                toast.animate(
+                    [{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }],
+                    { duration: 180, easing: 'ease-out', fill: 'forwards' }
+                );
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => {
+                    toast.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 180, fill: 'forwards' });
+                    setTimeout(() => toast.classList.add('hidden'), 180);
+                }, 1600);
+            }
+            function copyText(text) {
+                return navigator.clipboard?.writeText(text).catch(() => {
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    document.body.appendChild(ta);
+                    ta.select(); document.execCommand('copy'); ta.remove();
+                });
+            }
+            document.addEventListener('click', async (e) => {
+                const btn = e.target.closest('.copy-btn');
+                if (btn) {
+                    const v = btn.getAttribute('data-copy') || '';
+                    await copyText(v);
+                    showToast(`群号 ${v} 已复制`);
+                }
+            });
+
+            /* ---- “立即加入”：复制群号 + 打开 QQ 官网 ---- */
+            document.addEventListener('click', async (e) => {
+                const join = e.target.closest('.join-btn');
+                if (join) {
+                    const id = join.getAttribute('data-id');
+                    if (id) {
+                        await copyText(id);
+                        showToast(`群号 ${id} 已复制，正在打开 QQ`);
+                    }
+                    window.open('https://im.qq.com/', '_blank', 'noopener,noreferrer');
+                }
+            });
+
+            /* ---- 折叠面板（统一为 max-height 动画，兼容 hidden/grid） ---- */
             const collapseToggle = document.getElementById('collapse-toggle');
             const collapseContent = document.getElementById('collapse-content');
             const collapseArrow = document.getElementById('collapse-arrow');
 
             if (collapseToggle && collapseContent && collapseArrow) {
+                // 规范初始：移除 hidden & 覆盖 grid-rows 样式，统一用 max-height
+                if (collapseContent.classList.contains('hidden')) collapseContent.classList.remove('hidden');
+                collapseContent.style.gridTemplateRows = 'unset';        // 覆盖可能存在的 grid-rows-*[0fr]
+                collapseContent.style.overflow = 'hidden';
+                collapseContent.style.maxHeight = '0px';
+                collapseContent.style.transition = 'max-height .3s ease';
+                collapseContent.dataset.open = 'false';
+
+                collapseArrow.style.transition = 'transform .2s ease';
+                collapseArrow.style.transform = 'rotate(0deg)';
+
                 collapseToggle.addEventListener('click', () => {
-                    const isHidden = collapseContent.classList.contains('hidden');
-                    if (isHidden) {
-                        collapseContent.classList.remove('hidden');
-                        collapseArrow.style.transform = 'rotate(180deg)';
-                    } else {
-                        collapseContent.classList.add('hidden');
+                    const open = collapseContent.dataset.open === 'true';
+                    if (open) {
+                        // 收起
+                        collapseContent.style.maxHeight = '0px';
+                        collapseContent.dataset.open = 'false';
                         collapseArrow.style.transform = 'rotate(0deg)';
+                    } else {
+                        // 展开
+                        // 先设为实际高度，完成后保持该高度；若内容有变动，下次点时重新计算
+                        collapseContent.style.maxHeight = collapseContent.scrollHeight + 'px';
+                        collapseContent.dataset.open = 'true';
+                        collapseArrow.style.transform = 'rotate(180deg)';
+                    }
+                });
+
+                // 防止快速点击导致高度计算不准，监听过渡结束后校准一次
+                collapseContent.addEventListener('transitionend', () => {
+                    if (collapseContent.dataset.open === 'true') {
+                        // 再次校准（可选）
+                        collapseContent.style.maxHeight = collapseContent.scrollHeight + 'px';
                     }
                 });
             }
 
-            // --- Tab Functionality ---
+            // （可选）重复 ID 检测，方便调试
+            ['collapsible-notification', 'collapse-toggle', 'collapse-content', 'collapse-arrow']
+                .forEach(id => {
+                    const count = document.querySelectorAll('#' + id).length;
+                    if (count > 1) console.warn('检测到重复 ID：#' + id + ' × ' + count + '，请确保此模块仅一份。');
+                });
+
+            /* ---- Tabs ---- */
             const tabButtonsContainer = document.getElementById('tab-buttons');
             const tabContentContainer = document.getElementById('tab-content');
             if (tabButtonsContainer && tabContentContainer) {
@@ -560,7 +1236,8 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
 
                 const applyTabStyles = () => {
                     tabButtons.forEach(button => {
-                        button.className = 'tab-button px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500';
+                        button.className =
+                            'tab-button px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500';
                         if (button.classList.contains('active')) {
                             button.classList.add('bg-blue-600', 'text-white');
                         } else {
@@ -578,17 +1255,86 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
 
                     clickedButton.classList.add('active');
                     const targetPanel = document.querySelector(clickedButton.dataset.tabTarget);
-                    if (targetPanel) {
-                        targetPanel.classList.add('active');
-                    }
+                    if (targetPanel) targetPanel.classList.add('active');
 
                     applyTabStyles();
                 });
 
                 applyTabStyles();
             }
+            const copyBtn = document.getElementById('copy-base');
+            if (!copyBtn) return;
+            const val = copyBtn.getAttribute('data-copy') || 'https://happyapi.org/v1';
+
+            async function copyText(v) {
+                try { await (navigator.clipboard?.writeText(v) ?? Promise.reject()); }
+                catch {
+                    const ta = document.createElement('textarea'); ta.value = v; document.body.appendChild(ta);
+                    ta.select(); document.execCommand('copy'); ta.remove();
+                }
+            }
+
+            copyBtn.addEventListener('click', async () => {
+                await copyText(val);
+                // 复用你页面已有 showToast，如果没有就临时用 title
+                if (typeof window.showToast === 'function') window.showToast('接口地址已复制');
+                else { const old = copyBtn.title; copyBtn.title = '已复制！'; setTimeout(() => copyBtn.title = old, 1200); }
+            });
         });
     </script>
+    <script>
+        (function () {
+            function ready(fn) { document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn); }
+
+            ready(function () {
+                // 支持多个箭头（如移动端/桌面各一）
+                const ctas = document.querySelectorAll('#scroll-cta, [data-scroll-cta]');
+                if (!ctas.length) return;
+
+                ctas.forEach((cta) => {
+                    // 自定义目标与偏移
+                    const targetSel = cta.getAttribute('data-target') || '#api-usage';
+                    const offset = parseInt(cta.getAttribute('data-offset') || '0', 10);
+
+                    function resolveTarget() {
+                        // 1) 优先 data-target
+                        const bySel = targetSel ? document.querySelector(targetSel) : null;
+                        if (bySel) return bySel;
+                        // 2) 兜底：跳到当前 hero 的下一个 <section>
+                        let hero = cta.closest('section');
+                        let next = hero ? hero.nextElementSibling : null;
+                        while (next && next.tagName.toLowerCase() !== 'section') next = next.nextElementSibling;
+                        return next || document.body;
+                    }
+
+                    function smoothScrollTo(el) {
+                        const top = el.getBoundingClientRect().top + window.scrollY - offset;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
+
+                    // 点击滚动
+                    cta.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const target = resolveTarget();
+                        if (target) smoothScrollTo(target);
+                    });
+
+                    // 可达性：键盘触发
+                    cta.setAttribute('role', 'button');
+                    cta.setAttribute('tabindex', '0');
+                    cta.addEventListener('keydown', (e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            const target = resolveTarget();
+                            if (target) smoothScrollTo(target);
+                        }
+                    });
+                });
+            });
+        })();
+    </script>
+
+
 </body>
 
 </html>
