@@ -301,9 +301,8 @@
 
                             <p class="mt-4 text-base md:text-lg text-slate-600">
                                 支持 <span class="hl">OpenAI</span>、<span class="hl">Claude</span>、<span
-                                    class="hl">Gemini</span>、<span
-                                    class="hl">DeepSeek</span>、<span
-                                    class="hl">豆包</span> 等多个顶级模型供应商
+                                    class="hl">Gemini</span>、<span class="hl">DeepSeek</span>、<span class="hl">豆包</span>
+                                等多个顶级模型供应商
                             </p>
 
                             <p class="mt-3 text-base md:text-lg text-slate-600">
@@ -340,7 +339,8 @@
                             <!-- 信任条 -->
                             <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
                                 <div class="trust-item">
-                                    <span class="dot dot-emerald"></span> <span style="font-weight:800;">8.1K+</span> 活跃用户
+                                    <span class="dot dot-emerald"></span> <span style="font-weight:800;">8.1K+</span>
+                                    活跃用户
                                 </div>
                                 <div class="trust-item">
                                     <span class="dot dot-sky"></span> 99.9% SLA 稳定
@@ -908,130 +908,322 @@ curl -X POST "$API_HOST/chat/completions" \
                                 </div>
                             </div>
 
-
-                            <!-- TTS Usage Guide Card -->
                             <div class="bg-white p-6 rounded-2xl shadow-lg lg:col-span-2">
-                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">4. 语音 (TTS) 调用方法
+                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">4. 豆包绘画模型使用文档说明(新)
                                 </h3>
                                 <div class="space-y-4 text-sm md:text-base mt-4">
-                                    <p class="text-slate-700">通过 <code
-                                            class="bg-slate-200 px-1.5 py-0.5 rounded">GET</code> 请求调用，返回 MP3 文件。</p>
+                                    <p class="text-slate-700">使用豆包绘画请务必参考参数说明，否则会出现空返，错误返回等情况！</p>
+                                    <p class="text-slate-700">豆包绘画模型名称为 <code
+                                            class="bg-slate-200 px-1.5 py-0.5 rounded">doubao-seedream-4-0-250828</code>
+                                        或者 <code
+                                            class="bg-slate-200 px-1.5 py-0.5 rounded">doubao-seedream-3-0-t2i-250415</code>。支持调用格式
+                                        <code class="bg-slate-200 px-1.5 py-0.5 rounded">/v1/chat/completions</code>
+                                        的chat格式与 <code
+                                            class="bg-slate-200 px-1.5 py-0.5 rounded">/v1/images/generations</code> 和
+                                        <code class="bg-slate-200 px-1.5 py-0.5 rounded">/v1/images/edits</code>
+                                        的dalle格式兼容
+                                    </p>
                                     <div>
-                                        <p class="font-semibold text-slate-800">请求地址:</p>
-                                        <code
-                                            class="bg-slate-100 p-2 rounded-md block w-full overflow-x-auto">https://fast-horse-44.deno.dev/v1/audio/speech</code>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-slate-800">请求参数:</p>
+                                        <p class="font-semibold text-slate-800">请求参数说明（chat格式请求参数）:</p>
                                         <ul class="list-disc list-inside text-slate-700 space-y-1 mt-1">
-                                            <li><code class="font-mono">model</code>: 声音模型 (如: <code
-                                                    class="bg-slate-200">zh-CN-YunxiNeural</code>)</li>
-                                            <li><code class="font-mono">voice</code>: 语速和语调 (格式: <code
-                                                    class="bg-slate-200">rate:0|pitch:0</code>)</li>
-                                            <li><code class="font-mono">input</code>: 要转换的文本</li>
+                                            <li>chat格式的请求参数统一符合 <code
+                                                    class="bg-slate-200 px-1.5 py-0.5 rounded">openAI</code> 对话格式，在
+                                                <code class="bg-slate-200 px-1.5 py-0.5 rounded">content</code> 中或者
+                                                <code class="bg-slate-200 px-1.5 py-0.5 rounded">text</code>
+                                                中输入绘画的内容，例如：画一只猫。 在内容中通过 <code
+                                                    class="bg-slate-200 px-1.5 py-0.5 rounded">-</code>
+                                                进行绘画参数配置，具体支持参数如下
+                                            </li>
+                                            <li><code class="font-mono" style="font-weight: bolder;">type</code>:
+                                                绘画类型选择，目前支持两个类型，分别为 <code class="bg-slate-200">normal</code> 和 <code
+                                                    class="bg-slate-200">group</code>，默认为<code
+                                                    class="bg-slate-200">normal</code>。 使用示例： <code
+                                                    class="bg-slate-200">-type=normal</code> 直接放在内容中即可。<code
+                                                    class="bg-slate-200">normal</code> 最大支持单次出图4张，<code
+                                                    class="bg-slate-200">group</code>
+                                                最大支持单次出图10张，不指定均默认为1张图片。出图数量太多容易导致绘图失败或者中断。</li>
+                                            <li><code class="font-mono" style="font-weight: bolder;">n</code>:
+                                                出图数量,默认为1。 使用示例： <code class="bg-slate-200">-n=2</code> 直接放在内容中即可。限制如上。
+                                            </li>
+                                            <li><code class="font-mono" style="font-weight: bolder;">watermark</code>:
+                                                水印控制参数，默认为false。 使用示例： <code
+                                                    class="bg-slate-200">-watermark=false</code>
+                                                直接放在内容中即可。如果需要生成图片右下角提示AI生成则将其设置为true即可。</li>
+                                            <li><code class="font-mono" style="font-weight: bolder;">size</code>:
+                                                图片大小控制，默认为1k。 使用示例： <code class="bg-slate-200">-size=2k</code> 或者按照像素
+                                                <code class="bg-slate-200">-size=1024x1024</code> 直接放在内容中即可。<a
+                                                    href="https://www.volcengine.com/docs/82379/1541523" target="_blank"
+                                                    style="text-decoration:none; color:#2563eb;">
+                                                    点击查看支持的图片大小参数
+                                                </a>
+                                            </li>
+                                            <li> 如果有底图请将其按照openAI对话传图格式即可。</li>
                                         </ul>
                                     </div>
                                     <div>
-                                        <p class="font-semibold text-slate-800">完整示例:</p>
-                                        <a href="https://fast-horse-44.deno.dev/v1/audio/speech?model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好"
-                                            target="_blank" rel="noopener noreferrer"
-                                            class="text-blue-600 break-all hover:underline">
-                                            https://fast-horse-44.deno.dev/v1/audio/speech?model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好，世界
-                                        </a>
+                                        <p class="font-semibold text-slate-800">chat 格式绘画完整示例:</p>
+                                        <div class="bg-slate-50 rounded-lg">
+                                            <pre><code class="language-json">
+{
+    "messages": [
+    {
+      "role": "user",
+      "content": "画一只猫,在草原奔跑 -size=2k -n=2 -type=normal -watermark=false"
+    }
+  ],
+    "model": "doubao-seedream-4-0-250828",
+    "temperature": 0.8,
+    "stream": false
+}
+                                            </code></pre>
+                                        </div>
                                     </div>
+                                    <div>
+                                        <p class="font-semibold text-slate-800">请求参数说明（dalle格式请求参数）:</p>
+                                        <ul class="list-disc list-inside text-slate-700 space-y-1 mt-1">
+                                            <li>dalle 格式的请求参数统一符合 <code
+                                                    class="bg-slate-200 px-1.5 py-0.5 rounded">openAI</code>
+                                                dalle格式进行绘画参数配置，具体支持参数如下
+                                            </li>
+                                            <li><code class="font-mono" style="font-weight: bolder;">prompt</code>:
+                                                绘画提示词（必填）。
+                                            </li>
+                                            <li><code class="font-mono" style="font-weight: bolder;">model</code>:
+                                                绘画选择模型（必填），例如 <code
+                                                    class="bg-slate-200">doubao-seedream-4-0-250828</code> 。
+                                            </li>
+                                            <li><code class="font-mono" style="font-weight: bolder;">type</code>:
+                                                绘画类型选择，目前支持两个类型，分别为 <code class="bg-slate-200">normal</code> 和 <code
+                                                    class="bg-slate-200">group</code>，默认为<code
+                                                    class="bg-slate-200">normal</code>。 <code
+                                                    class="bg-slate-200">normal</code> 最大支持单次出图4张，<code
+                                                    class="bg-slate-200">group</code>
+                                                最大支持单次出图10张，不指定均默认为1张图片。出图数量太多容易导致绘图失败或者中断。</li>
+                                            <li><code class="font-mono" style="font-weight: bolder;">n</code>:
+                                                出图数量,默认为1。。
+                                            </li>
+                                            <li><code class="font-mono" style="font-weight: bolder;">watermark</code>:
+                                                水印控制参数，默认为false。 如果需要生成图片右下角提示AI生成则将其设置为true即可。</li>
+                                            <li><code class="font-mono" style="font-weight: bolder;">size</code>:
+                                                图片大小控制，默认为1k。<a href="https://www.volcengine.com/docs/82379/1541523"
+                                                    target="_blank" style="text-decoration:none; color:#2563eb;">
+                                                    点击查看支持的图片大小参数
+                                                </a>
+                                            </li>
+                                            <li> 如果有底图请将按照dalle格式传图。</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="font-semibold text-slate-800">dalle 格式绘画完整示例:</p>
+                                        <div class="bg-slate-50 rounded-lg">
+                                            <pre><code class="language-json">
+# 基础图片生成
+curl /v1/images/generations \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $NEWAPI_API_KEY" \
+  -d '{
+    "model": "doubao-seedream-4-0-250828",
+    "prompt": "一只可爱的小海獭",
+    "n": 1,
+    "size": "2k"
+  }'
+
+# 高质量图片生成
+curl /v1/images/generations \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $NEWAPI_API_KEY" \
+  -d '{
+    "model": "doubao-seedream-4-0-250828",
+    "prompt": "一只可爱的小海獭",
+    "n": 2,
+    "type": "normal",
+    "size": "1024x1024"
+  }'
+
+
+curl /v1/images/generations \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $NEWAPI_API_KEY" \
+  -d '{
+    "model": "doubao-seedream-4-0-250828",
+    "prompt": "一只可爱的小海獭",
+  }'
+
+
+curl /v1/images/edits \
+  -H "Authorization: Bearer $NEWAPI_API_KEY" \
+  -F "model=doubao-seedream-4-0-250828" \
+  -F "image[]=@body-lotion.png" \
+  -F "image[]=@bath-bomb.png" \
+  -F "image[]=@incense-kit.png" \
+  -F "image[]=@soap.png" \
+  -F "prompt=创建一个包含这四个物品的精美礼品篮" \
+  -F "n=2"
+  -F "type=normal"
+                                            </code></pre>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <br>
+                                        <p class="font-semibold text-slate-800">
+                                            豆包生图示例，normal模式相关性不强，主要根据提示词,例如：画一只猫在树上玩耍</p>
+                                        <br>
+                                        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;">
+                                            <img src="https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/seedream/undefined/2025-09-18/ZfY0Kuo0aBJX1dQkFU8MF.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Content-Sha256=UNSIGNED-PAYLOAD&X-Tos-Credential=AKLTMjgxMzUwNzliYzdlNDE4MTllYjJjZGVlOWQ3N2M1ZDY%2F20250918%2Ftos-cn-beijing.volces.com%2Ftos%2Frequest&X-Tos-Date=20250918T073647Z&X-Tos-Expires=604800&X-Tos-SignedHeaders=host&X-Tos-Signature=fe735bb488ce1231c7360683bdc0b85c4af84f5df614cf602d1edb49e210370a"
+                                                style="width:100%; border-radius:6px;">
+                                            <img src="https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/seedream/undefined/2025-09-18/xvgFuPFeomxN1b6SHy7IO.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Content-Sha256=UNSIGNED-PAYLOAD&X-Tos-Credential=AKLTMjgxMzUwNzliYzdlNDE4MTllYjJjZGVlOWQ3N2M1ZDY%2F20250918%2Ftos-cn-beijing.volces.com%2Ftos%2Frequest&X-Tos-Date=20250918T073651Z&X-Tos-Expires=604800&X-Tos-SignedHeaders=host&X-Tos-Signature=5032766a1036ada2c8e7517c7bdaa0217bb8f9aae7e36405bc9ef0e53d07bcfb"
+                                                style="width:100%; border-radius:6px;">
+                                            <img src="https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/seedream/undefined/2025-09-18/zviN4lG24XMr_gyrw9zuM.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Content-Sha256=UNSIGNED-PAYLOAD&X-Tos-Credential=AKLTMjgxMzUwNzliYzdlNDE4MTllYjJjZGVlOWQ3N2M1ZDY%2F20250918%2Ftos-cn-beijing.volces.com%2Ftos%2Frequest&X-Tos-Date=20250918T073656Z&X-Tos-Expires=604800&X-Tos-SignedHeaders=host&X-Tos-Signature=f74dfd98548de8f1f76abe1b54d3217cfc75f66e4c5c8cabee2d20e63f81b6cb"
+                                                style="width:100%; border-radius:6px;">
+                                            <img src="https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/seedream/undefined/2025-09-18/EMDn6T8jz7n9Z8C3YnFd6.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Content-Sha256=UNSIGNED-PAYLOAD&X-Tos-Credential=AKLTMjgxMzUwNzliYzdlNDE4MTllYjJjZGVlOWQ3N2M1ZDY%2F20250918%2Ftos-cn-beijing.volces.com%2Ftos%2Frequest&X-Tos-Date=20250918T073701Z&X-Tos-Expires=604800&X-Tos-SignedHeaders=host&X-Tos-Signature=543a008432711c27212c8b2ffbfd461ffcf05c4f1f623a8f2e29c137299ec391"
+                                                style="width:100%; border-radius:6px;">
+                                            <!-- <img src="img5.jpg" style="width:100%; border-radius:6px;">
+                                            <img src="img6.jpg" style="width:100%; border-radius:6px;">
+                                            <img src="img7.jpg" style="width:100%; border-radius:6px;">
+                                            <img src="img8.jpg" style="width:100%; border-radius:6px;"> -->
+                                        </div>
+                                        <br>
+                                        <p class="font-semibold text-slate-800">豆包生图示例，group模式相关性较强,例如：生成 6 张 3:4
+                                            比例的分镜图，整体画风为 Q 版治愈风，内容讲述 王子与公主的故事，每张图作为一个分镜，画风统一，人物形象保持一致，连贯成小故事。</p>
+                                        <br>
+                                        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;">
+                                                     <img src="https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/seedream/undefined/2025-09-18/aByxpKBJxkuDTbW2n3fqq.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Content-Sha256=UNSIGNED-PAYLOAD&X-Tos-Credential=AKLTMjgxMzUwNzliYzdlNDE4MTllYjJjZGVlOWQ3N2M1ZDY%2F20250918%2Ftos-cn-beijing.volces.com%2Ftos%2Frequest&X-Tos-Date=20250918T075258Z&X-Tos-Expires=604800&X-Tos-SignedHeaders=host&X-Tos-Signature=628f66ac6d407f4436514081fc53929beba5edfd0cb772a1b08a0eaadd11ef95"
+                                            style="width:100%; border-radius:6px;">
+                                        <img src="https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/seedream/undefined/2025-09-18/IE6DNcePGqDk7J4aZzdMA.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Content-Sha256=UNSIGNED-PAYLOAD&X-Tos-Credential=AKLTMjgxMzUwNzliYzdlNDE4MTllYjJjZGVlOWQ3N2M1ZDY%2F20250918%2Ftos-cn-beijing.volces.com%2Ftos%2Frequest&X-Tos-Date=20250918T075321Z&X-Tos-Expires=604800&X-Tos-SignedHeaders=host&X-Tos-Signature=1fa901ea5e61e183282b86a93356c94597c48afa2ad4a066c7d272b767220f5d"
+                                            style="width:100%; border-radius:6px;">
+                                        <img src="https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/seedream/undefined/2025-09-18/Qb_7JxlBo4TdpuGwrhQ3D.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Content-Sha256=UNSIGNED-PAYLOAD&X-Tos-Credential=AKLTMjgxMzUwNzliYzdlNDE4MTllYjJjZGVlOWQ3N2M1ZDY%2F20250918%2Ftos-cn-beijing.volces.com%2Ftos%2Frequest&X-Tos-Date=20250918T075348Z&X-Tos-Expires=604800&X-Tos-SignedHeaders=host&X-Tos-Signature=6a069d1f4554f6544560c3f91cf2092f62d9634e26a83604e5c1d9e72357bcff"
+                                            style="width:100%; border-radius:6px;">
+                                        <img src="https://ark-common-storage-prod-cn-beijing.tos-cn-beijing.volces.com/seedream/undefined/2025-09-18/y4fVGGiY6_ksRAgsQa6IW.png?X-Tos-Algorithm=TOS4-HMAC-SHA256&X-Tos-Content-Sha256=UNSIGNED-PAYLOAD&X-Tos-Credential=AKLTMjgxMzUwNzliYzdlNDE4MTllYjJjZGVlOWQ3N2M1ZDY%2F20250918%2Ftos-cn-beijing.volces.com%2Ftos%2Frequest&X-Tos-Date=20250918T075349Z&X-Tos-Expires=604800&X-Tos-SignedHeaders=host&X-Tos-Signature=cba028e3db34f25768ab067608bdb85ca2d65272f6c7f0db060dd508ac4b6855"
+                                            style="width:100%; border-radius:6px;">
+                                        </div>
+                               
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- TTS Usage Guide Card -->
+                        <div class="bg-white p-6 rounded-2xl shadow-lg lg:col-span-2">
+                            <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">5. 语音 (TTS) 调用方法(失效)
+                            </h3>
+                            <div class="space-y-4 text-sm md:text-base mt-4">
+                                <p class="text-slate-700">通过 <code class="bg-slate-200 px-1.5 py-0.5 rounded">GET</code>
+                                    请求调用，返回 MP3 文件。</p>
+                                <div>
+                                    <p class="font-semibold text-slate-800">请求地址:</p>
+                                    <code
+                                        class="bg-slate-100 p-2 rounded-md block w-full overflow-x-auto">https://fast-horse-44.deno.dev/v1/audio/speech</code>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-800">请求参数:</p>
+                                    <ul class="list-disc list-inside text-slate-700 space-y-1 mt-1">
+                                        <li><code class="font-mono">model</code>: 声音模型 (如: <code
+                                                class="bg-slate-200">zh-CN-YunxiNeural</code>)</li>
+                                        <li><code class="font-mono">voice</code>: 语速和语调 (格式: <code
+                                                class="bg-slate-200">rate:0|pitch:0</code>)</li>
+                                        <li><code class="font-mono">input</code>: 要转换的文本</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-slate-800">完整示例:</p>
+                                    <a href="https://fast-horse-44.deno.dev/v1/audio/speech?model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好"
+                                        target="_blank" rel="noopener noreferrer"
+                                        class="text-blue-600 break-all hover:underline">
+                                        https://fast-horse-44.deno.dev/v1/audio/speech?model=zh-CN-YunxiNeural&voice=rate:0|pitch:0&input=你好，世界
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
+        </div>
+        </section>
 
-                <!-- Next-Web Tutorial -->
-                <section class="py-16 px-4 bg-white">
-                    <div class="container mx-auto">
-                        <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">Next-Web 对接教程</h2>
-                        <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">三步快速将 HappyAPI 对接到 Next-Web /
-                            LobeChat 等客户端。</p>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                            <div class="flex flex-col items-center">
-                                <div
-                                    class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
-                                    1</div>
-                                <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
-                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址 `https://happyapi.org` 和您的 API Key。
-                                </p>
-                                <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
-                                    alt="填写接口地址和密钥" class="rounded-lg shadow-md w-full">
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <div
-                                    class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
-                                    2</div>
-                                <h3 class="text-lg font-semibold mb-2">加载自定义模型</h3>
-                                <p class="text-sm text-slate-600 mb-4">清空模型列表，然后点击“加载”或“更新列表”按钮。</p>
-                                <img src="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png" alt="加载自定义模型"
-                                    class="rounded-lg shadow-md w-full">
-                            </div>
-                            <div class="flex flex-col items-center">
-                                <div
-                                    class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
-                                    3</div>
-                                <h3 class="text-lg font-semibold mb-2">选择模型开始对话</h3>
-                                <p class="text-sm text-slate-600 mb-4">在模型列表中选择您需要的模型，即可开始使用。</p>
-                                <img src="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png" alt="选择模型使用"
-                                    class="rounded-lg shadow-md w-full">
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Use Cases Section with Tabs -->
-                <section class="py-16 px-4">
-                    <div class="container mx-auto">
-                        <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">从现在开始，让AI成为您的得力助手</h2>
-                        <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">零学习成本，在实时聊天中轻松解决问题，覆盖工作与生活的方方面面。
+        <!-- Next-Web Tutorial -->
+        <section class="py-16 px-4 bg-white">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">Next-Web 对接教程</h2>
+                <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">三步快速将 HappyAPI 对接到 Next-Web /
+                    LobeChat 等客户端。</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+                            1</div>
+                        <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
+                        <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址 `https://happyapi.org` 和您的 API Key。
                         </p>
+                        <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png" alt="填写接口地址和密钥"
+                            class="rounded-lg shadow-md w-full">
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+                            2</div>
+                        <h3 class="text-lg font-semibold mb-2">加载自定义模型</h3>
+                        <p class="text-sm text-slate-600 mb-4">清空模型列表，然后点击“加载”或“更新列表”按钮。</p>
+                        <img src="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png" alt="加载自定义模型"
+                            class="rounded-lg shadow-md w-full">
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div
+                            class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+                            3</div>
+                        <h3 class="text-lg font-semibold mb-2">选择模型开始对话</h3>
+                        <p class="text-sm text-slate-600 mb-4">在模型列表中选择您需要的模型，即可开始使用。</p>
+                        <img src="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png" alt="选择模型使用"
+                            class="rounded-lg shadow-md w-full">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                        <div class="max-w-5xl mx-auto">
-                            <!-- Tab Buttons -->
-                            <div id="tab-buttons" class="flex flex-wrap justify-center gap-2 mb-8">
-                                <button data-tab-target="#tab-academic" class="tab-button active">学术论文</button>
-                                <button data-tab-target="#tab-coding" class="tab-button">代码编程</button>
-                                <button data-tab-target="#tab-writing" class="tab-button">写作助手</button>
-                                <button data-tab-target="#tab-editing" class="tab-button">学术编辑</button>
-                                <button data-tab-target="#tab-translation" class="tab-button">精准翻译</button>
-                                <button data-tab-target="#tab-data" class="tab-button">数据分析</button>
-                            </div>
+        <!-- Use Cases Section with Tabs -->
+        <section class="py-16 px-4">
+            <div class="container mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">从现在开始，让AI成为您的得力助手</h2>
+                <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">零学习成本，在实时聊天中轻松解决问题，覆盖工作与生活的方方面面。
+                </p>
 
-                            <!-- Tab Content -->
-                            <div id="tab-content" class="relative">
-                                <!-- Academic Paper -->
-                                <div id="tab-academic" class="tab-panel active">
-                                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-                                        <div class="mb-6">
-                                            <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
-                                            <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
-                                                我正在写一篇主题为"含油微藻的筛选及其产能性能研究"的论文，请你帮我写一段文字，内容是该课题研究意义。</p>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
-                                            <p class="text-slate-700 bg-blue-50 p-4 rounded-lg">
-                                                随着全球能源需求的增加以及化石能源储量的逐渐枯竭，生物质能源作为一种可再生的清洁能源备受关注。含油微藻是一种可生产生物燃料和生物化学产品的重要微生物资源，因其高产油率、生长周期短、对污染物的吸收能力强等特点而备受研究者关注。因此，该研究对于推动可再生能源的发展、提高生物质能源利用效率、缓解能源与环境问题具有重要意义。
-                                            </p>
-                                        </div>
-                                    </div>
+                <div class="max-w-5xl mx-auto">
+                    <!-- Tab Buttons -->
+                    <div id="tab-buttons" class="flex flex-wrap justify-center gap-2 mb-8">
+                        <button data-tab-target="#tab-academic" class="tab-button active">学术论文</button>
+                        <button data-tab-target="#tab-coding" class="tab-button">代码编程</button>
+                        <button data-tab-target="#tab-writing" class="tab-button">写作助手</button>
+                        <button data-tab-target="#tab-editing" class="tab-button">学术编辑</button>
+                        <button data-tab-target="#tab-translation" class="tab-button">精准翻译</button>
+                        <button data-tab-target="#tab-data" class="tab-button">数据分析</button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div id="tab-content" class="relative">
+                        <!-- Academic Paper -->
+                        <div id="tab-academic" class="tab-panel active">
+                            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                                <div class="mb-6">
+                                    <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                                    <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
+                                        我正在写一篇主题为"含油微藻的筛选及其产能性能研究"的论文，请你帮我写一段文字，内容是该课题研究意义。</p>
                                 </div>
-                                <!-- Coding -->
-                                <div id="tab-coding" class="tab-panel">
-                                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-                                        <div class="mb-6">
-                                            <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
-                                            <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
-                                                请帮我写一个Python程序，实现输入两个数，输出它们的和。</p>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
-                                            <div class="bg-blue-50 p-4 rounded-lg">
-                                                <pre><code class="language-python">
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
+                                    <p class="text-slate-700 bg-blue-50 p-4 rounded-lg">
+                                        随着全球能源需求的增加以及化石能源储量的逐渐枯竭，生物质能源作为一种可再生的清洁能源备受关注。含油微藻是一种可生产生物燃料和生物化学产品的重要微生物资源，因其高产油率、生长周期短、对污染物的吸收能力强等特点而备受研究者关注。因此，该研究对于推动可再生能源的发展、提高生物质能源利用效率、缓解能源与环境问题具有重要意义。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Coding -->
+                        <div id="tab-coding" class="tab-panel">
+                            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                                <div class="mb-6">
+                                    <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                                    <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
+                                        请帮我写一个Python程序，实现输入两个数，输出它们的和。</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
+                                    <div class="bg-blue-50 p-4 rounded-lg">
+                                        <pre><code class="language-python">
 def add_two_numbers(a, b):
   """This function returns the sum of two numbers."""
   return a + b
@@ -1043,42 +1235,42 @@ num2 = float(input("Enter the second number: "))
 sum_result = add_two_numbers(num1, num2)
 print(f"The sum of {num1} and {num2} is: {sum_result}")
                                                 </code></pre>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                                <!-- Writing Assistant -->
-                                <div id="tab-writing" class="tab-panel">
-                                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-                                        <div class="mb-6">
-                                            <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
-                                            <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
-                                                我正在写一篇关于人工智能的文章，能否给我一些开头的灵感？</p>
-                                        </div>
-                                        <div>
-                                            <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
-                                            <p class="text-slate-700 bg-blue-50 p-4 rounded-lg">
-                                                人工智能（AI）作为一种前沿技术，正逐渐渗透到我们生活的方方面面。它不仅在工业生产、医疗保健、金融服务等领域展现出巨大潜力，还在人类认知、情感交流、社会互动等方面带来了深刻变革。本文将探讨人工智能的发展历程、应用前景以及对人类社会的影响，带您一起领略AI时代的无限可能。
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Other tabs content can be added here following the same structure -->
                             </div>
                         </div>
+                        <!-- Writing Assistant -->
+                        <div id="tab-writing" class="tab-panel">
+                            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                                <div class="mb-6">
+                                    <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                                    <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
+                                        我正在写一篇关于人工智能的文章，能否给我一些开头的灵感？</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
+                                    <p class="text-slate-700 bg-blue-50 p-4 rounded-lg">
+                                        人工智能（AI）作为一种前沿技术，正逐渐渗透到我们生活的方方面面。它不仅在工业生产、医疗保健、金融服务等领域展现出巨大潜力，还在人类认知、情感交流、社会互动等方面带来了深刻变革。本文将探讨人工智能的发展历程、应用前景以及对人类社会的影响，带您一起领略AI时代的无限可能。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Other tabs content can be added here following the same structure -->
                     </div>
-                </section>
-
-            </main>
-
-            <!-- Footer -->
-            <footer class="bg-white border-t border-slate-200">
-                <div class="container mx-auto py-6 px-4 text-center text-sm text-slate-500">
-                    <p>© 2024 HappyAPI. All Rights Reserved.</p>
-                    <p class="mt-2">致力于提供稳定、高效、便捷的 AI 模型服务</p>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white border-t border-slate-200">
+            <div class="container mx-auto py-6 px-4 text-center text-sm text-slate-500">
+                <p>© 2024 HappyAPI. All Rights Reserved.</p>
+                <p class="mt-2">致力于提供稳定、高效、便捷的 AI 模型服务</p>
+            </div>
+        </footer>
+    </div>
     </div>
 
     <!-- Prism.js JS -->
