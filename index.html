@@ -324,16 +324,16 @@
 
                             <!-- 一键复制 Base URL -->
                             <div class="mt-6 flex justify-center">
-                                <button id="copy-base" data-copy="/v1" class="copy-pill group">
+                                <button id="copy-base" data-copy="https://happyapi.org/v1" class="copy-pill group">
                                     <svg class="w-4 h-4 text-slate-500 group-hover:text-slate-700" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2">
                                         <rect x="9" y="9" width="13" height="13" rx="2" />
                                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                                     </svg>
-                                    <span class="font-mono text-slate-700">https://happyweb/v1</span>
-                                    <span class="hidden sm:inline text-slate-400 group-hover:text-slate-600">点击复制</span>
-
-                                    
+                                    <span class="font-mono text-slate-700">(国内)https://cn.happyapi.org/v1</span> | 
+                                    <!-- <span class="hidden sm:inline text-slate-400 group-hover:text-slate-600">点击复制</span> -->
+                                    <span class="font-mono text-slate-700">(海外)https://happyapi.org/v1</span>
+                                    <!-- <span class="hidden sm:inline text-slate-400 group-hover:text-slate-600">点击复制</span> -->
                                     <span class="shine" aria-hidden="true"></span>
                                 </button>
                             </div>
@@ -824,10 +824,18 @@
                                 <div class="bg-slate-50 rounded-lg flex-grow">
                                     <pre><code class="language-javascript">
 // 推荐的主接口地址
-const API_HOST = "happyweb/v1";
+const API_HOST = "https://happyapi.org/v1";
+或者
+const API_HOST = "https://cn.happyapi.org/v1";
+
+
+(国内用户)https://cn.happyapi.org/v1  (海外用户) https://happyapi.org/v1
 
 // 兼容备用地址 (一般无需使用)
-// const API_HOST_COMPATIBLE = "happyweb/v1/chat/completions";
+// const API_HOST_COMPATIBLE = "https://happyapi.org/v1/chat/completions";
+或者
+// const API_HOST_COMPATIBLE = "https://cn.happyapi.org/v1/chat/completions";
+
                                     </code></pre>
                                 </div>
                             </div>
@@ -926,8 +934,7 @@ curl -X POST "$API_HOST/chat/completions" \
                                         的dalle格式兼容。
                                     <div
                                         style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 100%; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: #fafafa;">
-                                        <h2 style="color: #2c3e50; margin-bottom: 10px;">
-                                            支持的图像尺寸说明，支持输入比例，像素乘积与1k,2k的形式。其他非法输入会默认为1024x1024大小</h2>
+                                        <h2 style="color: #2c3e50; margin-bottom: 10px;">支持的图像尺寸说明，支持输入比例，像素乘积与1k,2k的形式。其他非法输入会默认为1024x1024大小</h2>
                                         <p>图像生成接口支持以下三种 <b>size</b> 输入形式：</p>
                                         <ul>
                                             <li><b>档位形式</b>：支持 <code>1k</code>、<code>2k</code>、<code>4k</code>，输入后原样返回。
@@ -956,50 +963,42 @@ curl -X POST "$API_HOST/chat/completions" \
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">1:1</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2048x2048</code>
-                                                    </td>
+                                                        <code>2048x2048</code></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">4:3</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2304x1728</code>
-                                                    </td>
+                                                        <code>2304x1728</code></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">3:4</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1728x2304</code>
-                                                    </td>
+                                                        <code>1728x2304</code></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">16:9</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2560x1440</code>
-                                                    </td>
+                                                        <code>2560x1440</code></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">9:16</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1440x2560</code>
-                                                    </td>
+                                                        <code>1440x2560</code></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">3:2</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2496x1664</code>
-                                                    </td>
+                                                        <code>2496x1664</code></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">2:3</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1664x2496</code>
-                                                    </td>
+                                                        <code>1664x2496</code></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">21:9</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>3024x1296</code>
-                                                    </td>
+                                                        <code>3024x1296</code></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -1235,7 +1234,7 @@ curl /v1/images/edits \
                                     class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
                                     1</div>
                                 <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
-                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址 <code>happyweb</code> 和您的 API Key。
+                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址`https://cn.happyapi.org` 或者 `https://happyapi.org`  和您的 API Key。
                                 </p>
                                 <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
                                     alt="填写接口地址和密钥" class="rounded-lg shadow-md w-full">
@@ -1542,7 +1541,7 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
             }
             const copyBtn = document.getElementById('copy-base');
             if (!copyBtn) return;
-            const val = copyBtn.getAttribute('data-copy') || 'https://happyweb/v1';
+            const val = copyBtn.getAttribute('data-copy') || 'https://happyapi.org/v1';
 
             async function copyText(v) {
                 try { await (navigator.clipboard?.writeText(v) ?? Promise.reject()); }
@@ -1611,57 +1610,6 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
             });
         })();
     </script>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    // === 1. 获取最外层域名（带协议） ===
-    let baseOrigin;
-    try {
-        baseOrigin = window.top.location.origin;
-    } catch (e) {
-        console.warn("[HappyAPI Debug] 跨域访问 top 失败，使用 iframe 自身域名");
-        baseOrigin = window.location.origin;
-    }
-
-    console.log("[HappyAPI Debug] 当前根地址 =>", baseOrigin);
-
-    // === 2. 更新 copy-base 按钮 ===
-    const copyBtn = document.getElementById("copy-base");
-    if (copyBtn) {
-        const apiBase = baseOrigin + "/v1"; // 拼接完整域名 + /v1
-        copyBtn.setAttribute("data-copy", apiBase);
-
-        const spanEl = copyBtn.querySelector("span.font-mono");
-        if (spanEl) spanEl.textContent = apiBase;
-
-        console.log("[HappyAPI Debug] 更新 copy-base 按钮 =>", apiBase);
-    }
-
-    // === 3. 更新「立即开始」按钮 ===
-    const startBtn = document.querySelector("a.btn.btn-primary");
-    if (startBtn) {
-        const consoleUrl = baseOrigin + "/console";
-        startBtn.href = consoleUrl;
-
-        console.log("[HappyAPI Debug] 更新立即开始按钮 =>", consoleUrl);
-    }
-
-    // === 4. 替换所有 <code> 占位符 ===
-    document.querySelectorAll("code").forEach(codeEl => {
-        const oldText = codeEl.textContent;
-        const newText = oldText.replace(/happyweb/g, baseOrigin);
-        if (oldText !== newText) {
-            console.log("[HappyAPI Debug] 替换代码片段:", oldText, "=>", newText);
-            codeEl.textContent = newText;
-        }
-    });
-});
-</script>
-
-
-
-
-
 
 
 </body>
