@@ -333,7 +333,7 @@
                                     <span class="font-mono text-slate-700">https://happyweb/v1</span>
                                     <span class="hidden sm:inline text-slate-400 group-hover:text-slate-600">点击复制</span>
 
-                                    
+
                                     <span class="shine" aria-hidden="true"></span>
                                 </button>
                             </div>
@@ -1235,7 +1235,8 @@ curl /v1/images/edits \
                                     class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
                                     1</div>
                                 <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
-                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址 <code>https://happyweb</code> 和您的 API Key。
+                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址 <code>https://happyweb</code> 和您的 API
+                                    Key。
                                 </p>
                                 <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
                                     alt="填写接口地址和密钥" class="rounded-lg shadow-md w-full">
@@ -1363,7 +1364,49 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 1. 获取完整根地址（带子域名）
+            const url = new URL(window.top.location.href);
+            const baseOrigin = url.protocol + "//" + url.host;
 
+            console.log("[HappyAPI Debug] 当前根地址 =>", baseOrigin);
+
+            // 2. 处理所有带 dynamic-link 的 <a>
+            document.querySelectorAll("a.dynamic-link").forEach(el => {
+                const path = el.getAttribute("data-path") || "";
+                el.href = baseOrigin + path;
+                console.log("[HappyAPI Debug] 更新链接:", el.outerHTML, "=>", el.href);
+            });
+
+            // 3. 处理 copy-base 按钮
+            const copyBtn = document.getElementById("copy-base");
+            if (copyBtn) {
+                const path = copyBtn.getAttribute("data-path") || "/v1";
+                const apiBase = baseOrigin + path;
+
+                copyBtn.setAttribute("data-copy", apiBase);
+
+                const spanEl = copyBtn.querySelector("span.font-mono");
+                if (spanEl) spanEl.textContent = apiBase;
+
+                console.log("[HappyAPI Debug] 更新 copy-base 按钮 =>", apiBase);
+            }
+
+            // 4. 替换所有 <code> 里的 happyapi.org
+            document.querySelectorAll("code").forEach(codeEl => {
+                const oldText = codeEl.textContent;
+                const newText = oldText.replace(
+                    /happyweb/g,   // 匹配 https://happyapi.org 或 https://happyapi.org/v1
+                    baseOrigin
+                );
+                if (oldText !== newText) {
+                    console.log("[HappyAPI Debug] 替换代码片段:", oldText, "=>", newText);
+                    codeEl.textContent = newText;
+                }
+            });
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             /* ---- 滚入动效：IntersectionObserver ---- */
@@ -1612,49 +1655,7 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
         })();
     </script>
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    // 1. 获取完整根地址（带子域名）
-    const url = new URL(window.top.location.href);
-    const baseOrigin = url.protocol + "//" + url.host;
 
-    console.log("[HappyAPI Debug] 当前根地址 =>", baseOrigin);
-
-    // 2. 处理所有带 dynamic-link 的 <a>
-    document.querySelectorAll("a.dynamic-link").forEach(el => {
-        const path = el.getAttribute("data-path") || "";
-        el.href = baseOrigin + path;
-        console.log("[HappyAPI Debug] 更新链接:", el.outerHTML, "=>", el.href);
-    });
-
-    // 3. 处理 copy-base 按钮
-    const copyBtn = document.getElementById("copy-base");
-    if (copyBtn) {
-        const path = copyBtn.getAttribute("data-path") || "/v1";
-        const apiBase = baseOrigin + path;
-
-        copyBtn.setAttribute("data-copy", apiBase);
-
-        const spanEl = copyBtn.querySelector("span.font-mono");
-        if (spanEl) spanEl.textContent = apiBase;
-
-        console.log("[HappyAPI Debug] 更新 copy-base 按钮 =>", apiBase);
-    }
-
-    // 4. 替换所有 <code> 里的 happyapi.org
-    document.querySelectorAll("code").forEach(codeEl => {
-        const oldText = codeEl.textContent;
-        const newText = oldText.replace(
-            /happyweb/g,   // 匹配 https://happyapi.org 或 https://happyapi.org/v1
-            baseOrigin
-        );
-        if (oldText !== newText) {
-            console.log("[HappyAPI Debug] 替换代码片段:", oldText, "=>", newText);
-            codeEl.textContent = newText;
-        }
-    });
-});
-</script>
 
 
 
