@@ -1612,8 +1612,11 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-    // 获取最外层网页完整根地址（包含子域名和端口）
-    const baseOrigin = window.top.location.protocol + "//" + window.top.location.host;
+    // 用 URL 解析，保证拿到完整 host（包括子域名和端口）
+    const url = new URL(window.top.location.href);
+    const baseOrigin = url.protocol + "//" + url.host;
+
+    console.log("检测到根地址:", baseOrigin);
 
     // 处理所有带 dynamic-link 的 <a>
     document.querySelectorAll("a.dynamic-link").forEach(el => {
@@ -1642,6 +1645,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+
 
 
 
