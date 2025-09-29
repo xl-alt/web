@@ -1610,38 +1610,39 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
         })();
     </script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // 获取最外层网页的根地址（协议 + 域名 + 端口）
-            const baseOrigin = window.top.location.origin;
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    // 获取最外层网页完整根地址（包含子域名和端口）
+    const baseOrigin = window.top.location.protocol + "//" + window.top.location.host;
 
-            // 处理所有带 dynamic-link 的 <a>
-            document.querySelectorAll("a.dynamic-link").forEach(el => {
-                const path = el.getAttribute("data-path") || "";
-                el.href = baseOrigin + path;
-            });
+    // 处理所有带 dynamic-link 的 <a>
+    document.querySelectorAll("a.dynamic-link").forEach(el => {
+        const path = el.getAttribute("data-path") || "";
+        el.href = baseOrigin + path;
+    });
 
-            // 处理 copy-base 按钮
-            const copyBtn = document.getElementById("copy-base");
-            if (copyBtn) {
-                const path = copyBtn.getAttribute("data-path") || "/v1";
-                const apiBase = baseOrigin + path;
+    // 处理 copy-base 按钮
+    const copyBtn = document.getElementById("copy-base");
+    if (copyBtn) {
+        const path = copyBtn.getAttribute("data-path") || "/v1";
+        const apiBase = baseOrigin + path;
 
-                copyBtn.setAttribute("data-copy", apiBase);
+        copyBtn.setAttribute("data-copy", apiBase);
 
-                const spanEl = copyBtn.querySelector("span.font-mono");
-                if (spanEl) spanEl.textContent = apiBase;
-            }
+        const spanEl = copyBtn.querySelector("span.font-mono");
+        if (spanEl) spanEl.textContent = apiBase;
+    }
 
-            // 替换代码块里写死的 https://happyapi.org/v1
-            document.querySelectorAll("code").forEach(codeEl => {
-                codeEl.textContent = codeEl.textContent.replace(
-                    /https:\/\/happyapi\.org\/v1/g,
-                    baseOrigin + "/v1"
-                );
-            });
-        });
-    </script>
+    // 替换代码块里写死的 https://happyapi.org/v1
+    document.querySelectorAll("code").forEach(codeEl => {
+        codeEl.textContent = codeEl.textContent.replace(
+            /https:\/\/happyapi\.org\/v1/g,
+            baseOrigin + "/v1"
+        );
+    });
+});
+</script>
+
 
 
 </body>
