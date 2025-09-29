@@ -330,7 +330,7 @@
                                         <rect x="9" y="9" width="13" height="13" rx="2" />
                                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                                     </svg>
-                                    <span class="font-mono text-slate-700">https://happyapi.org/v1</span>
+                                    <span class="font-mono text-slate-700">https://&happy/v1</span>
                                     <span class="hidden sm:inline text-slate-400 group-hover:text-slate-600">点击复制</span>
 
                                     
@@ -824,10 +824,10 @@
                                 <div class="bg-slate-50 rounded-lg flex-grow">
                                     <pre><code class="language-javascript">
 // 推荐的主接口地址
-const API_HOST = "https://happyapi.org/v1";
+const API_HOST = "https://&happy/v1";
 
 // 兼容备用地址 (一般无需使用)
-// const API_HOST_COMPATIBLE = "https://happyapi.org/v1/chat/completions";
+// const API_HOST_COMPATIBLE = "https://&happy/v1/chat/completions";
                                     </code></pre>
                                 </div>
                             </div>
@@ -1235,7 +1235,7 @@ curl /v1/images/edits \
                                     class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
                                     1</div>
                                 <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
-                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址 <code>https://happyapi.org</code> 和您的 API Key。
+                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址 <code>https://&happy</code> 和您的 API Key。
                                 </p>
                                 <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
                                     alt="填写接口地址和密钥" class="rounded-lg shadow-md w-full">
@@ -1542,7 +1542,7 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
             }
             const copyBtn = document.getElementById('copy-base');
             if (!copyBtn) return;
-            const val = copyBtn.getAttribute('data-copy') || 'https://happyapi.org123456/v1';
+            const val = copyBtn.getAttribute('data-copy') || 'https://&happy/v1';
 
             async function copyText(v) {
                 try { await (navigator.clipboard?.writeText(v) ?? Promise.reject()); }
@@ -1645,7 +1645,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("code").forEach(codeEl => {
         const oldText = codeEl.textContent;
         const newText = oldText.replace(
-            /happyapi.org/g,   // 匹配 https://happyapi.org 或 https://happyapi.org/v1
+            /&happy/g,   // 匹配 https://happyapi.org 或 https://happyapi.org/v1
             baseOrigin
         );
         if (oldText !== newText) {
