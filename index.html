@@ -312,7 +312,7 @@
 
                             <!-- CTA 按钮 -->
                             <div class="mt-8 flex items-center justify-center gap-3">
-                                <a href="https://happyapi.org/console" class="btn btn-primary">
+                                <a href="#" class="btn btn-primary">
                                     立即开始
                                     <svg class="w-4 h-4 ml-1.5 -mr-0.5" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2">
@@ -324,7 +324,7 @@
 
                             <!-- 一键复制 Base URL -->
                             <div class="mt-6 flex justify-center">
-                                <button id="copy-base" data-copy="https://happyapi.org/v1" class="copy-pill group">
+                                <button id="copy-base" data-copy="/v1" class="copy-pill group">
                                     <svg class="w-4 h-4 text-slate-500 group-hover:text-slate-700" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2">
                                         <rect x="9" y="9" width="13" height="13" rx="2" />
@@ -924,7 +924,8 @@ curl -X POST "$API_HOST/chat/completions" \
                                         的dalle格式兼容。
                                     <div
                                         style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 100%; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: #fafafa;">
-                                        <h2 style="color: #2c3e50; margin-bottom: 10px;">支持的图像尺寸说明，支持输入比例，像素乘积与1k,2k的形式。其他非法输入会默认为1024x1024大小</h2>
+                                        <h2 style="color: #2c3e50; margin-bottom: 10px;">
+                                            支持的图像尺寸说明，支持输入比例，像素乘积与1k,2k的形式。其他非法输入会默认为1024x1024大小</h2>
                                         <p>图像生成接口支持以下三种 <b>size</b> 输入形式：</p>
                                         <ul>
                                             <li><b>档位形式</b>：支持 <code>1k</code>、<code>2k</code>、<code>4k</code>，输入后原样返回。
@@ -953,42 +954,50 @@ curl -X POST "$API_HOST/chat/completions" \
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">1:1</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2048x2048</code></td>
+                                                        <code>2048x2048</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">4:3</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2304x1728</code></td>
+                                                        <code>2304x1728</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">3:4</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1728x2304</code></td>
+                                                        <code>1728x2304</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">16:9</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2560x1440</code></td>
+                                                        <code>2560x1440</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">9:16</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1440x2560</code></td>
+                                                        <code>1440x2560</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">3:2</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2496x1664</code></td>
+                                                        <code>2496x1664</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">2:3</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1664x2496</code></td>
+                                                        <code>1664x2496</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">21:9</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>3024x1296</code></td>
+                                                        <code>3024x1296</code>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -1601,6 +1610,37 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
         })();
     </script>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const baseOrigin = window.location.origin;  // 当前域名，例如 https://abc.com
+
+            // 处理所有带 dynamic-link 的 <a>
+            document.querySelectorAll("a.dynamic-link").forEach(el => {
+                const path = el.getAttribute("data-path") || "";
+                el.href = baseOrigin + path;
+            });
+
+            // 处理 copy-base 按钮
+            const copyBtn = document.getElementById("copy-base");
+            if (copyBtn) {
+                const path = copyBtn.getAttribute("data-path") || "/v1";
+                const apiBase = baseOrigin + path;
+
+                copyBtn.setAttribute("data-copy", apiBase);
+
+                const spanEl = copyBtn.querySelector("span.font-mono");
+                if (spanEl) spanEl.textContent = apiBase;
+            }
+
+            // 处理代码块里写死的 https://happyapi.org/v1
+            document.querySelectorAll("code").forEach(codeEl => {
+                codeEl.textContent = codeEl.textContent.replace(
+                    /https:\/\/happyapi\.org\/v1/g,
+                    baseOrigin + "/v1"
+                );
+            });
+        });
+    </script>
 
 </body>
 
