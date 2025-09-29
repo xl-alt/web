@@ -824,10 +824,10 @@
                                 <div class="bg-slate-50 rounded-lg flex-grow">
                                     <pre><code class="language-javascript">
 // 推荐的主接口地址
-const API_HOST = "https://happyweb/v1";
+const API_HOST = "happyweb/v1";
 
 // 兼容备用地址 (一般无需使用)
-// const API_HOST_COMPATIBLE = "https://happyweb/v1/chat/completions";
+// const API_HOST_COMPATIBLE = "happyweb/v1/chat/completions";
                                     </code></pre>
                                 </div>
                             </div>
@@ -1235,7 +1235,7 @@ curl /v1/images/edits \
                                     class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
                                     1</div>
                                 <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
-                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址 <code>https://happyweb</code> 和您的 API Key。
+                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址 <code>happyweb</code> 和您的 API Key。
                                 </p>
                                 <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
                                     alt="填写接口地址和密钥" class="rounded-lg shadow-md w-full">
@@ -1617,29 +1617,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // === 1. 获取最外层域名（带协议） ===
     let baseOrigin;
     try {
-        // 如果同域，这里没问题
         baseOrigin = window.top.location.origin;
     } catch (e) {
-        // 如果跨域会报错，就用 iframe 自己的
-        console.warn("[HappyAPI Debug] 跨域访问 top 失败，使用当前 iframe 域名");
+        console.warn("[HappyAPI Debug] 跨域访问 top 失败，使用 iframe 自身域名");
         baseOrigin = window.location.origin;
     }
 
     console.log("[HappyAPI Debug] 当前根地址 =>", baseOrigin);
 
-    // === 2. 处理所有带 dynamic-link 的 <a> ===
-    document.querySelectorAll("a.dynamic-link").forEach(el => {
-        const path = el.getAttribute("data-path") || "";
-        el.href = baseOrigin + path;
-        console.log("[HappyAPI Debug] 更新链接:", el.outerHTML, "=>", el.href);
-    });
-
-    // === 3. 处理 copy-base 按钮 ===
+    // === 2. 更新 copy-base 按钮 ===
     const copyBtn = document.getElementById("copy-base");
     if (copyBtn) {
-        const path = copyBtn.getAttribute("data-path") || "/v1";
-        const apiBase = baseOrigin + path;
-
+        const apiBase = baseOrigin + "/v1"; // 拼接完整域名 + /v1
         copyBtn.setAttribute("data-copy", apiBase);
 
         const spanEl = copyBtn.querySelector("span.font-mono");
@@ -1648,7 +1637,16 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("[HappyAPI Debug] 更新 copy-base 按钮 =>", apiBase);
     }
 
-    // === 4. 替换所有 <code> 里的占位符（比如 happyweb） ===
+    // === 3. 更新「立即开始」按钮 ===
+    const startBtn = document.querySelector("a.btn.btn-primary");
+    if (startBtn) {
+        const consoleUrl = baseOrigin + "/console";
+        startBtn.href = consoleUrl;
+
+        console.log("[HappyAPI Debug] 更新立即开始按钮 =>", consoleUrl);
+    }
+
+    // === 4. 替换所有 <code> 占位符 ===
     document.querySelectorAll("code").forEach(codeEl => {
         const oldText = codeEl.textContent;
         const newText = oldText.replace(/happyweb/g, baseOrigin);
@@ -1659,6 +1657,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+
 
 
 
