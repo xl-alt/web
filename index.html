@@ -1612,7 +1612,8 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const baseOrigin = window.location.origin;  // 当前域名，例如 https://abc.com
+            // 获取最外层网页的根地址（协议 + 域名 + 端口）
+            const baseOrigin = window.top.location.origin;
 
             // 处理所有带 dynamic-link 的 <a>
             document.querySelectorAll("a.dynamic-link").forEach(el => {
@@ -1632,7 +1633,7 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
                 if (spanEl) spanEl.textContent = apiBase;
             }
 
-            // 处理代码块里写死的 https://happyapi.org/v1
+            // 替换代码块里写死的 https://happyapi.org/v1
             document.querySelectorAll("code").forEach(codeEl => {
                 codeEl.textContent = codeEl.textContent.replace(
                     /https:\/\/happyapi\.org\/v1/g,
@@ -1641,6 +1642,7 @@ print(f"The sum of {num1} and {num2} is: {sum_result}")
             });
         });
     </script>
+
 
 </body>
 
