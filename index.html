@@ -264,6 +264,69 @@
                 animation: none
             }
         }
+
+        @keyframes wave {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            25% {
+                transform: rotate(5deg);
+            }
+
+            50% {
+                transform: rotate(0deg);
+            }
+
+            75% {
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                transform: rotate(0deg);
+            }
+        }
+
+        .animate-wave {
+            animation: wave 2s infinite ease-in-out;
+        }
+
+        /* 流光文字 */
+        @keyframes shine {
+            0% {
+                background-position: -200% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        .animate-shine {
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+        }
+
+        /* 背景漂浮 */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .animate-float {
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .animate-float-delayed {
+            animation: float 10s ease-in-out infinite 2s;
+        }
     </style>
 </head>
 
@@ -276,78 +339,91 @@
                 <!-- Hero Section -->
                 <!-- HERO / Masthead (Polished) -->
                 <section class="relative overflow-hidden">
-                    <!-- 背景：柔和网格 + 渐变光晕 -->
+                    <!-- 背景：国庆红色基调 + 金色光晕 -->
                     <div aria-hidden="true" class="absolute inset-0 -z-10">
                         <div
-                            class="absolute inset-0 bg-[radial-gradient(800px_400px_at_50%_0%,#dbeafe_15%,transparent_60%)]">
+                            class="absolute inset-0 bg-[radial-gradient(800px_400px_at_50%_0%,#fecaca_15%,transparent_70%)]">
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-b from-sky-50/80 via-white to-white"></div>
+                        <div class="absolute inset-0 bg-gradient-to-b from-red-100 via-white to-white"></div>
                         <div
-                            class="pointer-events-none absolute -left-24 -top-24 w-[560px] h-[560px] rounded-full bg-sky-300/40 blur-3xl animate-float">
+                            class="pointer-events-none absolute -left-24 -top-24 w-[560px] h-[560px] rounded-full bg-red-400/40 blur-3xl animate-float">
                         </div>
                         <div
-                            class="pointer-events-none absolute -right-20 top-32 w-[460px] h-[460px] rounded-full bg-indigo-300/35 blur-3xl animate-float-delayed">
+                            class="pointer-events-none absolute -right-20 top-32 w-[460px] h-[460px] rounded-full bg-yellow-300/35 blur-3xl animate-float-delayed">
                         </div>
                     </div>
 
                     <div class="container mx-auto px-4 pt-24 md:pt-32 pb-16 text-center">
                         <!-- 霜玻璃卡片 -->
                         <div
-                            class="mx-auto max-w-4xl rounded-3xl border border-white/60 bg-white/60 backdrop-blur-2xl shadow-[0_20px_60px_rgba(2,6,23,0.08)] ring-1 ring-slate-200/50 px-6 md:px-10 py-10 md:py-14">
-                            <h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-slate-900">
-                                <span class="gradient-title pr-1">HappyAPI</span>
-                                <span class="opacity-90">— 一站式聚合 API</span>
+                            class="mx-auto max-w-4xl rounded-3xl border border-red-200/60 bg-white/70 backdrop-blur-2xl shadow-[0_20px_60px_rgba(220,38,38,0.15)] ring-1 ring-red-200/50 px-6 md:px-10 py-10 md:py-14">
+
+                            <h1
+                                class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-red-700 flex justify-center items-center gap-2">
+                                <!-- 红旗动画 -->
+                                <span class="inline-block text-4xl md:text-5xl animate-wave">🚩</span>
+                                <span
+                                    class="bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 pr-1">HappyAPI</span>
+                                <span class="opacity-90">— 聚合 API</span>
                             </h1>
 
-                            <p class="mt-4 text-base md:text-lg text-slate-600">
+                            <!-- 国庆贺语 -->
+                            <p
+                                class="mt-3 text-lg md:text-xl font-semibold animate-shine bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 bg-clip-text text-transparent">
+                                🎉 欢度国庆，全站AI模型超低价格，祝大家国庆快乐！ 🎉
+                                <br>
+                                🎉 国庆期间充值仅需 0.15/$，群里每日赠送大量额度，增加国庆专属低价分组 🎉
+                            </p>
+
+                            <p class="mt-4 text-base md:text-lg text-slate-700">
                                 支持 <span class="hl">OpenAI</span>、<span class="hl">Claude</span>、<span
                                     class="hl">Gemini</span>、<span class="hl">DeepSeek</span>、<span class="hl">豆包</span>
                                 等多个顶级模型供应商
                             </p>
 
-                            <p class="mt-3 text-base md:text-lg text-slate-600">
+                            <p class="mt-3 text-base md:text-lg text-slate-700">
                                 最低仅需 <span class="pill pill-amber">0.2 元</span> 即可购买 <span class="pill pill-blue">1
                                     美金</span> 额度
                             </p>
 
                             <!-- CTA 按钮 -->
                             <div class="mt-8 flex items-center justify-center gap-3">
-                                <a href="#" class="btn btn-primary">
+                                <a href="https://cn.happyapi.org/console"
+                                    class="btn btn-primary bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 animate-pulse">
                                     立即开始
                                     <svg class="w-4 h-4 ml-1.5 -mr-0.5" viewBox="0 0 24 24" fill="none"
                                         stroke="currentColor" stroke-width="2">
                                         <path d="M5 12h14M12 5l7 7-7 7" />
                                     </svg>
                                 </a>
-                                <a href="#api-usage1" class="btn btn-ghost">查看用法</a>
+                                <a href="#api-usage1" class="btn btn-ghost text-red-600 hover:text-red-700">查看用法</a>
                             </div>
 
                             <!-- 一键复制 Base URL -->
                             <div class="mt-6 flex justify-center">
-                                <button id="copy-base" data-copy="https://happyapi.org/v1" class="copy-pill group">
-                                    <svg class="w-4 h-4 text-slate-500 group-hover:text-slate-700" viewBox="0 0 24 24"
+                                <button id="copy-base" data-copy="https://happyapi.org/v1"
+                                    class="copy-pill group border-red-300 hover:border-red-500">
+                                    <svg class="w-4 h-4 text-red-500 group-hover:text-red-700" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2">
                                         <rect x="9" y="9" width="13" height="13" rx="2" />
                                         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
                                     </svg>
-                                    <span class="font-mono text-slate-700">(国内)https://cn.happyapi.org/v1</span> | 
-                                    <!-- <span class="hidden sm:inline text-slate-400 group-hover:text-slate-600">点击复制</span> -->
-                                    <span class="font-mono text-slate-700">(海外)https://happyapi.org/v1</span>
-                                    <!-- <span class="hidden sm:inline text-slate-400 group-hover:text-slate-600">点击复制</span> -->
+                                    <span class="font-mono text-red-700">(国内)https://cn.happyapi.org/v1</span> |
+                                    <span class="font-mono text-red-700">(海外)https://happyapi.org/v1</span>
                                     <span class="shine" aria-hidden="true"></span>
                                 </button>
                             </div>
 
                             <!-- 信任条 -->
                             <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-                                <div class="trust-item">
+                                <div class="trust-item text-red-600 font-semibold">
                                     <span class="dot dot-emerald"></span> <span style="font-weight:800;">8.1K+</span>
                                     活跃用户
                                 </div>
-                                <div class="trust-item">
+                                <div class="trust-item text-red-600 font-semibold">
                                     <span class="dot dot-sky"></span> 99.9% SLA 稳定
                                 </div>
-                                <div class="trust-item">
+                                <div class="trust-item text-red-600 font-semibold">
                                     <span class="dot dot-indigo"></span> 高并发 · 低延迟
                                 </div>
                             </div>
@@ -356,14 +432,12 @@
                         <!-- 下滑提示 -->
                         <div class="mt-10 flex justify-center">
                             <button id="scroll-cta" type="button" data-target="#api-usage" data-offset="72" class="relative group inline-flex items-center justify-center w-10 h-10 rounded-full
-           border border-slate-300 bg-white/80 text-slate-500 backdrop-blur
-           shadow-sm transition-all duration-200
-           hover:text-slate-700 hover:border-slate-400 hover:shadow
-           active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400" aria-label="下滑查看更多">
-                                <!-- 外环高亮 -->
+        border border-red-300 bg-white/80 text-red-500 backdrop-blur
+        shadow-sm transition-all duration-200
+        hover:text-red-700 hover:border-red-400 hover:shadow
+        active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400" aria-label="下滑查看更多">
                                 <span
-                                    class="pointer-events-none absolute inset-0 rounded-full ring-0 group-hover:ring-4 ring-sky-200/60 transition-all duration-200"></span>
-                                <!-- 图标 -->
+                                    class="pointer-events-none absolute inset-0 rounded-full ring-0 group-hover:ring-4 ring-red-200/60 transition-all duration-200"></span>
                                 <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5 group-active:translate-y-1"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                     <path d="m6 9 6 6 6-6" />
@@ -372,6 +446,8 @@
                         </div>
                     </div>
                 </section>
+
+
 
 
                 <!-- Announcements Section -->
@@ -934,7 +1010,8 @@ curl -X POST "$API_HOST/chat/completions" \
                                         的dalle格式兼容。
                                     <div
                                         style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 100%; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: #fafafa;">
-                                        <h2 style="color: #2c3e50; margin-bottom: 10px;">支持的图像尺寸说明，支持输入比例，像素乘积与1k,2k的形式。其他非法输入会默认为1024x1024大小</h2>
+                                        <h2 style="color: #2c3e50; margin-bottom: 10px;">
+                                            支持的图像尺寸说明，支持输入比例，像素乘积与1k,2k的形式。其他非法输入会默认为1024x1024大小</h2>
                                         <p>图像生成接口支持以下三种 <b>size</b> 输入形式：</p>
                                         <ul>
                                             <li><b>档位形式</b>：支持 <code>1k</code>、<code>2k</code>、<code>4k</code>，输入后原样返回。
@@ -963,42 +1040,50 @@ curl -X POST "$API_HOST/chat/completions" \
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">1:1</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2048x2048</code></td>
+                                                        <code>2048x2048</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">4:3</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2304x1728</code></td>
+                                                        <code>2304x1728</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">3:4</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1728x2304</code></td>
+                                                        <code>1728x2304</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">16:9</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2560x1440</code></td>
+                                                        <code>2560x1440</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">9:16</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1440x2560</code></td>
+                                                        <code>1440x2560</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">3:2</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2496x1664</code></td>
+                                                        <code>2496x1664</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">2:3</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1664x2496</code></td>
+                                                        <code>1664x2496</code>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">21:9</td>
                                                     <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>3024x1296</code></td>
+                                                        <code>3024x1296</code>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -1234,7 +1319,8 @@ curl /v1/images/edits \
                                     class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
                                     1</div>
                                 <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
-                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址`https://cn.happyapi.org` 或者 `https://happyapi.org`  和您的 API Key。
+                                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址`https://cn.happyapi.org` 或者
+                                    `https://happyapi.org` 和您的 API Key。
                                 </p>
                                 <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png"
                                     alt="填写接口地址和密钥" class="rounded-lg shadow-md w-full">
