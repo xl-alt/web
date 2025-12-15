@@ -2,903 +2,893 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="HappyAPI - 一站式AI模型聚合API，提供稳定、快速、低价的OpenAI, Claude, Gemini等模型服务。">
-    <meta name="keywords" content="HappyAPI, AI, API, OpenAI, Claude, Gemini, GPT-4, AI模型, 人工智能">
-    <title>HappyAPI - 一站式AI模型聚合API</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HappyAPI - 一站式AI模型聚合API，提供稳定、快速、低价的OpenAI, Claude, Gemini等模型服务。">
+  <meta name="keywords" content="HappyAPI, AI, API, OpenAI, Claude, Gemini, GPT-4, AI模型, 人工智能">
+  <title>HappyAPI - 一站式AI模型聚合API (Winter Edition)</title>
 
-    <!-- Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Prism.js for code highlighting (Theme: Tomorrow Night) -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <!-- Prism.js for code highlighting (Theme: Tomorrow Night) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
-    <!-- Google Fonts for a cleaner look -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Fonts for a cleaner look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-        /* Custom base styles */
-        body {
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            background-color: #f8fafc;
-            /* Use a light gray background */
-        }
+  <style>
+    /* Custom base styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #f0f9ff;
+      /* 改为浅雪色背景 */
+      color: #334155;
+      /* Slate-700 based text */
+      position: relative;
+    }
 
-        /* Custom styles for Prism.js code blocks */
-        pre[class*="language-"] {
-            padding: 1.5rem !important;
-            margin: 0 !important;
-            border-radius: 0.5rem;
-            /* rounded-lg */
-            font-size: 0.875rem;
-            /* text-sm */
-        }
+    /* 飘雪动画容器 */
+    #snow-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
 
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
-        }
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      color: white;
+      text-shadow: 0 0 5px rgba(165, 243, 252, 0.8);
+      animation: fall linear forwards;
+    }
 
-        /* Styling for the tab content panels for smooth transitions */
-        .tab-panel {
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
+    @keyframes fall {
+      to {
+        transform: translateY(105vh);
+      }
+    }
 
-        .tab-panel:not(.active) {
-            opacity: 0;
-            transform: translateY(10px);
-            display: none;
-        }
+    /* Custom styles for Prism.js code blocks */
+    pre[class*="language-"] {
+      padding: 1.5rem !important;
+      margin: 0 !important;
+      border-radius: 0.5rem;
+      font-size: 0.875rem;
+      border: 1px solid #334155;
+      /*以此增加代码块边框对比度*/
+      background: #0f172a !important;
+      /* 深蓝黑色背景 */
+    }
 
-        .tab-panel.active {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
+    html {
+      scroll-behavior: smooth;
+    }
 
+    .tab-panel {
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
 
+    .tab-panel:not(.active) {
+      opacity: 0;
+      transform: translateY(10px);
+      display: none;
+    }
 
+    .tab-panel.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
 
+    /* 标题渐变 & 闪烁 - 改为冰蓝/极光色 */
+    .gradient-title {
+      background: linear-gradient(90deg, #0ea5e9 0%, #6366f1 35%, #06b6d4 60%, #0ea5e9 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 220% 100%;
+      animation: shimmer 6s ease-in-out infinite;
+    }
 
+    @keyframes shimmer {
+      0% {
+        background-position: 0% 50%
+      }
 
+      100% {
+        background-position: 100% 50%
+      }
+    }
 
+    .hl {
+      color: #0284c7;
+      /* Sky-600 */
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 4px;
+      text-decoration-color: #7dd3fc;
+    }
 
+    /* 漂浮光 */
+    @keyframes floatY {
 
+      0%,
+      100% {
+        transform: translateY(0)
+      }
 
-        /* 标题渐变 & 闪烁 */
-        .gradient-title {
-            background: linear-gradient(90deg, #0f172a 0%, #0ea5e9 35%, #2563eb 60%, #0f172a 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 220% 100%;
-            animation: shimmer 6s ease-in-out infinite;
-        }
+      50% {
+        transform: translateY(12px)
+      }
+    }
 
-        @keyframes shimmer {
-            0% {
-                background-position: 0% 50%
-            }
+    .animate-float {
+      animation: floatY 12s ease-in-out infinite
+    }
 
-            100% {
-                background-position: 100% 50%
-            }
-        }
+    .animate-float-delayed {
+      animation: floatY 16s ease-in-out infinite .6s
+    }
 
-        .hl {
-            color: #2563eb;
-            font-weight: 600;
-            text-decoration: underline;
-            text-decoration-style: dotted;
-            text-underline-offset: 4px
-        }
+    /* 按钮 & 徽章 - 改为冬日配色 */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      font-weight: 700;
+      border-radius: .9rem;
+      transition: .2s;
+      position: relative;
+      z-index: 10;
+    }
 
-        /* 漂浮光 */
-        @keyframes floatY {
+    .btn-primary {
+      padding: .8rem 1.15rem;
+      background: #0ea5e9;
+      /* Sky-500 */
+      color: #fff;
+      border: 1px solid #0284c7;
+      box-shadow: 0 14px 34px rgba(14, 165, 233, 0.25);
+      /* Blue shadow */
+    }
 
-            0%,
-            100% {
-                transform: translateY(0)
-            }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      background: #0284c7;
+      /* Sky-600 */
+    }
 
-            50% {
-                transform: translateY(12px)
-            }
-        }
+    .btn-ghost {
+      padding: .75rem 1rem;
+      border: 1px solid #bae6fd;
+      /* Sky-200 */
+      background: rgba(255, 255, 255, 0.8);
+      color: #0369a1;
+      /* Sky-700 */
+      backdrop-filter: blur(4px);
+    }
 
-        .animate-float {
-            animation: floatY 12s ease-in-out infinite
-        }
+    .btn-ghost:hover {
+      background: #fff;
+      border-color: #7dd3fc;
+    }
 
-        .animate-float-delayed {
-            animation: floatY 16s ease-in-out infinite .6s
-        }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: .15rem .5rem;
+      border-radius: .5rem;
+      font-weight: 800
+    }
 
-        /* 按钮 & 徽章 */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            font-weight: 700;
-            border-radius: .9rem;
-            transition: .2s
-        }
+    /* 这里的 Amber 和 Blue 改为冰雪主题色 */
+    .pill-amber {
+      background: rgba(216, 180, 254, 0.18);
+      /* Purple tint */
+      color: #7e22ce;
+      /* Purple-700 */
+      border: 1px solid rgba(216, 180, 254, 0.35)
+    }
 
-        .btn-primary {
-            padding: .8rem 1.15rem;
-            background: #2563eb;
-            color: #fff;
-            border: 1px solid #1e40af;
-            box-shadow: 0 14px 34px rgba(37, 99, 235, .25)
-        }
+    .pill-blue {
+      background: rgba(56, 189, 248, 0.16);
+      /* Sky tint */
+      color: #0369a1;
+      /* Sky-700 */
+      border: 1px solid rgba(56, 189, 248, 0.35)
+    }
 
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            background: #1d4ed8
-        }
+    /* 复制地址胶囊 - 冰霜玻璃感 */
+    .copy-pill {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .4rem .75rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(186, 230, 253, 0.6);
+      /* Sky-200 */
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(240, 249, 255, 0.9));
+      box-shadow: 0 6px 20px rgba(186, 230, 253, 0.2);
+      overflow: hidden;
+      color: #0369a1;
+      cursor: pointer;
+    }
 
-        .btn-ghost {
-            padding: .75rem 1rem;
-            border: 1px solid #cbd5e1;
-            background: rgba(255, 255, 255, .9);
-            color: #0f172a
-        }
+    .copy-pill .shine {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, transparent 0%, rgba(255, 255, 255, 0.8) 35%, transparent 70%);
+      transform: translateX(-120%);
+      transition: transform .8s ease
+    }
 
-        .btn-ghost:hover {
-            background: #fff
-        }
+    .copy-pill:hover .shine {
+      transform: translateX(120%)
+    }
 
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            padding: .15rem .5rem;
-            border-radius: .5rem;
-            font-weight: 800
-        }
+    /* 信任条 */
+    .trust-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: .5rem;
+      border: 1px solid rgba(186, 230, 253, 0.5);
+      background: rgba(255, 255, 255, 0.7);
+      padding: .55rem .8rem;
+      border-radius: .8rem;
+      backdrop-filter: blur(4px);
+    }
 
-        .pill-amber {
-            background: rgba(251, 191, 36, .18);
-            color: #92400e;
-            border: 1px solid rgba(251, 191, 36, .35)
-        }
+    .dot {
+      width: .5rem;
+      height: .5rem;
+      border-radius: 9999px
+    }
 
-        .pill-blue {
-            background: rgba(59, 130, 246, .16);
-            color: #1e40af;
-            border: 1px solid rgba(59, 130, 246, .35)
-        }
+    .dot-emerald {
+      background: #34d399
+    }
 
-        /* 复制地址胶囊 */
-        .copy-pill {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: .5rem;
-            padding: .4rem .75rem;
-            border-radius: 9999px;
-            border: 1px solid rgba(148, 163, 184, .6);
-            background: linear-gradient(180deg, rgba(255, 255, 255, .9), rgba(248, 250, 252, .9));
-            box-shadow: 0 6px 20px rgba(2, 6, 23, .05);
-            overflow: hidden
-        }
+    /* emerald-400 */
+    .dot-sky {
+      background: #38bdf8
+    }
 
-        .copy-pill .shine {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(130deg, transparent 0%, rgba(255, 255, 255, .65) 35%, transparent 70%);
-            transform: translateX(-120%);
-            transition: transform .8s ease
-        }
+    /* sky-400 */
+    .dot-indigo {
+      background: #818cf8
+    }
 
-        .copy-pill:hover .shine {
-            transform: translateX(120%)
-        }
+    /* indigo-400 */
 
-        /* 信任条 */
-        .trust-item {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: .5rem;
-            border: 1px solid rgba(148, 163, 184, .35);
-            background: rgba(255, 255, 255, .8);
-            padding: .55rem .8rem;
-            border-radius: .8rem
-        }
+    /* 下滑提示按钮 */
+    .scroll-hint {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 9999px;
+      border: 1px solid #bae6fd;
+      color: #0ea5e9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: .85;
+      background: rgba(255, 255, 255, 0.6);
+      animation: bob 1.8s ease-in-out infinite
+    }
 
-        .dot {
-            width: .5rem;
-            height: .5rem;
-            border-radius: 9999px
-        }
+    @keyframes bob {
 
-        .dot-emerald {
-            background: #10b981
-        }
+      0%,
+      100% {
+        transform: translateY(0)
+      }
 
-        .dot-sky {
-            background: #0ea5e9
-        }
+      50% {
+        transform: translateY(7px)
+      }
+    }
 
-        .dot-indigo {
-            background: #6366f1
-        }
+    @media (prefers-reduced-motion: reduce) {
 
-        /* 下滑提示按钮 */
-        .scroll-hint {
-            width: 2rem;
-            height: 2rem;
-            border-radius: 9999px;
-            border: 1px solid #cbd5e1;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: .85;
-            animation: bob 1.8s ease-in-out infinite
-        }
+      .animate-float,
+      .animate-float-delayed,
+      .gradient-title,
+      .scroll-hint {
+        animation: none
+      }
+    }
 
-        @keyframes bob {
+    /* 雪花旋转动画 (替换原红旗 wave) */
+    @keyframes spin-slow {
+      0% {
+        transform: rotate(0deg);
+      }
 
-            0%,
-            100% {
-                transform: translateY(0)
-            }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
 
-            50% {
-                transform: translateY(7px)
-            }
-        }
+    .animate-spin-slow {
+      animation: spin-slow 10s linear infinite;
+    }
 
-        /* 低动效偏好 */
-        @media (prefers-reduced-motion: reduce) {
+    /* 流光文字 */
+    @keyframes shine {
+      0% {
+        background-position: -200% center;
+      }
 
-            .animate-float,
-            .animate-float-delayed,
-            .gradient-title,
-            .scroll-hint {
-                animation: none
-            }
-        }
+      100% {
+        background-position: 200% center;
+      }
+    }
 
-        @keyframes wave {
-            0% {
-                transform: rotate(0deg);
-            }
+    .animate-shine {
+      background-size: 200% auto;
+      animation: shine 3s linear infinite;
+    }
 
-            25% {
-                transform: rotate(5deg);
-            }
+    /* 玻璃卡片通用样式 */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 10px 40px -10px rgba(14, 165, 233, 0.15);
+    }
 
-            50% {
-                transform: rotate(0deg);
-            }
+    /* --- 头部局部下雪特效 --- */
+/* --- 头部局部下雪特效 (增强版) --- */
+.hero-snowflake {
+    position: absolute;
+    top: -20px;
+    color: #fff;
+    /* 修改点：加深阴影，从浅蓝改为深蓝，增加模糊半径，让雪花自带轮廓 */
+    text-shadow: 0 0 4px rgba(3, 105, 161, 0.9), 0 0 8px rgba(14, 165, 233, 0.5); 
+    user-select: none;
+    pointer-events: none;
+    z-index: 10;
+    will-change: transform;
+    animation-name: hero-fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
 
-            75% {
-                transform: rotate(-5deg);
-            }
-
-            100% {
-                transform: rotate(0deg);
-            }
-        }
-
-        .animate-wave {
-            animation: wave 2s infinite ease-in-out;
-        }
-
-        /* 流光文字 */
-        @keyframes shine {
-            0% {
-                background-position: -200% center;
-            }
-
-            100% {
-                background-position: 200% center;
-            }
-        }
-
-        .animate-shine {
-            background-size: 200% auto;
-            animation: shine 3s linear infinite;
-        }
-
-        /* 背景漂浮 */
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .animate-float {
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .animate-float-delayed {
-            animation: float 10s ease-in-out infinite 2s;
-        }
-    </style>
+@keyframes hero-fall {
+    0% {
+        transform: translateY(-20px) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(105vh) translateX(20px); 
+        opacity: 0.4; /* 修改点：落地时稍微保持一点不透明度 */
+    }
+}
+  </style>
 </head>
 
 <body class="bg-slate-50 text-slate-800">
 
-    <div id="root">
-        <div class="flex flex-col min-h-screen">
-            <main class="flex-grow">
+  <!-- 飘雪特效 JS 插入容器 -->
+  <div id="snow-container"></div>
 
-                <!-- Hero Section -->
-                <!-- HERO / Masthead (Polished) -->
-                <section class="relative overflow-hidden">
-                    <!-- 背景：国庆红色基调 + 金色光晕 -->
-                    <div aria-hidden="true" class="absolute inset-0 -z-10">
-                        <div
-                            class="absolute inset-0 bg-[radial-gradient(800px_400px_at_50%_0%,#fecaca_15%,transparent_70%)]">
-                        </div>
-                        <div class="absolute inset-0 bg-gradient-to-b from-red-100 via-white to-white"></div>
-                        <div
-                            class="pointer-events-none absolute -left-24 -top-24 w-[560px] h-[560px] rounded-full bg-red-400/40 blur-3xl animate-float">
-                        </div>
-                        <div
-                            class="pointer-events-none absolute -right-20 top-32 w-[460px] h-[460px] rounded-full bg-yellow-300/35 blur-3xl animate-float-delayed">
-                        </div>
+  <div id="root" class="relative z-10">
+    <div class="flex flex-col min-h-screen">
+      <main class="flex-grow">
+
+        <!-- Hero Section -->
+        <!-- Hero Section -->
+<!-- Hero Section -->
+<section class="relative overflow-hidden">
+    <!-- 背景层修改：加深颜色以突出雪花 -->
+    <div aria-hidden="true" class="absolute inset-0 -z-10">
+        <!-- 1. 顶部深色径向光晕 (加深) -->
+        <div class="absolute inset-0 bg-[radial-gradient(800px_500px_at_50%_0%,#bae6fd_15%,transparent_70%)]"></div>
+        
+        <!-- 2. 主背景渐变 (从极浅改为明显的蓝天渐变：Sky-300 -> Blue-100 -> White) -->
+        <div class="absolute inset-0 bg-gradient-to-b from-sky-300 via-blue-100 to-white opacity-80"></div>
+        
+        <!-- 3. 左上装饰光晕 (加深颜色与不透明度) -->
+        <div class="pointer-events-none absolute -left-24 -top-24 w-[560px] h-[560px] rounded-full bg-blue-400/30 blur-3xl animate-float"></div>
+        
+        <!-- 4. 右上装饰光晕 (改为紫色调增加对比) -->
+        <div class="pointer-events-none absolute -right-20 top-32 w-[460px] h-[460px] rounded-full bg-indigo-300/30 blur-3xl animate-float-delayed"></div>
+    </div>
+
+    <!-- 下雪特效容器 -->
+    <div id="hero-snow-container" class="absolute inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <div class="container mx-auto px-4 pt-24 md:pt-32 pb-16 text-center relative z-10">
+        <!-- 霜玻璃卡片 (增加阴影浓度，使其从深色背景中脱颖而出) -->
+        <div class="mx-auto max-w-4xl rounded-3xl glass-card px-6 md:px-10 py-10 md:py-14 ring-1 ring-white/60 shadow-2xl shadow-sky-200/50">
+
+            <h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-slate-800 flex justify-center items-center gap-3">
+                <span class="inline-block text-4xl md:text-5xl animate-spin-slow">❄️</span>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-indigo-600 to-sky-600 pr-1">HappyAPI</span>
+                <span class="opacity-80 text-slate-500 font-bold text-3xl md:text-5xl">— 聚合 API</span>
+            </h1>
+
+            <p class="mt-6 text-base md:text-lg text-slate-600">
+                支持 <span class="hl">OpenAI</span>、<span class="hl">Claude</span>、<span class="hl">Gemini</span>、<span class="hl">DeepSeek</span>、<span class="hl">豆包</span>
+                等多个顶级模型供应商
+            </p>
+
+            <p class="mt-3 text-base md:text-lg text-slate-600">
+                最低仅需 <span class="pill pill-amber">0.2 元</span> 即可购买 <span class="pill pill-blue">1 美金</span> 额度
+            </p>
+
+            <!-- CTA 按钮 -->
+            <div class="mt-8 flex items-center justify-center gap-3">
+                <a href="https://cn.happyapi.org/console"
+                    class="btn btn-primary bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 animate-pulse border-none shadow-lg shadow-sky-300/50">
+                    立即开始
+                    <svg class="w-4 h-4 ml-1.5 -mr-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="#api-usage1" class="btn btn-ghost text-sky-700 border-sky-300 hover:bg-sky-50">查看用法</a>
+            </div>
+
+            <!-- 一键复制 Base URL -->
+            <div class="mt-6 flex justify-center">
+                <button id="copy-base" data-copy="https://happyapi.org/v1"
+                    class="copy-pill group border-sky-300 hover:border-sky-500 bg-white/80">
+                    <svg class="w-4 h-4 text-sky-600 group-hover:text-sky-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
+                    <span class="font-mono text-sky-800 font-medium">(国内)https://cn.happyapi.org/v1</span> |
+                    <span class="font-mono text-sky-800 font-medium">(海外)https://happyapi.org/v1</span>
+                    <span class="shine" aria-hidden="true"></span>
+                </button>
+            </div>
+
+            <!-- 信任条 -->
+            <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                <div class="trust-item text-slate-700 font-semibold border-sky-200">
+                    <span class="dot dot-emerald"></span> <span style="font-weight:800;">8.9K+</span> 活跃用户
+                </div>
+                <div class="trust-item text-slate-700 font-semibold border-sky-200">
+                    <span class="dot dot-sky"></span> 99.9% SLA 稳定
+                </div>
+                <div class="trust-item text-slate-700 font-semibold border-sky-200">
+                    <span class="dot dot-indigo"></span> 高并发 · 低延迟
+                </div>
+            </div>
+        </div>
+
+        <!-- 下滑提示 -->
+        <div class="mt-10 flex justify-center">
+            <button id="scroll-cta" type="button" data-target="#api-usage" data-offset="72" class="relative group inline-flex items-center justify-center w-10 h-10 rounded-full
+border border-sky-300 bg-white/60 text-sky-600 backdrop-blur
+shadow-sm transition-all duration-200
+hover:text-sky-800 hover:border-sky-400 hover:bg-white hover:shadow-md
+active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400" aria-label="下滑查看更多">
+                <span class="pointer-events-none absolute inset-0 rounded-full ring-0 group-hover:ring-4 ring-sky-200/60 transition-all duration-200"></span>
+                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5 group-active:translate-y-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="m6 9 6 6 6-6" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</section>
+
+        <!-- Announcements Section -->
+        <section class="py-16 px-4" id="api-usage">
+          <div class="container mx-auto max-w-5xl glass-card p-6 sm:p-8 rounded-2xl shadow-lg overflow-hidden relative">
+            <!-- 装饰：角落冰花 -->
+            <div class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none text-6xl">❄️</div>
+
+            <h2 class="text-3xl font-bold text-center mb-8 text-slate-800 reveal">网站公告与交流群</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+              <!-- QQ Groups Card -->
+              <div class="reveal">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-xl font-semibold text-slate-700">加入我们的交流群</h3>
+                  <!-- Input 保持注释状态 -->
+                  <!-- <div class="relative"> ... </div> -->
+                </div>
+
+                <div class="overflow-hidden rounded-xl border border-sky-100 bg-white/50">
+                  <table class="min-w-full text-sm text-center">
+                    <thead class="bg-sky-50 text-slate-600 uppercase tracking-wider">
+                      <tr>
+                        <th class="py-3 px-4 font-semibold">群名称</th>
+                        <th class="py-3 px-4 font-semibold">群号</th>
+                        <th class="py-3 px-4 font-semibold">状态</th>
+                      </tr>
+                    </thead>
+                    <tbody id="qq-tbody" class="bg-white/40 divide-y divide-sky-100">
+                      <!-- 已满行 (保持红色以示警告/已满，但背景调淡) -->
+                      <tr class="qq-row hover:bg-sky-50 transition" data-name="网站交流群01" data-id="743336487"
+                        data-status="full">
+                        <td class="py-3 px-4">网站交流群01</td>
+                        <td class="py-3 px-4">
+                          <span class="font-medium text-slate-800">743336487</span>
+                          <button
+                            class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-sky-300 text-slate-500 hover:text-sky-600 transition"
+                            data-copy="743336487" title="复制群号">
+                            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                              stroke-width="2">
+                              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            复制
+                          </button>
+                        </td>
+                        <td class="py-3 px-4">
+                          <span class="inline-flex items-center gap-1.5 text-rose-500">
+                            <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                            已满
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr class="qq-row hover:bg-sky-50 transition" data-name="网站交流群02" data-id="177413724"
+                        data-status="full">
+                        <td class="py-3 px-4">网站交流群02</td>
+                        <td class="py-3 px-4">
+                          <span class="font-medium text-slate-800">177413724</span>
+                          <button
+                            class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-sky-300 text-slate-500 hover:text-sky-600 transition"
+                            data-copy="177413724" title="复制群号"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none"
+                              stroke="currentColor" stroke-width="2">
+                              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg> 复制</button>
+                        </td>
+                        <td class="py-3 px-4">
+                          <span class="inline-flex items-center gap-1.5 text-rose-500">
+                            <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                            已满
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr class="qq-row hover:bg-sky-50 transition" data-name="网站交流群03" data-id="960341140"
+                        data-status="full">
+                        <td class="py-3 px-4">网站交流群03</td>
+                        <td class="py-3 px-4">
+                          <span class="font-medium text-slate-800">960341140</span>
+                          <button
+                            class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-sky-300 text-slate-500 hover:text-sky-600 transition"
+                            data-copy="960341140" title="复制群号"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none"
+                              stroke="currentColor" stroke-width="2">
+                              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg> 复制</button>
+                        </td>
+                        <td class="py-3 px-4">
+                          <span class="inline-flex items-center gap-1.5 text-rose-500">
+                            <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                            已满
+                          </span>
+                        </td>
+                      </tr>
+
+                      <tr class="qq-row hover:bg-sky-50 transition" data-name="网站交流群04" data-id="954483522"
+                        data-status="full">
+                        <td class="py-3 px-4">网站交流群04</td>
+                        <td class="py-3 px-4">
+                          <span class="font-medium text-slate-800">954483522</span>
+                          <button
+                            class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-sky-300 text-slate-500 hover:text-sky-600 transition"
+                            data-copy="954483522" title="复制群号"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none"
+                              stroke="currentColor" stroke-width="2">
+                              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg> 复制</button>
+                        </td>
+                        <td class="py-3 px-4">
+                          <span class="inline-flex items-center gap-1.5 text-rose-500">
+                            <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                            已满
+                          </span>
+                        </td>
+                      </tr>
+
+                      <!-- 可加入行 (Green -> Cyan/Emerald Mix) -->
+                      <tr
+                        class="qq-row hover:bg-emerald-50 transition bg-emerald-50/60 ring-1 ring-inset ring-emerald-100"
+                        data-name="网站交流群05" data-id="820451995" data-status="open">
+                        <td class="py-3 px-4 font-bold text-slate-800">网站交流群05</td>
+                        <td class="py-3 px-4">
+                          <span class="font-bold text-slate-800">820451995</span>
+                          <button
+                            class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-emerald-200 hover:border-emerald-300 text-emerald-600 hover:text-emerald-700 transition"
+                            data-copy="820451995" title="复制群号"><svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none"
+                              stroke="currentColor" stroke-width="2">
+                              <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg> 复制</button>
+                        </td>
+                        <td class="py-3 px-4">
+                          <button
+                            class="join-btn inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500 text-white text-xs font-semibold shadow hover:bg-emerald-600 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-400"
+                            data-id="820451995" title="点击复制群号并打开 QQ 下载页">
+                            <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
+                            立即加入
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- 警告条 (Red -> Rose/Ice Warning) -->
+                <div
+                  class="mt-4 rounded-xl border border-rose-200 bg-rose-50/80 text-rose-800 p-4 leading-relaxed backdrop-blur-sm">
+                  <p class="font-semibold">本站所有用户必须遵守《生成式人工智能服务管理暂行办法》，禁止一切违法违规行为。</p>
+                  <p class="text-sm mt-1">禁止用于非法用途，如若发现本站将全力配合有关部门进行调查；违法客户请绕道，本网站仅用于合法合规测试。</p>
+                </div>
+              </div>
+
+              <!-- Updates / Notifications -->
+              <div class="space-y-3 reveal">
+                <h3 class="text-xl font-semibold mb-1 text-slate-700">最新动态</h3>
+
+                <!-- 动态卡：带左侧进度条动画 (Colors adapted to winter) -->
+                <article class="relative p-4 rounded-xl bg-white border border-sky-100 shadow-sm overflow-hidden group">
+                  <span
+                    class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-sky-400 via-blue-400 to-indigo-400 animate-[pulse_2s_ease-in-out_infinite]"></span>
+                  <h4 class="font-semibold text-slate-800 flex items-center gap-2">
+                    【1】模型更新 <span class="text-xs px-1.5 py-0.5 rounded bg-sky-100 text-sky-700">NEW</span>
+                  </h4>
+                  <p class="text-sm text-slate-600 mt-1">
+                    deepseek-v3.1 新增思考过程（deepseek-ai/DeepSeek-V3.1-Think），非思考模型 DeepSeek-V3.1 火山渠道稳定可用。
+                  </p>
+                </article>
+
+                <article
+                  class="relative p-4 rounded-xl bg-white border border-indigo-100 shadow-sm overflow-hidden group">
+                  <span
+                    class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-indigo-400 to-violet-400 animate-[pulse_2s_ease-in-out_infinite]"></span>
+                  <h4 class="font-semibold text-slate-800">【2】Claude thinking 系列更新</h4>
+                  <p class="text-sm text-slate-600 mt-1">Claude 系列稳定并发，可使用 Claude 4 thinking。</p>
+                </article>
+
+                <article
+                  class="relative p-4 rounded-xl bg-white border border-cyan-100 shadow-sm overflow-hidden group">
+                  <span
+                    class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-cyan-400 to-teal-400 animate-[pulse_2s_ease-in-out_infinite]"></span>
+                  <h4 class="font-semibold text-slate-800">【3】并发无限制</h4>
+                  <p class="text-sm text-slate-600 mt-1">Grok 系列（含 grok-3 / grok-4）近期存量较大，支持大量并发调用。</p>
+                </article>
+
+                <!-- 可折叠面板 -->
+                <div id="collapsible-notification" class="rounded-xl bg-sky-50 border border-sky-200 overflow-hidden">
+                  <button id="collapse-toggle"
+                    class="w-full text-left p-4 flex justify-between items-center transition-colors hover:bg-sky-100">
+                    <div>
+                      <h4 class="font-semibold text-sky-800">二次中转代理服务</h4>
+                      <p class="text-sm text-sky-700 mt-1">如果您想要代理 happyapi 服务，您将获得以下权益…</p>
                     </div>
-
-                    <div class="container mx-auto px-4 pt-24 md:pt-32 pb-16 text-center">
-                        <!-- 霜玻璃卡片 -->
-                        <div
-                            class="mx-auto max-w-4xl rounded-3xl border border-red-200/60 bg-white/70 backdrop-blur-2xl shadow-[0_20px_60px_rgba(220,38,38,0.15)] ring-1 ring-red-200/50 px-6 md:px-10 py-10 md:py-14">
-
-                            <h1
-                                class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-red-700 flex justify-center items-center gap-2">
-                                <!-- 红旗动画 -->
-                                <span class="inline-block text-4xl md:text-5xl animate-wave">🚩</span>
-                                <span
-                                    class="bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 pr-1">HappyAPI</span>
-                                <span class="opacity-90">— 聚合 API</span>
-                            </h1>
-
-                            <!-- 国庆贺语 -->
-                            <!-- <p
-                                class="mt-3 text-lg md:text-xl font-semibold animate-shine bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 bg-clip-text text-transparent">
-                                🎉 欢度国庆，全站AI模型超低价格，祝大家国庆快乐！ 🎉
-                                <br>
-                                🎉 国庆期间充值仅需 0.15/$，群里每日赠送大量额度，增加国庆专属低价分组 🎉
-                            </p> -->
-
-                            <p class="mt-4 text-base md:text-lg text-slate-700">
-                                支持 <span class="hl">OpenAI</span>、<span class="hl">Claude</span>、<span
-                                    class="hl">Gemini</span>、<span class="hl">DeepSeek</span>、<span class="hl">豆包</span>
-                                等多个顶级模型供应商
-                            </p>
-
-                            <p class="mt-3 text-base md:text-lg text-slate-700">
-                                最低仅需 <span class="pill pill-amber">0.2 元</span> 即可购买 <span class="pill pill-blue">1
-                                    美金</span> 额度
-                            </p>
-
-                            <!-- CTA 按钮 -->
-                            <div class="mt-8 flex items-center justify-center gap-3">
-                                <a href="https://cn.happyapi.org/console"
-                                    class="btn btn-primary bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 animate-pulse">
-                                    立即开始
-                                    <svg class="w-4 h-4 ml-1.5 -mr-0.5" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14M12 5l7 7-7 7" />
-                                    </svg>
-                                </a>
-                                <a href="#api-usage1" class="btn btn-ghost text-red-600 hover:text-red-700">查看用法</a>
-                            </div>
-
-                            <!-- 一键复制 Base URL -->
-                            <div class="mt-6 flex justify-center">
-                                <button id="copy-base" data-copy="https://happyapi.org/v1"
-                                    class="copy-pill group border-red-300 hover:border-red-500">
-                                    <svg class="w-4 h-4 text-red-500 group-hover:text-red-700" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="9" y="9" width="13" height="13" rx="2" />
-                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                                    </svg>
-                                    <span class="font-mono text-red-700">(国内)https://cn.happyapi.org/v1</span> |
-                                    <span class="font-mono text-red-700">(海外)https://happyapi.org/v1</span>
-                                    <span class="shine" aria-hidden="true"></span>
-                                </button>
-                            </div>
-
-                            <!-- 信任条 -->
-                            <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-                                <div class="trust-item text-red-600 font-semibold">
-                                    <span class="dot dot-emerald"></span> <span style="font-weight:800;">8.9K+</span>
-                                    活跃用户
-                                </div>
-                                <div class="trust-item text-red-600 font-semibold">
-                                    <span class="dot dot-sky"></span> 99.9% SLA 稳定
-                                </div>
-                                <div class="trust-item text-red-600 font-semibold">
-                                    <span class="dot dot-indigo"></span> 高并发 · 低延迟
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 下滑提示 -->
-                        <div class="mt-10 flex justify-center">
-                            <button id="scroll-cta" type="button" data-target="#api-usage" data-offset="72" class="relative group inline-flex items-center justify-center w-10 h-10 rounded-full
-        border border-red-300 bg-white/80 text-red-500 backdrop-blur
-        shadow-sm transition-all duration-200
-        hover:text-red-700 hover:border-red-400 hover:shadow
-        active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400" aria-label="下滑查看更多">
-                                <span
-                                    class="pointer-events-none absolute inset-0 rounded-full ring-0 group-hover:ring-4 ring-red-200/60 transition-all duration-200"></span>
-                                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5 group-active:translate-y-1"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="m6 9 6 6 6-6" />
-                                </svg>
-                            </button>
-                        </div>
+                    <svg id="collapse-arrow" class="w-5 h-5 text-sky-600 transition-transform"
+                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                      stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                  </button>
+                  <div id="collapse-content"
+                    class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
+                    <div class="overflow-hidden">
+                      <ul class="list-disc list-inside text-sm text-sky-700 space-y-2 p-4 pt-0">
+                        <li>无需技术、无需服务器，域名即可获得专属中转站（NewAPI）。</li>
+                        <li>立即获得 500 美元一周试营业额度。</li>
+                        <li>免费一周 Gemini / Grok 系列模型服务支持。</li>
+                      </ul>
                     </div>
-                </section>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Toast -->
+          <div id="toast"
+            class="fixed bottom-6 right-6 z-50 hidden min-w-[220px] max-w-xs text-sm px-4 py-3 rounded-lg shadow-lg bg-slate-900/90 text-white backdrop-blur">
+            <span id="toast-msg">已复制</span>
+          </div>
+        </section>
 
 
+        <!-- Navigation Section -->
+        <!-- 快速导航 -->
+        <section class="py-16 px-4">
+          <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-3 text-slate-800">快速导航</h2>
+            <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">
+              此部分包含状态监控、在线体验、用量查询等快捷入口，点击即可跳转。
+            </p>
 
-
-                <!-- Announcements Section -->
-                <!-- Announcements Section (Enhanced) -->
-                <section class="py-16 px-4" id="api-usage">
-                    <div class="container mx-auto max-w-5xl bg-white p-6 sm:p-8 rounded-2xl shadow-lg overflow-hidden">
-                        <h2 class="text-3xl font-bold text-center mb-8 text-slate-900 reveal">网站公告与交流群</h2>
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                            <!-- QQ Groups Card -->
-                            <div class="reveal">
-                                <div class="flex items-center justify-between mb-3">
-                                    <h3 class="text-xl font-semibold text-slate-800">加入我们的交流群</h3>
-                                    <!-- <div class="relative">
-                                        <input id="qq-search" type="text" placeholder="搜索群名称 / 群号…"
-                                            class="peer pl-9 pr-3 py-2 rounded-lg bg-slate-50 border border-slate-200 text-sm outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition" />
-                                        <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <circle cx="11" cy="11" r="8"></circle>
-                                            <path d="m21 21-4.3-4.3"></path>
-                                        </svg>
-                                    </div> -->
-                                </div>
-
-                                <div class="overflow-hidden rounded-xl border border-slate-200">
-                                    <table class="min-w-full text-sm text-center">
-                                        <thead class="bg-slate-100 text-slate-600 uppercase tracking-wider">
-                                            <tr>
-                                                <th class="py-3 px-4 font-semibold">群名称</th>
-                                                <th class="py-3 px-4 font-semibold">群号</th>
-                                                <th class="py-3 px-4 font-semibold">状态</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="qq-tbody" class="bg-white divide-y divide-slate-100">
-                                            <!-- 已满行 -->
-                                            <tr class="qq-row hover:bg-slate-50 transition" data-name="网站交流群01"
-                                                data-id="743336487" data-status="full">
-                                                <td class="py-3 px-4">网站交流群01</td>
-                                                <td class="py-3 px-4">
-                                                    <span class="font-medium text-slate-800">743336487</span>
-                                                    <button
-                                                        class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-700 transition"
-                                                        data-copy="743336487" title="复制群号">
-                                                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none"
-                                                            stroke="currentColor" stroke-width="2">
-                                                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                                                            <path
-                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                            </path>
-                                                        </svg>
-                                                        复制
-                                                    </button>
-                                                </td>
-                                                <td class="py-3 px-4">
-                                                    <span class="inline-flex items-center gap-1.5 text-red-600">
-                                                        <span
-                                                            class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                                                        已满
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="qq-row hover:bg-slate-50 transition" data-name="网站交流群02"
-                                                data-id="177413724" data-status="full">
-                                                <td class="py-3 px-4">网站交流群02</td>
-                                                <td class="py-3 px-4">
-                                                    <span class="font-medium text-slate-800">177413724</span>
-                                                    <button
-                                                        class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-700 transition"
-                                                        data-copy="177413724" title="复制群号"><svg class="w-3.5 h-3.5"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2">
-                                                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                                                            <path
-                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                            </path>
-                                                        </svg>
-                                                        复制</button>
-                                                </td>
-                                                <td class="py-3 px-4">
-                                                    <span class="inline-flex items-center gap-1.5 text-red-600">
-                                                        <span
-                                                            class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                                                        已满
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="qq-row hover:bg-slate-50 transition" data-name="网站交流群03"
-                                                data-id="960341140" data-status="full">
-                                                <td class="py-3 px-4">网站交流群03</td>
-                                                <td class="py-3 px-4">
-                                                    <span class="font-medium text-slate-800">960341140</span>
-                                                    <button
-                                                        class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-700 transition"
-                                                        data-copy="960341140" title="复制群号"><svg class="w-3.5 h-3.5"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2">
-                                                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                                                            <path
-                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                            </path>
-                                                        </svg>
-                                                        复制</button>
-                                                </td>
-                                                <td class="py-3 px-4">
-                                                    <span class="inline-flex items-center gap-1.5 text-red-600">
-                                                        <span
-                                                            class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                                                        已满
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <tr class="qq-row hover:bg-slate-50 transition" data-name="网站交流群04"
-                                                data-id="954483522" data-status="full">
-                                                <td class="py-3 px-4">网站交流群04</td>
-                                                <td class="py-3 px-4">
-                                                    <span class="font-medium text-slate-800">954483522</span>
-                                                    <button
-                                                        class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-slate-200 hover:border-slate-300 text-slate-500 hover:text-slate-700 transition"
-                                                        data-copy="954483522" title="复制群号"><svg class="w-3.5 h-3.5"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2">
-                                                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                                                            <path
-                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                            </path>
-                                                        </svg>
-                                                        复制</button>
-                                                </td>
-                                                <td class="py-3 px-4">
-                                                    <span class="inline-flex items-center gap-1.5 text-red-600">
-                                                        <span
-                                                            class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                                                        已满
-                                                    </span>
-                                                </td>
-                                            </tr>
-
-                                            <!-- 可加入行（高亮 + 按钮） -->
-                                            <tr class="qq-row hover:bg-green-50 transition bg-green-50/60 ring-1 ring-inset ring-green-100"
-                                                data-name="网站交流群05" data-id="820451995" data-status="open">
-                                                <td class="py-3 px-4 font-bold text-slate-800">网站交流群05</td>
-                                                <td class="py-3 px-4">
-                                                    <span class="font-bold text-slate-800">820451995</span>
-                                                    <button
-                                                        class="copy-btn ml-2 inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded border border-green-200 hover:border-green-300 text-green-600 hover:text-green-700 transition"
-                                                        data-copy="820451995" title="复制群号"><svg class="w-3.5 h-3.5"
-                                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                            stroke-width="2">
-                                                            <rect x="9" y="9" width="13" height="13" rx="2"></rect>
-                                                            <path
-                                                                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
-                                                            </path>
-                                                        </svg>
-                                                        复制</button>
-                                                </td>
-                                                <td class="py-3 px-4">
-                                                    <button
-                                                        class="join-btn inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-green-600 text-white text-xs font-semibold shadow hover:bg-green-700 transition focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                                                        data-id="820451995" title="点击复制群号并打开 QQ 下载页">
-                                                        <span class="w-2 h-2 rounded-full bg-white animate-ping"></span>
-                                                        立即加入
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <!-- 红色告示条 -->
-                                <div
-                                    class="mt-4 rounded-xl border border-red-200 bg-red-50 text-red-800 p-4 leading-relaxed">
-                                    <p class="font-semibold">本站所有用户必须遵守《生成式人工智能服务管理暂行办法》，禁止一切违法违规行为。</p>
-                                    <p class="text-sm mt-1">禁止用于非法用途，如若发现本站将全力配合有关部门进行调查；违法客户请绕道，本网站仅用于合法合规测试。</p>
-                                </div>
-                            </div>
-
-                            <!-- Updates / Notifications -->
-                            <div class="space-y-3 reveal">
-                                <h3 class="text-xl font-semibold mb-1 text-slate-800">最新动态</h3>
-
-                                <!-- 动态卡：带左侧进度条动画 -->
-                                <article
-                                    class="relative p-4 rounded-xl bg-slate-50 border border-slate-200 overflow-hidden group">
-                                    <span
-                                        class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 animate-[pulse_2s_ease-in-out_infinite]"></span>
-                                    <h4 class="font-semibold text-slate-800 flex items-center gap-2">
-                                        【1】模型更新 <span
-                                            class="text-xs px-1.5 py-0.5 rounded bg-blue-100 text-blue-700">NEW</span>
-                                    </h4>
-                                    <p class="text-sm text-slate-600 mt-1">
-                                        deepseek-v3.1 新增思考过程（deepseek-ai/DeepSeek-V3.1-Think），非思考模型 DeepSeek-V3.1
-                                        火山渠道稳定可用。
-                                    </p>
-                                </article>
-
-                                <article
-                                    class="relative p-4 rounded-xl bg-slate-50 border border-slate-200 overflow-hidden group">
-                                    <span
-                                        class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-emerald-500 to-teal-500 animate-[pulse_2s_ease-in-out_infinite]"></span>
-                                    <h4 class="font-semibold text-slate-800">【2】Claude thinking 系列更新</h4>
-                                    <p class="text-sm text-slate-600 mt-1">Claude 系列稳定并发，可使用 Claude 4 thinking。</p>
-                                </article>
-
-                                <article
-                                    class="relative p-4 rounded-xl bg-slate-50 border border-slate-200 overflow-hidden group">
-                                    <span
-                                        class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-rose-500 to-orange-500 animate-[pulse_2s_ease-in-out_infinite]"></span>
-                                    <h4 class="font-semibold text-slate-800">【3】并发无限制</h4>
-                                    <p class="text-sm text-slate-600 mt-1">Grok 系列（含 grok-3 / grok-4）近期存量较大，支持大量并发调用。
-                                    </p>
-                                </article>
-
-                                <!-- 可折叠面板（保留你的原交互 + 平滑过渡） -->
-                                <div id="collapsible-notification"
-                                    class="rounded-xl bg-blue-50 border border-blue-200 overflow-hidden">
-                                    <button id="collapse-toggle"
-                                        class="w-full text-left p-4 flex justify-between items-center transition-colors hover:bg-blue-100">
-                                        <div>
-                                            <h4 class="font-semibold text-blue-800">二次中转代理服务</h4>
-                                            <p class="text-sm text-blue-700 mt-1">如果您想要代理 happyapi 服务，您将获得以下权益…</p>
-                                        </div>
-                                        <svg id="collapse-arrow" class="w-5 h-5 text-blue-600 transition-transform"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                            stroke-width="2" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                        </svg>
-                                    </button>
-                                    <div id="collapse-content"
-                                        class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-in-out">
-                                        <div class="overflow-hidden">
-                                            <ul class="list-disc list-inside text-sm text-blue-700 space-y-2 p-4 pt-0">
-                                                <li>无需技术、无需服务器，域名即可获得专属中转站（NewAPI）。</li>
-                                                <li>立即获得 500 美元一周试营业额度。</li>
-                                                <li>免费一周 Gemini / Grok 系列模型服务支持。</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- /right -->
-                        </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+              <!-- 1 API 在线监控 (Sky) -->
+              <a href="http://48.210.59.29:8001/status/happyapi" target="_blank" rel="noopener"
+                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-sky-300/70 via-blue-100 to-transparent hover:from-sky-400/80 hover:via-indigo-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">
+                <div
+                  class="rounded-2xl bg-white/90 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5 h-full">
+                  <div class="flex items-start gap-4">
+                    <span
+                      class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-sky-50 text-sky-600 ring-1 ring-sky-100">
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="12" rx="2"></rect>
+                        <path d="M7 20h10M12 16v4"></path>
+                      </svg>
+                    </span>
+                    <div class="flex-1">
+                      <div class="flex items-center gap-2">
+                        <h3 class="text-lg font-semibold text-slate-800">API 在线监控</h3>
+                        <span
+                          class="text-xs px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">实时</span>
+                      </div>
+                      <p class="mt-1 text-sm text-slate-600">随时随地查看 API 运行状况，及时获取服务状态。</p>
                     </div>
+                    <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
 
-                    <!-- Toast -->
-                    <div id="toast"
-                        class="fixed bottom-6 right-6 z-50 hidden min-w-[220px] max-w-xs text-sm px-4 py-3 rounded-lg shadow-lg bg-slate-900/90 text-white">
-                        <span id="toast-msg">已复制</span>
+              <!-- 2 在线免费使用 (Indigo) -->
+              <a href="https://chat.hpapi.top/" target="_blank" rel="noopener"
+                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-indigo-300/70 via-purple-100 to-transparent hover:from-indigo-400/80 hover:via-purple-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400">
+                <div
+                  class="rounded-2xl bg-white/90 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5 h-full">
+                  <div class="flex items-start gap-4">
+                    <span
+                      class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-indigo-50 text-indigo-600 ring-1 ring-indigo-100">
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 3v4M3 5h4M19 13v4m-2-2h4M9 7l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4z" />
+                      </svg>
+                    </span>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold text-slate-800">在线免费使用(已恢复)</h3>
+                      <p class="mt-1 text-sm text-slate-600">站点福利，免费使用所有模型，注册无需验证码。</p>
                     </div>
-                </section>
+                    <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
 
-
-                <!-- Navigation Section -->
-                <!-- 快速导航 -->
-                <section class="py-16 px-4 bg-white">
-                    <div class="container mx-auto">
-                        <h2 class="text-3xl font-bold text-center mb-3 text-slate-900">快速导航</h2>
-                        <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">
-                            此部分包含状态监控、在线体验、用量查询等快捷入口，点击即可跳转。
-                        </p>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-                            <!-- 1 API 在线监控 -->
-                            <a href="http://48.210.59.29:8001/status/happyapi" target="_blank" rel="noopener"
-                                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-sky-200/70 via-slate-100 to-transparent hover:from-sky-300/80 hover:via-indigo-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">
-                                <div
-                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5">
-                                    <div class="flex items-start gap-4">
-                                        <span
-                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-sky-50 text-sky-600 ring-1 ring-sky-100">
-                                            <!-- monitor icon -->
-                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2">
-                                                <rect x="3" y="4" width="18" height="12" rx="2"></rect>
-                                                <path d="M7 20h10M12 16v4"></path>
-                                            </svg>
-                                        </span>
-                                        <div class="flex-1">
-                                            <div class="flex items-center gap-2">
-                                                <h3 class="text-lg font-semibold text-slate-800">API 在线监控</h3>
-                                                <span
-                                                    class="text-xs px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-700 border border-emerald-200">实时</span>
-                                            </div>
-                                            <p class="mt-1 text-sm text-slate-600">
-                                                随时随地查看 API 运行状况，及时获取服务状态。
-                                            </p>
-                                        </div>
-                                        <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- 2 在线免费使用 -->
-                            <a href="https://chat.hpapi.top/" target="_blank" rel="noopener"
-                                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-violet-200/70 via-slate-100 to-transparent hover:from-violet-300/80 hover:via-fuchsia-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-violet-400">
-                                <div
-                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5">
-                                    <div class="flex items-start gap-4">
-                                        <span
-                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-violet-50 text-violet-600 ring-1 ring-violet-100">
-                                            <!-- sparkles -->
-                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2">
-                                                <path
-                                                    d="M5 3v4M3 5h4M19 13v4m-2-2h4M9 7l2 4 4 2-4 2-2 4-2-4-4-2 4-2 2-4z" />
-                                            </svg>
-                                        </span>
-                                        <div class="flex-1">
-                                            <h3 class="text-lg font-semibold text-slate-800">在线免费使用(已恢复)</h3>
-                                            <p class="mt-1 text-sm text-slate-600">站点福利，免费使用所有模型，注册无需验证码。</p>
-                                        </div>
-                                        <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- 3 绘画免费使用 -->
-                            <a href="https://draw.happieapi.top/" target="_blank" rel="noopener"
-                                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-pink-200/70 via-slate-100 to-transparent hover:from-pink-300/80 hover:via-rose-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-pink-400">
-                                <div
-                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5">
-                                    <div class="flex items-start gap-4">
-                                        <span
-                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-pink-50 text-pink-600 ring-1 ring-pink-100">
-                                            <!-- palette -->
-                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2">
-                                                <path d="M12 3a9 9 0 1 0 9 9 3 3 0 0 1-3-3c0-1.657-1.79-3-4-3h-2z" />
-                                                <circle cx="7.5" cy="10.5" r="1" />
-                                                <circle cx="10.5" cy="7.5" r="1" />
-                                                <circle cx="14.5" cy="7.5" r="1" />
-                                                <circle cx="16.5" cy="10.5" r="1" />
-                                            </svg>
-                                        </span>
-                                        <div class="flex-1">
-                                            <h3 class="text-lg font-semibold text-slate-800">绘画免费使用</h3>
-                                            <p class="mt-1 text-sm text-slate-600">在线绘画体验站，感受 AIGC 的创作魅力。</p>
-                                        </div>
-                                        <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- 4 免费文本转语音 -->
-                            <a href="https://video.happyapi.me/" target="_blank" rel="noopener"
-                                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-amber-200/70 via-slate-100 to-transparent hover:from-amber-300/80 hover:via-orange-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400">
-                                <div
-                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5">
-                                    <div class="flex items-start gap-4">
-                                        <span
-                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-amber-50 text-amber-600 ring-1 ring-amber-100">
-                                            <!-- speaker -->
-                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2">
-                                                <path d="M11 5l-4 4H3v6h4l4 4V5z" />
-                                                <path d="M15 9a3 3 0 0 1 0 6M19 7a6 6 0 0 1 0 10" />
-                                            </svg>
-                                        </span>
-                                        <div class="flex-1">
-                                            <h3 class="text-lg font-semibold text-slate-800">免费文本转语音</h3>
-                                            <p class="mt-1 text-sm text-slate-600">语音免费体验站，API 调用方法见下文说明。</p>
-                                        </div>
-                                        <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- 5 Key 用量查询 -->
-                            <a href="https://neko-api-key-tool-puce.vercel.app/" target="_blank" rel="noopener"
-                                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-teal-200/70 via-slate-100 to-transparent hover:from-teal-300/80 hover:via-emerald-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
-                                <div
-                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5">
-                                    <div class="flex items-start gap-4">
-                                        <span
-                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-teal-50 text-teal-600 ring-1 ring-teal-100">
-                                            <!-- key -->
-                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2">
-                                                <circle cx="7" cy="17" r="3" />
-                                                <path d="M10 17h6l4-4-3-3-4 4v3" />
-                                            </svg>
-                                        </span>
-                                        <div class="flex-1">
-                                            <h3 class="text-lg font-semibold text-slate-800">Key 用量查询</h3>
-                                            <p class="mt-1 text-sm text-slate-600">无需登录，直接使用您的 Key 在线查询额度使用情况。</p>
-                                        </div>
-                                        <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M5 12h14M12 5l7 7-7 7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- 6 速率限制（信息卡，无跳转） -->
-                            <div
-                                class="group p-[1px] rounded-2xl bg-gradient-to-br from-slate-200/70 via-slate-100 to-transparent reveal">
-                                <div
-                                    class="rounded-2xl bg-white/80 backdrop-blur px-5 py-5 shadow-sm transition-all duration-200 group-hover:-translate-y-0.5">
-                                    <div class="flex items-start gap-4">
-                                        <span
-                                            class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-50 text-slate-600 ring-1 ring-slate-200">
-                                            <!-- speedometer -->
-                                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2">
-                                                <path d="M21 12a9 9 0 1 0-18 0 9 9 0 0 0 18 0Z" />
-                                                <path d="M12 7v5l3 3" />
-                                            </svg>
-                                        </span>
-                                        <div class="flex-1">
-                                            <h3 class="text-lg font-semibold text-slate-800">速率限制</h3>
-                                            <p class="mt-1 text-sm text-slate-600">本站对 API 请求限制为 <span
-                                                    class="font-semibold text-slate-800">500次-1000次 / 分钟</span>。</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+              <!-- 3 绘画免费使用 (Cyan/Pink) -->
+              <a href="https://draw.happieapi.top/" target="_blank" rel="noopener"
+                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-cyan-300/70 via-pink-100 to-transparent hover:from-cyan-400/80 hover:via-pink-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400">
+                <div
+                  class="rounded-2xl bg-white/90 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5 h-full">
+                  <div class="flex items-start gap-4">
+                    <span
+                      class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 ring-1 ring-cyan-100">
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 3a9 9 0 1 0 9 9 3 3 0 0 1-3-3c0-1.657-1.79-3-4-3h-2z" />
+                        <circle cx="7.5" cy="10.5" r="1" />
+                        <circle cx="10.5" cy="7.5" r="1" />
+                        <circle cx="14.5" cy="7.5" r="1" />
+                        <circle cx="16.5" cy="10.5" r="1" />
+                      </svg>
+                    </span>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold text-slate-800">绘画免费使用</h3>
+                      <p class="mt-1 text-sm text-slate-600">在线绘画体验站，感受 AIGC 的创作魅力。</p>
                     </div>
-                </section>
+                    <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+
+              <!-- 4 免费文本转语音 (Blue) -->
+              <a href="https://video.happyapi.me/" target="_blank" rel="noopener"
+                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-blue-300/70 via-slate-100 to-transparent hover:from-blue-400/80 hover:via-slate-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400">
+                <div
+                  class="rounded-2xl bg-white/90 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5 h-full">
+                  <div class="flex items-start gap-4">
+                    <span
+                      class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-50 text-blue-600 ring-1 ring-blue-100">
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 5l-4 4H3v6h4l4 4V5z" />
+                        <path d="M15 9a3 3 0 0 1 0 6M19 7a6 6 0 0 1 0 10" />
+                      </svg>
+                    </span>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold text-slate-800">免费文本转语音</h3>
+                      <p class="mt-1 text-sm text-slate-600">语音免费体验站，API 调用方法见下文说明。</p>
+                    </div>
+                    <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+
+              <!-- 5 Key 用量查询 (Teal) -->
+              <a href="https://neko-api-key-tool-puce.vercel.app/" target="_blank" rel="noopener"
+                class="group block p-[1px] rounded-2xl bg-gradient-to-br from-teal-300/70 via-emerald-100 to-transparent hover:from-teal-400/80 hover:via-emerald-200/70 transition-colors reveal focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-400">
+                <div
+                  class="rounded-2xl bg-white/90 backdrop-blur px-5 py-5 shadow-sm hover:shadow-lg transition-all duration-200 group-hover:-translate-y-0.5 h-full">
+                  <div class="flex items-start gap-4">
+                    <span
+                      class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-teal-50 text-teal-600 ring-1 ring-teal-100">
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="7" cy="17" r="3" />
+                        <path d="M10 17h6l4-4-3-3-4 4v3" />
+                      </svg>
+                    </span>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold text-slate-800">Key 用量查询</h3>
+                      <p class="mt-1 text-sm text-slate-600">无需登录，直接使用您的 Key 在线查询额度使用情况。</p>
+                    </div>
+                    <svg class="w-5 h-5 text-slate-400 transition-transform group-hover:translate-x-0.5"
+                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </a>
+
+              <!-- 6 速率限制 (Slate) -->
+              <div
+                class="group p-[1px] rounded-2xl bg-gradient-to-br from-slate-300/70 via-gray-100 to-transparent reveal h-full">
+                <div
+                  class="rounded-2xl bg-white/90 backdrop-blur px-5 py-5 shadow-sm transition-all duration-200 group-hover:-translate-y-0.5 h-full">
+                  <div class="flex items-start gap-4">
+                    <span
+                      class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100 text-slate-600 ring-1 ring-slate-200">
+                      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 12a9 9 0 1 0-18 0 9 9 0 0 0 18 0Z" />
+                        <path d="M12 7v5l3 3" />
+                      </svg>
+                    </span>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold text-slate-800">速率限制</h3>
+                      <p class="mt-1 text-sm text-slate-600">本站对 API 请求限制为 <span
+                          class="font-semibold text-slate-800">500次-1000次 / 分钟</span>。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
 
-                <!-- API Usage Section -->
-                <section class="py-16 px-4" id="api-usage1">
-                    <div class="container mx-auto">
-                        <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">API 使用指南</h2>
-                        <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">我们将复杂的调用过程模块化，为您提供清晰、易懂的使用说明。</p>
+        <!-- API Usage Section -->
+        <section class="py-16 px-4" id="api-usage1">
+          <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4 text-slate-800">API 使用指南</h2>
+            <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">我们将复杂的调用过程模块化，为您提供清晰、易懂的使用说明。</p>
 
-                        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
 
-                            <!-- API Endpoint Card -->
-                            <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col">
-                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">1. API 接口地址</h3>
-                                <p class="text-sm text-slate-600 mb-4">所有请求都应发送至以下 V1 接口地址。</p>
-                                <div class="bg-slate-50 rounded-lg flex-grow">
-                                    <pre><code class="language-javascript">
+              <!-- API Endpoint Card -->
+              <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-lg flex flex-col border border-white">
+                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">1. API 接口地址</h3>
+                <p class="text-sm text-slate-600 mb-4">所有请求都应发送至以下 V1 接口地址。</p>
+                <div class="bg-slate-900 rounded-lg flex-grow">
+                  <pre><code class="language-javascript">
 // 推荐的主接口地址
 const API_HOST = "https://happyapi.org/v1";
 或者
@@ -913,15 +903,15 @@ const API_HOST = "https://cn.happyapi.org/v1";
 // const API_HOST_COMPATIBLE = "https://cn.happyapi.org/v1/chat/completions";
 
                                     </code></pre>
-                                </div>
-                            </div>
+                </div>
+              </div>
 
-                            <!-- cURL Request Example Card -->
-                            <div class="bg-white p-6 rounded-2xl shadow-lg flex flex-col">
-                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">2. 请求示例 (cURL)</h3>
-                                <p class="text-sm text-slate-600 mb-4">我们完全兼容 OpenAI 格式，这是一个标准的 cURL 请求示例。</p>
-                                <div class="bg-slate-50 rounded-lg flex-grow">
-                                    <pre><code class="language-bash">
+              <!-- cURL Request Example Card -->
+              <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-lg flex flex-col border border-white">
+                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">2. 请求示例 (cURL)</h3>
+                <p class="text-sm text-slate-600 mb-4">我们完全兼容 OpenAI 格式，这是一个标准的 cURL 请求示例。</p>
+                <div class="bg-slate-900 rounded-lg flex-grow">
+                  <pre><code class="language-bash">
 # 向 chat/completions 端点发送 POST 请求
 curl -X POST "$API_HOST/chat/completions" \
   -H "Authorization: Bearer YOUR_API_KEY" \
@@ -937,32 +927,31 @@ curl -X POST "$API_HOST/chat/completions" \
     "stream": true
   }'
                                     </code></pre>
-                                </div>
-                            </div>
+                </div>
+              </div>
 
-                            <!-- Painting Model Guide Card -->
-                            <div class="bg-white p-8 rounded-2xl shadow-lg col-span-1 lg:col-span-2">
-                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-3">3. 绘画模型使用说明</h3>
-                                <div class="space-y-6 mt-6 text-slate-700 text-sm md:text-base">
-                                    <!-- Chat Completions Endpoint -->
-                                    <div>
-                                        <h4 class="font-semibold text-lg text-slate-800 mb-2">① 对话式生成
-                                            (v1/chat/completions)</h4>
-                                        <p class="mb-3">通过标准对话接口即可生成图片，支持图生图（叠图）。传图格式与 OpenAI 官方文档完全一致。</p>
-                                        <p class="mb-3">注意: 图片宽高比仅支持像素比。例如1024:1024，是指宽1024，高1024像素。</p>
-                                        <p>在提示词末尾（提示词使用英文效果更好哦！），使用英文中括号和冒号指定宽高比，例如：<br>
-                                            <code
-                                                class="bg-blue-100 text-blue-800 text-sm p-2 rounded-md block mt-2">帮我画一只宇航猫在月球漫步[1024:1024]</code>
-                                        </p>
-                                    </div>
+              <!-- Painting Model Guide Card -->
+              <div
+                class="bg-white/80 backdrop-blur p-8 rounded-2xl shadow-lg col-span-1 lg:col-span-2 border border-white">
+                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-3">3. 绘画模型使用说明</h3>
+                <div class="space-y-6 mt-6 text-slate-700 text-sm md:text-base">
+                  <!-- Chat Completions Endpoint -->
+                  <div>
+                    <h4 class="font-semibold text-lg text-slate-800 mb-2">① 对话式生成 (v1/chat/completions)</h4>
+                    <p class="mb-3">通过标准对话接口即可生成图片，支持图生图（叠图）。传图格式与 OpenAI 官方文档完全一致。</p>
+                    <p class="mb-3">注意: 图片宽高比仅支持像素比。例如1024:1024，是指宽1024，高1024像素。</p>
+                    <p>在提示词末尾（提示词使用英文效果更好哦！），使用英文中括号和冒号指定宽高比，例如：<br>
+                      <code
+                        class="bg-sky-100 text-sky-800 text-sm p-2 rounded-md block mt-2">帮我画一只宇航猫在月球漫步[1024:1024]</code>
+                    </p>
+                  </div>
 
-                                    <!-- Image Generation Endpoint -->
-                                    <div>
-                                        <h4 class="font-semibold text-lg text-slate-800 mb-2">② 专业图片生成
-                                            (v1/images/generations)</h4>
-                                        <p class="mb-3">使用此接口进行文生图。负载示例如下：</p>
-                                        <div class="bg-slate-50 rounded-lg">
-                                            <pre><code class="language-json">
+                  <!-- Image Generation Endpoint -->
+                  <div>
+                    <h4 class="font-semibold text-lg text-slate-800 mb-2">② 专业图片生成 (v1/images/generations)</h4>
+                    <p class="mb-3">使用此接口进行文生图。负载示例如下：</p>
+                    <div class="bg-slate-900 rounded-lg">
+                      <pre><code class="language-json">
 
 {
   "model": "flux.1-kontext-dev",           // 可选，指定模型的 ID，默认使用 "MODEL_ID_IMG2IMG"
@@ -971,16 +960,15 @@ curl -X POST "$API_HOST/chat/completions" \
   "response_format": "url"       // 返回格式，支持 "url"（返回图片 URL）或 "b64_json"（返回 base64 字符串）
 }
                                             </code></pre>
-                                        </div>
-                                    </div>
+                    </div>
+                  </div>
 
-                                    <!-- Image Edits Endpoint -->
-                                    <div>
-                                        <h4 class="font-semibold text-lg text-slate-800 mb-2">③ 专业图片编辑 (v1/images/edits)
-                                        </h4>
-                                        <p class="mb-3">支持对单张图片进行编辑。图片可以是 URL 或 Base64 字符串。负载示例如下：</p>
-                                        <div class="bg-slate-50 rounded-lg">
-                                            <pre><code class="language-json">
+                  <!-- Image Edits Endpoint -->
+                  <div>
+                    <h4 class="font-semibold text-lg text-slate-800 mb-2">③ 专业图片编辑 (v1/images/edits)</h4>
+                    <p class="mb-3">支持对单张图片进行编辑。图片可以是 URL 或 Base64 字符串。负载示例如下：</p>
+                    <div class="bg-slate-900 rounded-lg">
+                      <pre><code class="language-json">
 {
   "model": "flux.1-kontext-dev",           // 可选，指定模型的 ID，默认使用 "MODEL_ID_IMG2IMG"
   "image": "https://xl-files.oss-cn-chengdu.aliyuncs.com/images/img-1756543093582-76007ced-e710-4bc3-92ea-f79ff9304750.jpg",  // 要编辑的图片，可以是 base64 字符串或 URL
@@ -989,150 +977,116 @@ curl -X POST "$API_HOST/chat/completions" \
   "response_format": "b64_json"   // 返回格式，支持 "url"（返回图片 URL）或 "b64_json"（返回 base64 字符串）
 }
                                             </code></pre>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-                            <div class="bg-white p-6 rounded-2xl shadow-lg lg:col-span-2">
-                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">4. 豆包绘画模型使用文档说明(新)
-                                </h3>
-                                <div class="space-y-4 text-sm md:text-base mt-4">
-                                    <p class="text-slate-700">使用豆包绘画请务必参考参数说明，否则会出现空返，错误返回等情况！</p>
-                                    <p class="text-slate-700">如果您完全按照newapi格式对接的话请使用 doubao-seedream-4-0 模型名，如果您需要在/v1/images/generations这个路由里面叠图请使用 doubao-seedream-4-0-250828</p>
-                                    <p class="text-slate-700">豆包绘画模型名称为 <code
-                                            class="bg-slate-200 px-1.5 py-0.5 rounded">doubao-seedream-4-0-250828</code>
-                                        或者 <code
-                                            class="bg-slate-200 px-1.5 py-0.5 rounded">doubao-seedream-3-0-t2i-250415</code>。支持调用格式
-                                        <code class="bg-slate-200 px-1.5 py-0.5 rounded">/v1/chat/completions</code>
-                                        的chat格式与 <code
-                                            class="bg-slate-200 px-1.5 py-0.5 rounded">/v1/images/generations</code> 和
-                                        <code class="bg-slate-200 px-1.5 py-0.5 rounded">/v1/images/edits</code>
-                                        的dalle格式兼容。
-                                    <div
-                                        style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 100%; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 10px; background: #fafafa;">
-                                        <h2 style="color: #2c3e50; margin-bottom: 10px;">
-                                            支持的图像尺寸说明，支持输入比例，像素乘积与1k,2k的形式。其他非法输入会默认为1024x1024大小</h2>
-                                        <p>图像生成接口支持以下三种 <b>size</b> 输入形式：</p>
-                                        <ul>
-                                            <li><b>档位形式</b>：支持 <code>1k</code>、<code>2k</code>、<code>4k</code>，输入后原样返回。
-                                            </li>
-                                            <li><b>像素形式</b>：例如 <code>1280x720</code>，必须满足以下条件：
-                                                <ul>
-                                                    <li>宽度范围：1280 ~ 4096</li>
-                                                    <li>高度范围：720 ~ 4096</li>
-                                                    <li>宽高比范围：[1/16, 16]，即 0.0625 ~ 16</li>
-                                                </ul>
-                                                若输入不合法，则默认返回 <code>1024x1024</code>。
-                                            </li>
-                                            <li><b>比例形式</b>：例如 <code>16:9</code>，会自动映射到推荐像素。</li>
-                                        </ul>
+              <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-lg lg:col-span-2 border border-white">
+                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">4. 豆包绘画模型使用文档说明(新)</h3>
+                <div class="space-y-4 text-sm md:text-base mt-4">
+                  <p class="text-slate-700">使用豆包绘画请务必参考参数说明，否则会出现空返，错误返回等情况！</p>
+                  <p class="text-slate-700">如果您完全按照newapi格式对接的话请使用 doubao-seedream-4-0
+                    模型名，如果您需要在/v1/images/generations这个路由里面叠图请使用 doubao-seedream-4-0-250828</p>
+                  <p class="text-slate-700">豆包绘画模型名称为 <code
+                      class="bg-slate-200 px-1.5 py-0.5 rounded">doubao-seedream-4-0-250828</code> 或者 <code
+                      class="bg-slate-200 px-1.5 py-0.5 rounded">doubao-seedream-3-0-t2i-250415</code>。支持调用格式 <code
+                      class="bg-slate-200 px-1.5 py-0.5 rounded">/v1/chat/completions</code> 的chat格式与 <code
+                      class="bg-slate-200 px-1.5 py-0.5 rounded">/v1/images/generations</code> 和 <code
+                      class="bg-slate-200 px-1.5 py-0.5 rounded">/v1/images/edits</code> 的dalle格式兼容。</p>
+                  <div
+                    style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 100%; margin: 20px auto; padding: 20px; border: 1px solid #bae6fd; border-radius: 10px; background: rgba(240, 249, 255, 0.5);">
+                    <h2 style="color: #0369a1; margin-bottom: 10px;">
+                      支持的图像尺寸说明，支持输入比例，像素乘积与1k,2k的形式。其他非法输入会默认为1024x1024大小</h2>
+                    <p>图像生成接口支持以下三种 <b>size</b> 输入形式：</p>
+                    <ul>
+                      <li><b>档位形式</b>：支持 <code>1k</code>、<code>2k</code>、<code>4k</code>，输入后原样返回。</li>
+                      <li><b>像素形式</b>：例如 <code>1280x720</code>，必须满足以下条件：
+                        <ul>
+                          <li>宽度范围：1280 ~ 4096</li>
+                          <li>高度范围：720 ~ 4096</li>
+                          <li>宽高比范围：[1/16, 16]，即 0.0625 ~ 16</li>
+                        </ul>
+                        若输入不合法，则默认返回 <code>1024x1024</code>。
+                      </li>
+                      <li><b>比例形式</b>：例如 <code>16:9</code>，会自动映射到推荐像素。</li>
+                    </ul>
 
-                                        <h3 style="color: #2c3e50; margin-top: 20px;">比例映射推荐表</h3>
-                                        <table
-                                            style="border-collapse: collapse; width: 100%; margin-top: 10px; background: white;">
-                                            <thead>
-                                                <tr style="background: #f0f0f0; text-align: left;">
-                                                    <th style="padding: 8px; border: 1px solid #ddd;">宽高比</th>
-                                                    <th style="padding: 8px; border: 1px solid #ddd;">推荐像素值</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">1:1</td>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2048x2048</code>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">4:3</td>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2304x1728</code>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">3:4</td>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1728x2304</code>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">16:9</td>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2560x1440</code>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">9:16</td>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1440x2560</code>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">3:2</td>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>2496x1664</code>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">2:3</td>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>1664x2496</code>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">21:9</td>
-                                                    <td style="padding: 8px; border: 1px solid #ddd;">
-                                                        <code>3024x1296</code>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                    <h3 style="color: #0369a1; margin-top: 20px;">比例映射推荐表</h3>
+                    <table
+                      style="border-collapse: collapse; width: 100%; margin-top: 10px; background: rgba(255,255,255,0.8);">
+                      <thead>
+                        <tr style="background: #e0f2fe; text-align: left;">
+                          <th style="padding: 8px; border: 1px solid #bae6fd;">宽高比</th>
+                          <th style="padding: 8px; border: 1px solid #bae6fd;">推荐像素值</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;">1:1</td>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;"><code>2048x2048</code></td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;">4:3</td>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;"><code>2304x1728</code></td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;">3:4</td>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;"><code>1728x2304</code></td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;">16:9</td>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;"><code>2560x1440</code></td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;">9:16</td>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;"><code>1440x2560</code></td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;">3:2</td>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;"><code>2496x1664</code></td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;">2:3</td>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;"><code>1664x2496</code></td>
+                        </tr>
+                        <tr>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;">21:9</td>
+                          <td style="padding: 8px; border: 1px solid #bae6fd;"><code>3024x1296</code></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
 
-                                    </p>
-                                    <div>
-                                        <p class="font-semibold text-slate-800">请求参数说明（chat格式请求参数）:</p>
-                                        <ul class="list-disc list-inside text-slate-700 space-y-1 mt-1">
-                                            <li>chat格式的请求参数统一符合 <code
-                                                    class="bg-slate-200 px-1.5 py-0.5 rounded">openAI</code> 对话格式，在
-                                                <code class="bg-slate-200 px-1.5 py-0.5 rounded">content</code> 中或者
-                                                <code class="bg-slate-200 px-1.5 py-0.5 rounded">text</code>
-                                                中输入绘画的内容，例如：画一只猫。 在内容中通过 <code
-                                                    class="bg-slate-200 px-1.5 py-0.5 rounded">-</code>
-                                                进行绘画参数配置，具体支持参数如下, <span
-                                                    style="color: red;">注意，各个参数之间需要有空格,不然会导致解析错误。</span>
-                                            </li>
-                                            <li><code class="font-mono" style="font-weight: bolder;">type</code>:
-                                                绘画类型选择，目前支持两个类型，分别为 <code class="bg-slate-200">normal</code> 和 <code
-                                                    class="bg-slate-200">group</code>，默认为<code
-                                                    class="bg-slate-200">normal</code>。 使用示例： <code
-                                                    class="bg-slate-200">-type=normal</code> 直接放在内容中即可。<code
-                                                    class="bg-slate-200">normal</code> 最大支持单次出图4张，<code
-                                                    class="bg-slate-200">group</code>
-                                                最大支持单次出图10张，不指定均默认为1张图片。出图数量太多容易导致绘图失败或者中断。</li>
-                                            <li><code class="font-mono" style="font-weight: bolder;">n</code>:
-                                                出图数量,默认为1。 使用示例： <code class="bg-slate-200">-n=2</code> 直接放在内容中即可。限制如上。
-                                            </li>
-                                            <li><code class="font-mono" style="font-weight: bolder;">watermark</code>:
-                                                水印控制参数，默认为false。 使用示例： <code
-                                                    class="bg-slate-200">-watermark=false</code>
-                                                直接放在内容中即可。如果需要生成图片右下角提示AI生成则将其设置为true即可。</li>
-                                            <li><code class="font-mono" style="font-weight: bolder;">size</code>:
-                                                图片大小控制，默认为1k。 使用示例： <code class="bg-slate-200">-size=2k</code> 或者按照像素
-                                                <code class="bg-slate-200">-size=1024x1024</code> 直接放在内容中即可。<a
-                                                    href="https://www.volcengine.com/docs/82379/1541523" target="_blank"
-                                                    style="text-decoration:none; color:#2563eb;">
-                                                    点击查看支持的图片大小参数
-                                                </a>
-                                            </li>
-                                            <li> 如果有底图请将其按照openAI对话传图格式即可。</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-slate-800">chat 格式绘画完整示例:</p>
-                                        <div class="bg-slate-50 rounded-lg">
-                                            <pre><code class="language-json">
+
+                  <div>
+                    <p class="font-semibold text-slate-800">请求参数说明（chat格式请求参数）:</p>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1 mt-1">
+                      <li>chat格式的请求参数统一符合 <code class="bg-slate-200 px-1.5 py-0.5 rounded">openAI</code> 对话格式，在 <code
+                          class="bg-slate-200 px-1.5 py-0.5 rounded">content</code> 中或者 <code
+                          class="bg-slate-200 px-1.5 py-0.5 rounded">text</code> 中输入绘画的内容，例如：画一只猫。 在内容中通过 <code
+                          class="bg-slate-200 px-1.5 py-0.5 rounded">-</code> 进行绘画参数配置，具体支持参数如下, <span
+                          style="color: red;">注意，各个参数之间需要有空格,不然会导致解析错误。</span></li>
+                      <li><code class="font-mono" style="font-weight: bolder;">type</code>: 绘画类型选择，目前支持两个类型，分别为 <code
+                          class="bg-slate-200">normal</code> 和 <code class="bg-slate-200">group</code>，默认为<code
+                          class="bg-slate-200">normal</code>。 使用示例： <code class="bg-slate-200">-type=normal</code>
+                        直接放在内容中即可。<code class="bg-slate-200">normal</code> 最大支持单次出图4张，<code
+                          class="bg-slate-200">group</code> 最大支持单次出图10张，不指定均默认为1张图片。出图数量太多容易导致绘图失败或者中断。</li>
+                      <li><code class="font-mono" style="font-weight: bolder;">n</code>: 出图数量,默认为1。 使用示例： <code
+                          class="bg-slate-200">-n=2</code> 直接放在内容中即可。限制如上。</li>
+                      <li><code class="font-mono" style="font-weight: bolder;">watermark</code>: 水印控制参数，默认为false。 使用示例：
+                        <code class="bg-slate-200">-watermark=false</code> 直接放在内容中即可。如果需要生成图片右下角提示AI生成则将其设置为true即可。</li>
+                      <li><code class="font-mono" style="font-weight: bolder;">size</code>: 图片大小控制，默认为1k。 使用示例： <code
+                          class="bg-slate-200">-size=2k</code> 或者按照像素 <code class="bg-slate-200">-size=1024x1024</code>
+                        直接放在内容中即可。<a href="https://www.volcengine.com/docs/82379/1541523" target="_blank"
+                          style="text-decoration:none; color:#2563eb;">点击查看支持的图片大小参数</a></li>
+                      <li> 如果有底图请将其按照openAI对话传图格式即可。</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-slate-800">chat 格式绘画完整示例:</p>
+                    <div class="bg-slate-900 rounded-lg">
+                      <pre><code class="language-json">
 {
     "messages": [
     {
@@ -1145,47 +1099,33 @@ curl -X POST "$API_HOST/chat/completions" \
     "stream": false
 }
                                             </code></pre>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-slate-800">请求参数说明（dalle格式请求参数）:</p>
-                                        <ul class="list-disc list-inside text-slate-700 space-y-1 mt-1">
-                                            <li>dalle 格式的请求参数统一符合 <code
-                                                    class="bg-slate-200 px-1.5 py-0.5 rounded">openAI</code>
-                                                dalle格式进行绘画参数配置，具体支持参数如下
-                                            </li>
-                                            <li><code class="font-mono" style="font-weight: bolder;">prompt</code>:
-                                                绘画提示词（必填）。
-                                            </li>
-                                            <li><code class="font-mono" style="font-weight: bolder;">model</code>:
-                                                绘画选择模型（必填），例如 <code
-                                                    class="bg-slate-200">doubao-seedream-4-0-250828</code> 。
-                                            </li>
-                                            <li><code class="font-mono" style="font-weight: bolder;">type</code>:
-                                                绘画类型选择，目前支持两个类型，分别为 <code class="bg-slate-200">normal</code> 和 <code
-                                                    class="bg-slate-200">group</code>，默认为<code
-                                                    class="bg-slate-200">normal</code>。 <code
-                                                    class="bg-slate-200">normal</code> 最大支持单次出图4张，<code
-                                                    class="bg-slate-200">group</code>
-                                                最大支持单次出图10张，不指定均默认为1张图片。出图数量太多容易导致绘图失败或者中断。</li>
-                                            <li><code class="font-mono" style="font-weight: bolder;">n</code>:
-                                                出图数量,默认为1。。
-                                            </li>
-                                            <li><code class="font-mono" style="font-weight: bolder;">watermark</code>:
-                                                水印控制参数，默认为false。 如果需要生成图片右下角提示AI生成则将其设置为true即可。</li>
-                                            <li><code class="font-mono" style="font-weight: bolder;">size</code>:
-                                                图片大小控制，默认为1k。<a href="https://www.volcengine.com/docs/82379/1541523"
-                                                    target="_blank" style="text-decoration:none; color:#2563eb;">
-                                                    点击查看支持的图片大小参数
-                                                </a>
-                                            </li>
-                                            <li> 如果有底图请将按照dalle格式传图。</li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <p class="font-semibold text-slate-800">dalle 格式绘画完整示例:</p>
-                                        <div class="bg-slate-50 rounded-lg">
-                                            <pre><code class="language-json">
+                    </div>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-slate-800">请求参数说明（dalle格式请求参数）:</p>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1 mt-1">
+                      <li>dalle 格式的请求参数统一符合 <code class="bg-slate-200 px-1.5 py-0.5 rounded">openAI</code>
+                        dalle格式进行绘画参数配置，具体支持参数如下</li>
+                      <li><code class="font-mono" style="font-weight: bolder;">prompt</code>: 绘画提示词（必填）。</li>
+                      <li><code class="font-mono" style="font-weight: bolder;">model</code>: 绘画选择模型（必填），例如 <code
+                          class="bg-slate-200">doubao-seedream-4-0-250828</code> 。</li>
+                      <li><code class="font-mono" style="font-weight: bolder;">type</code>: 绘画类型选择，目前支持两个类型，分别为 <code
+                          class="bg-slate-200">normal</code> 和 <code class="bg-slate-200">group</code>，默认为<code
+                          class="bg-slate-200">normal</code>。 <code class="bg-slate-200">normal</code> 最大支持单次出图4张，<code
+                          class="bg-slate-200">group</code> 最大支持单次出图10张，不指定均默认为1张图片。出图数量太多容易导致绘图失败或者中断。</li>
+                      <li><code class="font-mono" style="font-weight: bolder;">n</code>: 出图数量,默认为1。。</li>
+                      <li><code class="font-mono" style="font-weight: bolder;">watermark</code>: 水印控制参数，默认为false。
+                        如果需要生成图片右下角提示AI生成则将其设置为true即可。</li>
+                      <li><code class="font-mono" style="font-weight: bolder;">size</code>: 图片大小控制，默认为1k。<a
+                          href="https://www.volcengine.com/docs/82379/1541523" target="_blank"
+                          style="text-decoration:none; color:#2563eb;">点击查看支持的图片大小参数</a></li>
+                      <li> 如果有底图请将按照dalle格式传图。</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-slate-800">dalle 格式绘画完整示例:</p>
+                    <div class="bg-slate-900 rounded-lg">
+                      <pre><code class="language-json">
 # 基础图片生成
 curl /v1/images/generations \
   -H "Content-Type: application/json" \
@@ -1231,55 +1171,52 @@ curl /v1/images/edits \
   -F "n=2"\
   -F "type=normal"
                                             </code></pre>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <br>
-                                        <p class="font-semibold text-slate-800">
-                                            豆包生图示例，normal模式相关性不强，主要根据提示词,例如：画一只猫在树上玩耍</p>
-                                        <br>
-                                        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;">
-                                            <img src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/-dX1ojaZSXDVfNnP1o8uO.png"
-                                                style="width:100%; border-radius:6px;">
-                                            <img src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/46YMMbqac5WdQObTkaDHB.png"
-                                                style="width:100%; border-radius:6px;">
-                                            <img src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/JBE9DaRzlS0oRQgCsrFFm.png"
-                                                style="width:100%; border-radius:6px;">
-                                            <img src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/o9zZC1OxmgtZY2olVADGL.png"
-                                                style="width:100%; border-radius:6px;">
-                                            <!-- <img src="img5.jpg" style="width:100%; border-radius:6px;">
-                                            <img src="img6.jpg" style="width:100%; border-radius:6px;">
-                                            <img src="img7.jpg" style="width:100%; border-radius:6px;">
-                                            <img src="img8.jpg" style="width:100%; border-radius:6px;"> -->
-                                        </div>
-                                        <br>
-                                        <p class="font-semibold text-slate-800">豆包生图示例，group模式相关性较强,例如：生成 6 张 3:4
-                                            比例的分镜图，整体画风为 Q 版治愈风，内容讲述 王子与公主的故事，每张图作为一个分镜，画风统一，人物形象保持一致，连贯成小故事。</p>
-                                        <br>
-                                        <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;">
-                                            <img src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/0oRoHz2JCLAaFKOcA8ezN.png"
-                                                style="width:100%; border-radius:6px;">
-                                            <img src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/CzvN7PImDLDB_CxjmEUdn.png"
-                                                style="width:100%; border-radius:6px;">
-                                            <img src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/Ypo__PR7PymNeK9lyX5QB.png"
-                                                style="width:100%; border-radius:6px;">
-                                            <img src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/Wmh8pcOZiBCrr9kC3mO6T.png"
-                                                style="width:100%; border-radius:6px;">
-                                        </div>
-
-                                        <!-- </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bg-white p-6 rounded-2xl shadow-lg lg:col-span-2">
-                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">5. sora与香蕉模型（gemini
-                                    2.5 image）生图说明
-                                </h3>
+                    </div>
+                  </div>
+                  <div>
+                    <br>
+                    <p class="font-semibold text-slate-800">
+                      豆包生图示例，normal模式相关性不强，主要根据提示词,例如：画一只猫在树上玩耍</p>
+                    <br>
+                    <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;">
+                      <img
+                        src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/-dX1ojaZSXDVfNnP1o8uO.png"
+                        style="width:100%; border-radius:6px;">
+                      <img
+                        src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/46YMMbqac5WdQObTkaDHB.png"
+                        style="width:100%; border-radius:6px;">
+                      <img
+                        src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/JBE9DaRzlS0oRQgCsrFFm.png"
+                        style="width:100%; border-radius:6px;">
+                      <img
+                        src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/o9zZC1OxmgtZY2olVADGL.png"
+                        style="width:100%; border-radius:6px;">
+                    </div>
+                    <br>
+                    <p class="font-semibold text-slate-800">豆包生图示例，group模式相关性较强,例如：生成 6 张 3:4
+                      比例的分镜图，整体画风为 Q 版治愈风，内容讲述 王子与公主的故事，每张图作为一个分镜，画风统一，人物形象保持一致，连贯成小故事。</p>
+                    <br>
+                    <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px;">
+                      <img
+                        src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/0oRoHz2JCLAaFKOcA8ezN.png"
+                        style="width:100%; border-radius:6px;">
+                      <img
+                        src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/CzvN7PImDLDB_CxjmEUdn.png"
+                        style="width:100%; border-radius:6px;">
+                      <img
+                        src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/Ypo__PR7PymNeK9lyX5QB.png"
+                        style="width:100%; border-radius:6px;">
+                      <img
+                        src="https://xl-images.oss-cn-chengdu.aliyuncs.com/%E7%BB%98%E7%94%BB/Wmh8pcOZiBCrr9kC3mO6T.png"
+                        style="width:100%; border-radius:6px;">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-lg lg:col-span-2 border border-white">
+                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">5. sora与香蕉模型（gemini 2.5 image）生图说明</h3>
                                 <div class="space-y-4 text-sm md:text-base mt-4">
-                                    <p class="text-slate-700">sora和香蕉模型均支持  <code
-                                            class="bg-slate-200 px-1.5 py-0.5 rounded">chat</code> 格式和 <code
-                                            class="bg-slate-200 px-1.5 py-0.5 rounded">dalle</code>
-                                        标准格式调用，具体调用规则请查看豆包生图规则。</p>
+                                    <p class="text-slate-700">sora和香蕉模型均支持 <code class="bg-slate-200 px-1.5 py-0.5 rounded">chat</code> 格式和 <code class="bg-slate-200 px-1.5 py-0.5 rounded">dalle</code> 标准格式调用，具体调用规则请查看豆包生图规则。</p>
                                     <div>
                                         <p class="font-semibold text-slate-800">chat格式支持参数 -size 例如："画一只猫在树上玩耍 -size=1024x1024" </p>
                                     </div>
@@ -1288,135 +1225,127 @@ curl /v1/images/edits \
                                         <p class="font-semibold text-slate-800">香蕉模型生成无水印，支持size映射如下,不在表格内则默认为自适应</p>
                                         <br>
                                         <table style="border-collapse:collapse;width:100%;margin:auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1);font-family:'Segoe UI',Arial,sans-serif;">
-  <thead>
-    <tr style="background-color:#2563eb;color:white;">
-      <th style="padding:14px 20px;text-align:center;">分辨率 (Resolution)</th>
-      <th style="padding:14px 20px;text-align:center;">比例 (Aspect Ratio)</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr style="border-bottom:1px solid #e5e7eb;">
-      <td style="padding:14px 20px;text-align:center;">1024x1024</td>
-      <td style="padding:14px 20px;text-align:center;">1:1</td>
-    </tr>
-    <tr style="border-bottom:1px solid #e5e7eb;">
-      <td style="padding:14px 20px;text-align:center;">512x512</td>
-      <td style="padding:14px 20px;text-align:center;">1:1</td>
-    </tr>
-    <tr style="border-bottom:1px solid #e5e7eb;">
-      <td style="padding:14px 20px;text-align:center;">256x256</td>
-      <td style="padding:14px 20px;text-align:center;">1:1</td>
-    </tr>
-    <tr style="border-bottom:1px solid #e5e7eb;">
-      <td style="padding:14px 20px;text-align:center;">1280x720</td>
-      <td style="padding:14px 20px;text-align:center;">16:9</td>
-    </tr>
-    <tr>
-      <td style="padding:14px 20px;text-align:center;">720x1280</td>
-      <td style="padding:14px 20px;text-align:center;">9:16</td>
-    </tr>
-  </tbody>
-</table>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-        </div>
-        </section>
-
-        <!-- Next-Web Tutorial -->
-        <section class="py-16 px-4 bg-white">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">Next-Web 对接教程</h2>
-                <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">三步快速将 HappyAPI 对接到 Next-Web /
-                    LobeChat 等客户端。</p>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
-                            1</div>
-                        <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
-                        <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址`https://cn.happyapi.org` 或者
-                            `https://happyapi.org` 和您的 API Key。
-                        </p>
-                        <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png" alt="填写接口地址和密钥"
-                            class="rounded-lg shadow-md w-full">
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
-                            2</div>
-                        <h3 class="text-lg font-semibold mb-2">加载自定义模型</h3>
-                        <p class="text-sm text-slate-600 mb-4">清空模型列表，然后点击“加载”或“更新列表”按钮。</p>
-                        <img src="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png" alt="加载自定义模型"
-                            class="rounded-lg shadow-md w-full">
-                    </div>
-                    <div class="flex flex-col items-center">
-                        <div
-                            class="mb-4 bg-slate-100 p-3 rounded-full text-blue-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
-                            3</div>
-                        <h3 class="text-lg font-semibold mb-2">选择模型开始对话</h3>
-                        <p class="text-sm text-slate-600 mb-4">在模型列表中选择您需要的模型，即可开始使用。</p>
-                        <img src="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png" alt="选择模型使用"
-                            class="rounded-lg shadow-md w-full">
-                    </div>
-                </div>
+                                            <thead>
+                                                <tr style="background-color:#0ea5e9;color:white;"> <!-- Changed to Sky Blue -->
+              <th style="padding:14px 20px;text-align:center;">分辨率 (Resolution)</th>
+              <th style="padding:14px 20px;text-align:center;">比例 (Aspect Ratio)</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid #e5e7eb;">
+                  <td style="padding:14px 20px;text-align:center;">1024x1024</td>
+                  <td style="padding:14px 20px;text-align:center;">1:1</td>
+                </tr>
+                <tr style="border-bottom:1px solid #e5e7eb;">
+                  <td style="padding:14px 20px;text-align:center;">512x512</td>
+                  <td style="padding:14px 20px;text-align:center;">1:1</td>
+                </tr>
+                <tr style="border-bottom:1px solid #e5e7eb;">
+                  <td style="padding:14px 20px;text-align:center;">256x256</td>
+                  <td style="padding:14px 20px;text-align:center;">1:1</td>
+                </tr>
+                <tr style="border-bottom:1px solid #e5e7eb;">
+                  <td style="padding:14px 20px;text-align:center;">1280x720</td>
+                  <td style="padding:14px 20px;text-align:center;">16:9</td>
+                </tr>
+                <tr>
+                  <td style="padding:14px 20px;text-align:center;">720x1280</td>
+                  <td style="padding:14px 20px;text-align:center;">9:16</td>
+                </tr>
+              </tbody>
+              </table>
             </div>
-        </section>
+          </div>
+    </div> -->
+  </div>
+  </div>
+  </section>
 
-        <!-- Use Cases Section with Tabs -->
-        <section class="py-16 px-4">
-            <div class="container mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-4 text-slate-900">从现在开始，让AI成为您的得力助手</h2>
-                <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">零学习成本，在实时聊天中轻松解决问题，覆盖工作与生活的方方面面。
+  <!-- Next-Web Tutorial -->
+  <section class="py-16 px-4 bg-white/60 backdrop-blur">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-4 text-slate-800">Next-Web 对接教程</h2>
+      <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">三步快速将 HappyAPI 对接到 Next-Web / LobeChat 等客户端。</p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <div class="flex flex-col items-center">
+          <div
+            class="mb-4 bg-sky-100 p-3 rounded-full text-sky-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+            1</div>
+          <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
+          <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址`https://cn.happyapi.org` 或者 `https://happyapi.org` 和您的 API
+            Key。</p>
+          <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png" alt="填写接口地址和密钥"
+            class="rounded-lg shadow-md w-full border border-sky-100">
+        </div>
+        <div class="flex flex-col items-center">
+          <div
+            class="mb-4 bg-sky-100 p-3 rounded-full text-sky-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+            2</div>
+          <h3 class="text-lg font-semibold mb-2">加载自定义模型</h3>
+          <p class="text-sm text-slate-600 mb-4">清空模型列表，然后点击“加载”或“更新列表”按钮。</p>
+          <img src="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png" alt="加载自定义模型"
+            class="rounded-lg shadow-md w-full border border-sky-100">
+        </div>
+        <div class="flex flex-col items-center">
+          <div
+            class="mb-4 bg-sky-100 p-3 rounded-full text-sky-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+            3</div>
+          <h3 class="text-lg font-semibold mb-2">选择模型开始对话</h3>
+          <p class="text-sm text-slate-600 mb-4">在模型列表中选择您需要的模型，即可开始使用。</p>
+          <img src="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png" alt="选择模型使用"
+            class="rounded-lg shadow-md w-full border border-sky-100">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section with Tabs -->
+  <section class="py-16 px-4">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-4 text-slate-800">从现在开始，让AI成为您的得力助手</h2>
+      <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">零学习成本，在实时聊天中轻松解决问题，覆盖工作与生活的方方面面。</p>
+
+      <div class="max-w-5xl mx-auto">
+        <!-- Tab Buttons -->
+        <div id="tab-buttons" class="flex flex-wrap justify-center gap-2 mb-8">
+          <button data-tab-target="#tab-academic" class="tab-button active">学术论文</button>
+          <button data-tab-target="#tab-coding" class="tab-button">代码编程</button>
+          <button data-tab-target="#tab-writing" class="tab-button">写作助手</button>
+          <button data-tab-target="#tab-editing" class="tab-button">学术编辑</button>
+          <button data-tab-target="#tab-translation" class="tab-button">精准翻译</button>
+          <button data-tab-target="#tab-data" class="tab-button">数据分析</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div id="tab-content" class="relative">
+          <!-- Academic Paper -->
+          <div id="tab-academic" class="tab-panel active">
+            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg">
+              <div class="mb-6">
+                <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                <p class="text-slate-700 bg-white/50 p-4 rounded-lg border border-sky-50">
+                  我正在写一篇主题为"含油微藻的筛选及其产能性能研究"的论文，请你帮我写一段文字，内容是该课题研究意义。</p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 text-sky-600">AI 响应：</h3>
+                <p class="text-slate-700 bg-sky-50/70 p-4 rounded-lg">
+                  随着全球能源需求的增加以及化石能源储量的逐渐枯竭，生物质能源作为一种可再生的清洁能源备受关注。含油微藻是一种可生产生物燃料和生物化学产品的重要微生物资源，因其高产油率、生长周期短、对污染物的吸收能力强等特点而备受研究者关注。因此，该研究对于推动可再生能源的发展、提高生物质能源利用效率、缓解能源与环境问题具有重要意义。
                 </p>
-
-                <div class="max-w-5xl mx-auto">
-                    <!-- Tab Buttons -->
-                    <div id="tab-buttons" class="flex flex-wrap justify-center gap-2 mb-8">
-                        <button data-tab-target="#tab-academic" class="tab-button active">学术论文</button>
-                        <button data-tab-target="#tab-coding" class="tab-button">代码编程</button>
-                        <button data-tab-target="#tab-writing" class="tab-button">写作助手</button>
-                        <button data-tab-target="#tab-editing" class="tab-button">学术编辑</button>
-                        <button data-tab-target="#tab-translation" class="tab-button">精准翻译</button>
-                        <button data-tab-target="#tab-data" class="tab-button">数据分析</button>
-                    </div>
-
-                    <!-- Tab Content -->
-                    <div id="tab-content" class="relative">
-                        <!-- Academic Paper -->
-                        <div id="tab-academic" class="tab-panel active">
-                            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-                                <div class="mb-6">
-                                    <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
-                                    <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
-                                        我正在写一篇主题为"含油微藻的筛选及其产能性能研究"的论文，请你帮我写一段文字，内容是该课题研究意义。</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
-                                    <p class="text-slate-700 bg-blue-50 p-4 rounded-lg">
-                                        随着全球能源需求的增加以及化石能源储量的逐渐枯竭，生物质能源作为一种可再生的清洁能源备受关注。含油微藻是一种可生产生物燃料和生物化学产品的重要微生物资源，因其高产油率、生长周期短、对污染物的吸收能力强等特点而备受研究者关注。因此，该研究对于推动可再生能源的发展、提高生物质能源利用效率、缓解能源与环境问题具有重要意义。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Coding -->
-                        <div id="tab-coding" class="tab-panel">
-                            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-                                <div class="mb-6">
-                                    <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
-                                    <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
-                                        请帮我写一个Python程序，实现输入两个数，输出它们的和。</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
-                                    <div class="bg-blue-50 p-4 rounded-lg">
-                                        <pre><code class="language-python">
+              </div>
+            </div>
+          </div>
+          <!-- Coding -->
+          <div id="tab-coding" class="tab-panel">
+            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg">
+              <div class="mb-6">
+                <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                <p class="text-slate-700 bg-white/50 p-4 rounded-lg border border-sky-50">
+                  请帮我写一个Python程序，实现输入两个数，输出它们的和。</p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 text-sky-600">AI 响应：</h3>
+                <div class="bg-slate-900 p-4 rounded-lg">
+                  <pre><code class="language-python">
 def add_two_numbers(a, b):
   """This function returns the sum of two numbers."""
   return a + b
@@ -1428,297 +1357,337 @@ num2 = float(input("Enter the second number: "))
 sum_result = add_two_numbers(num1, num2)
 print(f"The sum of {num1} and {num2} is: {sum_result}")
                                                 </code></pre>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Writing Assistant -->
-                        <div id="tab-writing" class="tab-panel">
-                            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
-                                <div class="mb-6">
-                                    <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
-                                    <p class="text-slate-700 bg-slate-50 p-4 rounded-lg">
-                                        我正在写一篇关于人工智能的文章，能否给我一些开头的灵感？</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-lg font-semibold mb-2 text-blue-700">AI 响应：</h3>
-                                    <p class="text-slate-700 bg-blue-50 p-4 rounded-lg">
-                                        人工智能（AI）作为一种前沿技术，正逐渐渗透到我们生活的方方面面。它不仅在工业生产、医疗保健、金融服务等领域展现出巨大潜力，还在人类认知、情感交流、社会互动等方面带来了深刻变革。本文将探讨人工智能的发展历程、应用前景以及对人类社会的影响，带您一起领略AI时代的无限可能。
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Other tabs content can be added here following the same structure -->
-                    </div>
                 </div>
+              </div>
             </div>
-        </section>
-
-        </main>
-
-        <!-- Footer -->
-        <footer class="bg-white border-t border-slate-200">
-            <div class="container mx-auto py-6 px-4 text-center text-sm text-slate-500">
-                <p>© 2024 HappyAPI. All Rights Reserved.</p>
-                <p class="mt-2">致力于提供稳定、高效、便捷的 AI 模型服务</p>
+          </div>
+          <!-- Writing Assistant -->
+          <div id="tab-writing" class="tab-panel">
+            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg">
+              <div class="mb-6">
+                <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                <p class="text-slate-700 bg-white/50 p-4 rounded-lg border border-sky-50">
+                  我正在写一篇关于人工智能的文章，能否给我一些开头的灵感？</p>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-2 text-sky-600">AI 响应：</h3>
+                <p class="text-slate-700 bg-sky-50/70 p-4 rounded-lg">
+                  人工智能（AI）作为一种前沿技术，正逐渐渗透到我们生活的方方面面。它不仅在工业生产、医疗保健、金融服务等领域展现出巨大潜力，还在人类认知、情感交流、社会互动等方面带来了深刻变革。本文将探讨人工智能的发展历程、应用前景以及对人类社会的影响，带您一起领略AI时代的无限可能。
+                </p>
+              </div>
             </div>
-        </footer>
+          </div>
+          <!-- Other tabs content placeholders (Kept as placeholder per original, content logic intact) -->
+          <div id="tab-editing" class="tab-panel">
+            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg text-center text-slate-500">内容同上逻辑，此处为演示占位。</div>
+          </div>
+          <div id="tab-translation" class="tab-panel">
+            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg text-center text-slate-500">内容同上逻辑，此处为演示占位。</div>
+          </div>
+          <div id="tab-data" class="tab-panel">
+            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg text-center text-slate-500">内容同上逻辑，此处为演示占位。</div>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white/70 backdrop-blur border-t border-sky-100">
+    <div class="container mx-auto py-6 px-4 text-center text-sm text-slate-500">
+      <p>© 2024 HappyAPI. All Rights Reserved.</p>
+      <p class="mt-2">致力于提供稳定、高效、便捷的 AI 模型服务</p>
     </div>
+  </footer>
+  </div>
+  </div>
 
-    <!-- Prism.js JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <!-- Prism.js JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            /* ---- 滚入动效：IntersectionObserver ---- */
-            const reveals = document.querySelectorAll('.reveal');
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach((en) => {
-                    if (en.isIntersecting) {
-                        en.target.animate(
-                            [
-                                { opacity: 0, transform: 'translateY(12px)' },
-                                { opacity: 1, transform: 'translateY(0)' }
-                            ],
-                            { duration: 450, easing: 'ease-out', fill: 'forwards' }
-                        );
-                        io.unobserve(en.target);
-                    }
-                });
-            }, { threshold: 0.12 });
-            reveals.forEach(el => io.observe(el));
+  <!-- 飘雪逻辑 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('snow-container');
+      if (container) {
+        const flakes = 30; // 雪花数量
+        for (let i = 0; i < flakes; i++) {
+          const el = document.createElement('div');
+          el.classList.add('snowflake');
+          el.textContent = '❄';
+          // 随机属性
+          el.style.left = Math.random() * 100 + 'vw';
+          el.style.fontSize = (Math.random() * 0.8 + 0.5) + 'em';
+          el.style.opacity = Math.random() * 0.5 + 0.3;
+          el.style.animationDuration = (Math.random() * 5 + 5) + 's';
+          el.style.animationDelay = (Math.random() * -10) + 's';
+          container.appendChild(el);
+        }
+      }
+    });
+  </script>
 
-            /* ---- 搜索过滤 ---- */
-            const searchInput = document.getElementById('qq-search');
-            const rows = Array.from(document.querySelectorAll('#qq-tbody .qq-row'));
-            const noHitEl = document.createElement('tr');
-            noHitEl.innerHTML = `
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      /* ---- 滚入动效：IntersectionObserver ---- */
+      const reveals = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((en) => {
+          if (en.isIntersecting) {
+            en.target.animate(
+              [
+                { opacity: 0, transform: 'translateY(12px)' },
+                { opacity: 1, transform: 'translateY(0)' }
+              ],
+              { duration: 450, easing: 'ease-out', fill: 'forwards' }
+            );
+            io.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      reveals.forEach(el => io.observe(el));
+
+      /* ---- 搜索过滤 ---- */
+      const searchInput = document.getElementById('qq-search');
+      const rows = Array.from(document.querySelectorAll('#qq-tbody .qq-row'));
+      const noHitEl = document.createElement('tr');
+      noHitEl.innerHTML = `
     <td class="py-5 px-4 text-slate-500 text-center" colspan="3">
       未找到匹配的群，请尝试其它关键词
     </td>`;
-            searchInput?.addEventListener('input', () => {
-                const kw = searchInput.value.trim().toLowerCase();
-                let visible = 0;
-                rows.forEach(tr => {
-                    const name = tr.dataset.name?.toLowerCase() ?? '';
-                    const id = tr.dataset.id?.toLowerCase() ?? '';
-                    const match = !kw || name.includes(kw) || id.includes(kw);
-                    tr.style.display = match ? '' : 'none';
-                    if (match) visible++;
-                });
-                if (visible === 0) {
-                    if (!noHitEl.isConnected) document.getElementById('qq-tbody').appendChild(noHitEl);
-                } else {
-                    if (noHitEl.isConnected) noHitEl.remove();
-                }
-            });
-
-            /* ---- 复制群号 + Toast ---- */
-            const toast = document.getElementById('toast');
-            const toastMsg = document.getElementById('toast-msg');
-            let toastTimer = null;
-            function showToast(msg = '已复制') {
-                toastMsg.textContent = msg;
-                toast.classList.remove('hidden');
-                toast.animate(
-                    [{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }],
-                    { duration: 180, easing: 'ease-out', fill: 'forwards' }
-                );
-                clearTimeout(toastTimer);
-                toastTimer = setTimeout(() => {
-                    toast.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 180, fill: 'forwards' });
-                    setTimeout(() => toast.classList.add('hidden'), 180);
-                }, 1600);
-            }
-            function copyText(text) {
-                return navigator.clipboard?.writeText(text).catch(() => {
-                    const ta = document.createElement('textarea');
-                    ta.value = text;
-                    document.body.appendChild(ta);
-                    ta.select(); document.execCommand('copy'); ta.remove();
-                });
-            }
-            document.addEventListener('click', async (e) => {
-                const btn = e.target.closest('.copy-btn');
-                if (btn) {
-                    const v = btn.getAttribute('data-copy') || '';
-                    await copyText(v);
-                    showToast(`群号 ${v} 已复制`);
-                }
-            });
-
-            /* ---- “立即加入”：复制群号 + 打开 QQ 官网 ---- */
-            document.addEventListener('click', async (e) => {
-                const join = e.target.closest('.join-btn');
-                if (join) {
-                    const id = join.getAttribute('data-id');
-                    if (id) {
-                        await copyText(id);
-                        showToast(`群号 ${id} 已复制，正在打开 QQ`);
-                    }
-                    window.open('https://im.qq.com/', '_blank', 'noopener,noreferrer');
-                }
-            });
-
-            /* ---- 折叠面板（统一为 max-height 动画，兼容 hidden/grid） ---- */
-            const collapseToggle = document.getElementById('collapse-toggle');
-            const collapseContent = document.getElementById('collapse-content');
-            const collapseArrow = document.getElementById('collapse-arrow');
-
-            if (collapseToggle && collapseContent && collapseArrow) {
-                // 规范初始：移除 hidden & 覆盖 grid-rows 样式，统一用 max-height
-                if (collapseContent.classList.contains('hidden')) collapseContent.classList.remove('hidden');
-                collapseContent.style.gridTemplateRows = 'unset';        // 覆盖可能存在的 grid-rows-*[0fr]
-                collapseContent.style.overflow = 'hidden';
-                collapseContent.style.maxHeight = '0px';
-                collapseContent.style.transition = 'max-height .3s ease';
-                collapseContent.dataset.open = 'false';
-
-                collapseArrow.style.transition = 'transform .2s ease';
-                collapseArrow.style.transform = 'rotate(0deg)';
-
-                collapseToggle.addEventListener('click', () => {
-                    const open = collapseContent.dataset.open === 'true';
-                    if (open) {
-                        // 收起
-                        collapseContent.style.maxHeight = '0px';
-                        collapseContent.dataset.open = 'false';
-                        collapseArrow.style.transform = 'rotate(0deg)';
-                    } else {
-                        // 展开
-                        // 先设为实际高度，完成后保持该高度；若内容有变动，下次点时重新计算
-                        collapseContent.style.maxHeight = collapseContent.scrollHeight + 'px';
-                        collapseContent.dataset.open = 'true';
-                        collapseArrow.style.transform = 'rotate(180deg)';
-                    }
-                });
-
-                // 防止快速点击导致高度计算不准，监听过渡结束后校准一次
-                collapseContent.addEventListener('transitionend', () => {
-                    if (collapseContent.dataset.open === 'true') {
-                        // 再次校准（可选）
-                        collapseContent.style.maxHeight = collapseContent.scrollHeight + 'px';
-                    }
-                });
-            }
-
-            // （可选）重复 ID 检测，方便调试
-            ['collapsible-notification', 'collapse-toggle', 'collapse-content', 'collapse-arrow']
-                .forEach(id => {
-                    const count = document.querySelectorAll('#' + id).length;
-                    if (count > 1) console.warn('检测到重复 ID：#' + id + ' × ' + count + '，请确保此模块仅一份。');
-                });
-
-            /* ---- Tabs ---- */
-            const tabButtonsContainer = document.getElementById('tab-buttons');
-            const tabContentContainer = document.getElementById('tab-content');
-            if (tabButtonsContainer && tabContentContainer) {
-                const tabButtons = tabButtonsContainer.querySelectorAll('.tab-button');
-                const tabPanels = tabContentContainer.querySelectorAll('.tab-panel');
-
-                const applyTabStyles = () => {
-                    tabButtons.forEach(button => {
-                        button.className =
-                            'tab-button px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500';
-                        if (button.classList.contains('active')) {
-                            button.classList.add('bg-blue-600', 'text-white');
-                        } else {
-                            button.classList.add('bg-slate-100', 'text-slate-600', 'hover:bg-slate-200');
-                        }
-                    });
-                };
-
-                tabButtonsContainer.addEventListener('click', (e) => {
-                    const clickedButton = e.target.closest('.tab-button');
-                    if (!clickedButton) return;
-
-                    tabButtons.forEach(button => button.classList.remove('active'));
-                    tabPanels.forEach(panel => panel.classList.remove('active'));
-
-                    clickedButton.classList.add('active');
-                    const targetPanel = document.querySelector(clickedButton.dataset.tabTarget);
-                    if (targetPanel) targetPanel.classList.add('active');
-
-                    applyTabStyles();
-                });
-
-                applyTabStyles();
-            }
-            const copyBtn = document.getElementById('copy-base');
-            if (!copyBtn) return;
-            const val = copyBtn.getAttribute('data-copy') || 'https://happyapi.org/v1';
-
-            async function copyText(v) {
-                try { await (navigator.clipboard?.writeText(v) ?? Promise.reject()); }
-                catch {
-                    const ta = document.createElement('textarea'); ta.value = v; document.body.appendChild(ta);
-                    ta.select(); document.execCommand('copy'); ta.remove();
-                }
-            }
-
-            copyBtn.addEventListener('click', async () => {
-                await copyText(val);
-                // 复用你页面已有 showToast，如果没有就临时用 title
-                if (typeof window.showToast === 'function') window.showToast('接口地址已复制');
-                else { const old = copyBtn.title; copyBtn.title = '已复制！'; setTimeout(() => copyBtn.title = old, 1200); }
-            });
+      if (searchInput) {
+        searchInput.addEventListener('input', () => {
+          const kw = searchInput.value.trim().toLowerCase();
+          let visible = 0;
+          rows.forEach(tr => {
+            const name = tr.dataset.name?.toLowerCase() ?? '';
+            const id = tr.dataset.id?.toLowerCase() ?? '';
+            const match = !kw || name.includes(kw) || id.includes(kw);
+            tr.style.display = match ? '' : 'none';
+            if (match) visible++;
+          });
+          if (visible === 0) {
+            if (!noHitEl.isConnected) document.getElementById('qq-tbody').appendChild(noHitEl);
+          } else {
+            if (noHitEl.isConnected) noHitEl.remove();
+          }
         });
-    </script>
-    <script>
-        (function () {
-            function ready(fn) { document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn); }
+      }
 
-            ready(function () {
-                // 支持多个箭头（如移动端/桌面各一）
-                const ctas = document.querySelectorAll('#scroll-cta, [data-scroll-cta]');
-                if (!ctas.length) return;
+      /* ---- 复制群号 + Toast ---- */
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      let toastTimer = null;
+      function showToast(msg = '已复制') {
+        toastMsg.textContent = msg;
+        toast.classList.remove('hidden');
+        toast.animate(
+          [{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }],
+          { duration: 180, easing: 'ease-out', fill: 'forwards' }
+        );
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 180, fill: 'forwards' });
+          setTimeout(() => toast.classList.add('hidden'), 180);
+        }, 1600);
+      }
+      function copyText(text) {
+        return navigator.clipboard?.writeText(text).catch(() => {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select(); document.execCommand('copy'); ta.remove();
+        });
+      }
+      document.addEventListener('click', async (e) => {
+        const btn = e.target.closest('.copy-btn');
+        if (btn) {
+          const v = btn.getAttribute('data-copy') || '';
+          await copyText(v);
+          showToast(`群号 ${v} 已复制`);
+        }
+      });
 
-                ctas.forEach((cta) => {
-                    // 自定义目标与偏移
-                    const targetSel = cta.getAttribute('data-target') || '#api-usage';
-                    const offset = parseInt(cta.getAttribute('data-offset') || '0', 10);
+      /* ---- “立即加入”：复制群号 + 打开 QQ 官网 ---- */
+      document.addEventListener('click', async (e) => {
+        const join = e.target.closest('.join-btn');
+        if (join) {
+          const id = join.getAttribute('data-id');
+          if (id) {
+            await copyText(id);
+            showToast(`群号 ${id} 已复制，正在打开 QQ`);
+          }
+          window.open('https://im.qq.com/', '_blank', 'noopener,noreferrer');
+        }
+      });
 
-                    function resolveTarget() {
-                        // 1) 优先 data-target
-                        const bySel = targetSel ? document.querySelector(targetSel) : null;
-                        if (bySel) return bySel;
-                        // 2) 兜底：跳到当前 hero 的下一个 <section>
-                        let hero = cta.closest('section');
-                        let next = hero ? hero.nextElementSibling : null;
-                        while (next && next.tagName.toLowerCase() !== 'section') next = next.nextElementSibling;
-                        return next || document.body;
-                    }
+      /* ---- 折叠面板（统一为 max-height 动画，兼容 hidden/grid） ---- */
+      const collapseToggle = document.getElementById('collapse-toggle');
+      const collapseContent = document.getElementById('collapse-content');
+      const collapseArrow = document.getElementById('collapse-arrow');
 
-                    function smoothScrollTo(el) {
-                        const top = el.getBoundingClientRect().top + window.scrollY - offset;
-                        window.scrollTo({ top, behavior: 'smooth' });
-                    }
+      if (collapseToggle && collapseContent && collapseArrow) {
+        if (collapseContent.classList.contains('hidden')) collapseContent.classList.remove('hidden');
+        collapseContent.style.gridTemplateRows = 'unset';
+        collapseContent.style.overflow = 'hidden';
+        collapseContent.style.maxHeight = '0px';
+        collapseContent.style.transition = 'max-height .3s ease';
+        collapseContent.dataset.open = 'false';
 
-                    // 点击滚动
-                    cta.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const target = resolveTarget();
-                        if (target) smoothScrollTo(target);
-                    });
+        collapseArrow.style.transition = 'transform .2s ease';
+        collapseArrow.style.transform = 'rotate(0deg)';
 
-                    // 可达性：键盘触发
-                    cta.setAttribute('role', 'button');
-                    cta.setAttribute('tabindex', '0');
-                    cta.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
-                            const target = resolveTarget();
-                            if (target) smoothScrollTo(target);
-                        }
-                    });
-                });
-            });
-        })();
-    </script>
+        collapseToggle.addEventListener('click', () => {
+          const open = collapseContent.dataset.open === 'true';
+          if (open) {
+            collapseContent.style.maxHeight = '0px';
+            collapseContent.dataset.open = 'false';
+            collapseArrow.style.transform = 'rotate(0deg)';
+          } else {
+            collapseContent.style.maxHeight = collapseContent.scrollHeight + 'px';
+            collapseContent.dataset.open = 'true';
+            collapseArrow.style.transform = 'rotate(180deg)';
+          }
+        });
 
+        collapseContent.addEventListener('transitionend', () => {
+          if (collapseContent.dataset.open === 'true') {
+            collapseContent.style.maxHeight = collapseContent.scrollHeight + 'px';
+          }
+        });
+      }
+
+      /* ---- Tabs ---- */
+      const tabButtonsContainer = document.getElementById('tab-buttons');
+      const tabContentContainer = document.getElementById('tab-content');
+      if (tabButtonsContainer && tabContentContainer) {
+        const tabButtons = tabButtonsContainer.querySelectorAll('.tab-button');
+        const tabPanels = tabContentContainer.querySelectorAll('.tab-panel');
+
+        const applyTabStyles = () => {
+          tabButtons.forEach(button => {
+            button.className =
+              'tab-button px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500';
+            if (button.classList.contains('active')) {
+              button.classList.add('bg-sky-600', 'text-white');
+            } else {
+              button.classList.add('bg-sky-50', 'text-slate-600', 'hover:bg-sky-100');
+            }
+          });
+        };
+
+        tabButtonsContainer.addEventListener('click', (e) => {
+          const clickedButton = e.target.closest('.tab-button');
+          if (!clickedButton) return;
+
+          tabButtons.forEach(button => button.classList.remove('active'));
+          tabPanels.forEach(panel => panel.classList.remove('active'));
+
+          clickedButton.classList.add('active');
+          const targetPanel = document.querySelector(clickedButton.dataset.tabTarget);
+          if (targetPanel) targetPanel.classList.add('active');
+
+          applyTabStyles();
+        });
+
+        applyTabStyles();
+      }
+      const copyBtn = document.getElementById('copy-base');
+      if (!copyBtn) return;
+      const val = copyBtn.getAttribute('data-copy') || 'https://happyapi.org/v1';
+
+      async function copyText(v) {
+        try { await (navigator.clipboard?.writeText(v) ?? Promise.reject()); }
+        catch {
+          const ta = document.createElement('textarea'); ta.value = v; document.body.appendChild(ta);
+          ta.select(); document.execCommand('copy'); ta.remove();
+        }
+      }
+
+      copyBtn.addEventListener('click', async () => {
+        await copyText(val);
+        if (typeof window.showToast === 'function') window.showToast('接口地址已复制');
+        else { const old = copyBtn.title; copyBtn.title = '已复制！'; setTimeout(() => copyBtn.title = old, 1200); }
+      });
+    });
+  </script>
+  <script>
+    (function () {
+      function ready(fn) { document.readyState !== 'loading' ? fn() : document.addEventListener('DOMContentLoaded', fn); }
+
+      ready(function () {
+        const ctas = document.querySelectorAll('#scroll-cta, [data-scroll-cta]');
+        if (!ctas.length) return;
+
+        ctas.forEach((cta) => {
+          const targetSel = cta.getAttribute('data-target') || '#api-usage';
+          const offset = parseInt(cta.getAttribute('data-offset') || '0', 10);
+
+          function resolveTarget() {
+            const bySel = targetSel ? document.querySelector(targetSel) : null;
+            if (bySel) return bySel;
+            let hero = cta.closest('section');
+            let next = hero ? hero.nextElementSibling : null;
+            while (next && next.tagName.toLowerCase() !== 'section') next = next.nextElementSibling;
+            return next || document.body;
+          }
+
+          function smoothScrollTo(el) {
+            const top = el.getBoundingClientRect().top + window.scrollY - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+
+          cta.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = resolveTarget();
+            if (target) smoothScrollTo(target);
+          });
+
+          cta.setAttribute('role', 'button');
+          cta.setAttribute('tabindex', '0');
+          cta.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              const target = resolveTarget();
+              if (target) smoothScrollTo(target);
+            }
+          });
+        });
+      });
+    })();
+    document.addEventListener('DOMContentLoaded', () => {
+      // 仅针对 hero section 的下雪逻辑
+      const heroContainer = document.getElementById('hero-snow-container');
+
+      if (heroContainer) {
+        const flakeCount = 50; // 雪花数量
+
+        for (let i = 0; i < flakeCount; i++) {
+          const flake = document.createElement('div');
+          flake.classList.add('hero-snowflake');
+          flake.textContent = '❄';
+
+          // 随机生成属性
+          const left = Math.random() * 100;
+          const size = Math.random() * 0.8 + 0.4; // 大小范围
+          const duration = Math.random() * 5 + 6; // 飘落时间 6-11秒
+          const delay = Math.random() * 5; // 随机延迟
+          const opacity = Math.random() * 0.6 + 0.2;
+
+          flake.style.left = `${left}%`;
+          flake.style.fontSize = `${size}em`;
+          flake.style.opacity = opacity;
+          flake.style.animationDuration = `${duration}s`;
+          flake.style.animationDelay = `-${delay}s`; // 负延迟使动画立即铺满
+
+          heroContainer.appendChild(flake);
+        }
+      }
+    });
+  </script>
 
 </body>
 
