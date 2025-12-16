@@ -395,32 +395,27 @@
         <!-- Hero Section -->
 <!-- Hero Section -->
 <section class="relative overflow-hidden">
-    <!-- 背景层修改：加深颜色以突出雪花 -->
+    <!-- 背景层 (保持不变) -->
     <div aria-hidden="true" class="absolute inset-0 -z-10">
-        <!-- 1. 顶部深色径向光晕 (加深) -->
         <div class="absolute inset-0 bg-[radial-gradient(800px_500px_at_50%_0%,#bae6fd_15%,transparent_70%)]"></div>
-        
-        <!-- 2. 主背景渐变 (从极浅改为明显的蓝天渐变：Sky-300 -> Blue-100 -> White) -->
         <div class="absolute inset-0 bg-gradient-to-b from-sky-300 via-blue-100 to-white opacity-80"></div>
-        
-        <!-- 3. 左上装饰光晕 (加深颜色与不透明度) -->
         <div class="pointer-events-none absolute -left-24 -top-24 w-[560px] h-[560px] rounded-full bg-blue-400/30 blur-3xl animate-float"></div>
-        
-        <!-- 4. 右上装饰光晕 (改为紫色调增加对比) -->
         <div class="pointer-events-none absolute -right-20 top-32 w-[460px] h-[460px] rounded-full bg-indigo-300/30 blur-3xl animate-float-delayed"></div>
     </div>
 
     <!-- 下雪特效容器 -->
     <div id="hero-snow-container" class="absolute inset-0 pointer-events-none z-0 overflow-hidden"></div>
 
-    <div class="container mx-auto px-4 pt-24 md:pt-32 pb-16 text-center relative z-10">
-        <!-- 霜玻璃卡片 (增加阴影浓度，使其从深色背景中脱颖而出) -->
-        <div class="mx-auto max-w-4xl rounded-3xl glass-card px-6 md:px-10 py-10 md:py-14 ring-1 ring-white/60 shadow-2xl shadow-sky-200/50">
+    <div class="container mx-auto px-4 pt-20 md:pt-32 pb-16 text-center relative z-10">
+        <!-- 霜玻璃卡片 -->
+        <!-- 修改点：px-4 (手机边距变窄) md:px-10 (电脑保持宽边距) -->
+        <div class="mx-auto max-w-4xl rounded-3xl glass-card px-4 md:px-10 py-8 md:py-14 ring-1 ring-white/60 shadow-2xl shadow-sky-200/50">
 
-            <h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-slate-800 flex justify-center items-center gap-3">
+            <!-- 标题 -->
+            <h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-slate-800 flex flex-wrap justify-center items-center gap-2 md:gap-3">
                 <span class="inline-block text-4xl md:text-5xl animate-spin-slow">❄️</span>
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-indigo-600 to-sky-600 pr-1">HappyAPI</span>
-                <span class="opacity-80 text-slate-500 font-bold text-3xl md:text-5xl">— 聚合 API</span>
+                <span class="opacity-80 text-slate-500 font-bold text-3xl md:text-5xl whitespace-nowrap">— 聚合 API</span>
             </h1>
 
             <p class="mt-6 text-base md:text-lg text-slate-600">
@@ -432,28 +427,59 @@
                 最低仅需 <span class="pill pill-amber">0.2 元</span> 即可购买 <span class="pill pill-blue">1 美金</span> 额度
             </p>
 
-            <!-- CTA 按钮 -->
-            <div class="mt-8 flex items-center justify-center gap-3">
+            <!-- CTA 按钮组 (深度优化手机端) -->
+            <!-- 修改点：flex-col (手机垂直排列) sm:flex-row (平板/电脑水平排列) -->
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full max-w-lg mx-auto md:max-w-none">
+                
+                <!-- 立即开始：手机端全宽 -->
                 <a href="https://cn.happyapi.org/console"
-                    class="btn btn-primary bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 animate-pulse border-none shadow-lg shadow-sky-300/50">
+                    class="btn btn-primary w-full sm:w-auto justify-center bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 animate-pulse border-none shadow-lg shadow-sky-300/50">
                     立即开始
                     <svg class="w-4 h-4 ml-1.5 -mr-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                     </svg>
                 </a>
-                <a href="#api-usage1" class="btn btn-ghost text-sky-700 border-sky-300 hover:bg-sky-50">查看用法</a>
+                
+                <!-- 按钮容器：手机端下两排成一行，或者继续堆叠。这里选择堆叠保证点击区域大，也可以改成 grid -->
+                <div class="flex flex-row w-full sm:w-auto gap-3">
+                    <!-- 查看用法：flex-1 在手机上平分宽度 -->
+                    <a href="#api-usage1" class="btn btn-ghost flex-1 sm:flex-none justify-center text-sky-700 border-sky-300 hover:bg-sky-50 whitespace-nowrap">
+                        查看用法
+                    </a>
+
+                    <!-- 在线提问：flex-1 在手机上平分宽度 -->
+                    <a href="http://116.206.176.85:3001/" target="_blank" class="btn btn-ghost flex-1 sm:flex-none justify-center text-sky-700 border-sky-300 hover:bg-sky-50 whitespace-nowrap">
+                        在线提问
+                        <svg class="w-4 h-4 ml-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
-            <!-- 一键复制 Base URL -->
-            <div class="mt-6 flex justify-center">
+            <!-- 一键复制 Base URL (优化超长文本换行) -->
+            <div class="mt-6 flex justify-center w-full">
+                <!-- 修改点：max-w-full (防止撑开) flex-col (手机文字垂直排列) h-auto (高度自适应) -->
                 <button id="copy-base" data-copy="https://happyapi.org/v1"
-                    class="copy-pill group border-sky-300 hover:border-sky-500 bg-white/80">
-                    <svg class="w-4 h-4 text-sky-600 group-hover:text-sky-800" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="9" y="9" width="13" height="13" rx="2" />
-                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                    </svg>
-                    <span class="font-mono text-sky-800 font-medium">(国内)https://cn.happyapi.org/v1</span> |
-                    <span class="font-mono text-sky-800 font-medium">(海外)https://happyapi.org/v1</span>
+                    class="copy-pill group border-sky-300 hover:border-sky-500 bg-white/80 max-w-full h-auto py-2 px-4 flex-col md:flex-row gap-1 md:gap-2">
+                    
+                    <div class="flex items-center gap-2 mb-1 md:mb-0">
+                        <svg class="w-4 h-4 text-sky-600 group-hover:text-sky-800 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" />
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                        </svg>
+                        <span class="font-mono text-xs md:text-sm text-sky-800 font-medium break-all text-left">
+                            (国内)https://cn.happyapi.org/v1
+                        </span>
+                    </div>
+
+                    <!-- 手机端隐藏分隔符，改为换行 -->
+                    <span class="hidden md:inline text-sky-300">|</span>
+                    
+                    <span class="font-mono text-xs md:text-sm text-sky-800 font-medium break-all text-left">
+                        (海外)https://happyapi.org/v1
+                    </span>
+                    
                     <span class="shine" aria-hidden="true"></span>
                 </button>
             </div>
