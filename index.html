@@ -350,35 +350,38 @@
     }
 
     /* --- 头部局部下雪特效 --- */
-/* --- 头部局部下雪特效 (增强版) --- */
-.hero-snowflake {
-    position: absolute;
-    top: -20px;
-    color: #fff;
-    /* 修改点：加深阴影，从浅蓝改为深蓝，增加模糊半径，让雪花自带轮廓 */
-    text-shadow: 0 0 4px rgba(3, 105, 161, 0.9), 0 0 8px rgba(14, 165, 233, 0.5); 
-    user-select: none;
-    pointer-events: none;
-    z-index: 10;
-    will-change: transform;
-    animation-name: hero-fall;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
+    /* --- 头部局部下雪特效 (增强版) --- */
+    .hero-snowflake {
+      position: absolute;
+      top: -20px;
+      color: #fff;
+      /* 修改点：加深阴影，从浅蓝改为深蓝，增加模糊半径，让雪花自带轮廓 */
+      text-shadow: 0 0 4px rgba(3, 105, 161, 0.9), 0 0 8px rgba(14, 165, 233, 0.5);
+      user-select: none;
+      pointer-events: none;
+      z-index: 10;
+      will-change: transform;
+      animation-name: hero-fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
 
-@keyframes hero-fall {
-    0% {
+    @keyframes hero-fall {
+      0% {
         transform: translateY(-20px) translateX(0);
         opacity: 0;
-    }
-    10% {
+      }
+
+      10% {
         opacity: 1;
+      }
+
+      100% {
+        transform: translateY(105vh) translateX(20px);
+        opacity: 0.4;
+        /* 修改点：落地时稍微保持一点不透明度 */
+      }
     }
-    100% {
-        transform: translateY(105vh) translateX(20px); 
-        opacity: 0.4; /* 修改点：落地时稍微保持一点不透明度 */
-    }
-}
   </style>
 </head>
 
@@ -393,126 +396,143 @@
 
         <!-- Hero Section -->
         <!-- Hero Section -->
-<!-- Hero Section -->
-<section class="relative overflow-hidden">
-    <!-- 背景层 (保持不变) -->
-    <div aria-hidden="true" class="absolute inset-0 -z-10">
-        <div class="absolute inset-0 bg-[radial-gradient(800px_500px_at_50%_0%,#bae6fd_15%,transparent_70%)]"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-sky-300 via-blue-100 to-white opacity-80"></div>
-        <div class="pointer-events-none absolute -left-24 -top-24 w-[560px] h-[560px] rounded-full bg-blue-400/30 blur-3xl animate-float"></div>
-        <div class="pointer-events-none absolute -right-20 top-32 w-[460px] h-[460px] rounded-full bg-indigo-300/30 blur-3xl animate-float-delayed"></div>
-    </div>
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden">
+          <!-- 背景层 (保持不变) -->
+          <div aria-hidden="true" class="absolute inset-0 -z-10">
+            <div class="absolute inset-0 bg-[radial-gradient(800px_500px_at_50%_0%,#bae6fd_15%,transparent_70%)]"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-sky-300 via-blue-100 to-white opacity-80"></div>
+            <div
+              class="pointer-events-none absolute -left-24 -top-24 w-[560px] h-[560px] rounded-full bg-blue-400/30 blur-3xl animate-float">
+            </div>
+            <div
+              class="pointer-events-none absolute -right-20 top-32 w-[460px] h-[460px] rounded-full bg-indigo-300/30 blur-3xl animate-float-delayed">
+            </div>
+          </div>
 
-    <!-- 下雪特效容器 -->
-    <div id="hero-snow-container" class="absolute inset-0 pointer-events-none z-0 overflow-hidden"></div>
+          <!-- 下雪特效容器 -->
+          <div id="hero-snow-container" class="absolute inset-0 pointer-events-none z-0 overflow-hidden"></div>
 
-    <div class="container mx-auto px-4 pt-20 md:pt-32 pb-16 text-center relative z-10">
-        <!-- 霜玻璃卡片 -->
-        <!-- 修改点：px-4 (手机边距变窄) md:px-10 (电脑保持宽边距) -->
-        <div class="mx-auto max-w-4xl rounded-3xl glass-card px-4 md:px-10 py-8 md:py-14 ring-1 ring-white/60 shadow-2xl shadow-sky-200/50">
+          <div class="container mx-auto px-4 pt-20 md:pt-32 pb-16 text-center relative z-10">
+            <!-- 霜玻璃卡片 -->
+            <!-- 修改点：px-4 (手机边距变窄) md:px-10 (电脑保持宽边距) -->
+            <div
+              class="mx-auto max-w-4xl rounded-3xl glass-card px-4 md:px-10 py-8 md:py-14 ring-1 ring-white/60 shadow-2xl shadow-sky-200/50">
 
-            <!-- 标题 -->
-            <h1 class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-slate-800 flex flex-wrap justify-center items-center gap-2 md:gap-3">
+              <!-- 标题 -->
+              <h1
+                class="text-4xl md:text-6xl font-black leading-tight tracking-tight text-slate-800 flex flex-wrap justify-center items-center gap-2 md:gap-3">
                 <span class="inline-block text-4xl md:text-5xl animate-spin-slow">❄️</span>
-                <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-indigo-600 to-sky-600 pr-1">HappyAPI</span>
+                <span
+                  class="bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-indigo-600 to-sky-600 pr-1">HappyAPI</span>
                 <span class="opacity-80 text-slate-500 font-bold text-3xl md:text-5xl whitespace-nowrap">— 聚合 API</span>
-            </h1>
+              </h1>
 
-            <p class="mt-6 text-base md:text-lg text-slate-600">
-                支持 <span class="hl">OpenAI</span>、<span class="hl">Claude</span>、<span class="hl">Gemini</span>、<span class="hl">DeepSeek</span>、<span class="hl">豆包</span>
+              <p class="mt-6 text-base md:text-lg text-slate-600">
+                支持 <span class="hl">OpenAI</span>、<span class="hl">Claude</span>、<span class="hl">Gemini</span>、<span
+                  class="hl">DeepSeek</span>、<span class="hl">豆包</span>
                 等多个顶级模型供应商
-            </p>
+              </p>
 
-            <p class="mt-3 text-base md:text-lg text-slate-600">
+              <p class="mt-3 text-base md:text-lg text-slate-600">
                 最低仅需 <span class="pill pill-amber">0.2 元</span> 即可购买 <span class="pill pill-blue">1 美金</span> 额度
-            </p>
+              </p>
 
-            <!-- CTA 按钮组 (深度优化手机端) -->
-            <!-- 修改点：flex-col (手机垂直排列) sm:flex-row (平板/电脑水平排列) -->
-            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full max-w-lg mx-auto md:max-w-none">
-                
+              <!-- CTA 按钮组 (深度优化手机端) -->
+              <!-- 修改点：flex-col (手机垂直排列) sm:flex-row (平板/电脑水平排列) -->
+              <div
+                class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4 w-full max-w-lg mx-auto md:max-w-none">
+
                 <!-- 立即开始：手机端全宽 -->
                 <a href="https://cn.happyapi.org/console"
-                    class="btn btn-primary w-full sm:w-auto justify-center bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 animate-pulse border-none shadow-lg shadow-sky-300/50">
-                    立即开始
-                    <svg class="w-4 h-4 ml-1.5 -mr-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
+                  class="btn btn-primary w-full sm:w-auto justify-center bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 animate-pulse border-none shadow-lg shadow-sky-300/50">
+                  立即开始
+                  <svg class="w-4 h-4 ml-1.5 -mr-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
                 </a>
-                
+
                 <!-- 按钮容器：手机端下两排成一行，或者继续堆叠。这里选择堆叠保证点击区域大，也可以改成 grid -->
                 <div class="flex flex-row w-full sm:w-auto gap-3">
-                    <!-- 查看用法：flex-1 在手机上平分宽度 -->
-                    <a href="#api-usage1" class="btn btn-ghost flex-1 sm:flex-none justify-center text-sky-700 border-sky-300 hover:bg-sky-50 whitespace-nowrap">
-                        查看用法
-                    </a>
+                  <!-- 查看用法：flex-1 在手机上平分宽度 -->
+                  <a href="#api-usage1"
+                    class="btn btn-ghost flex-1 sm:flex-none justify-center text-sky-700 border-sky-300 hover:bg-sky-50 whitespace-nowrap">
+                    查看用法
+                  </a>
 
-                    <!-- 在线提问：flex-1 在手机上平分宽度 -->
-                    <a href="http://116.206.176.85:3001/" target="_blank" class="btn btn-ghost flex-1 sm:flex-none justify-center text-sky-700 border-sky-300 hover:bg-sky-50 whitespace-nowrap">
-                        在线提问
-                        <svg class="w-4 h-4 ml-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                        </svg>
-                    </a>
+                  <!-- 在线提问：flex-1 在手机上平分宽度 -->
+                  <a href="http://116.206.176.85:3001/" target="_blank"
+                    class="btn btn-ghost flex-1 sm:flex-none justify-center text-sky-700 border-sky-300 hover:bg-sky-50 whitespace-nowrap">
+                    在线提问
+                    <svg class="w-4 h-4 ml-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                  </a>
                 </div>
-            </div>
+              </div>
 
-            <!-- 一键复制 Base URL (优化超长文本换行) -->
-            <div class="mt-6 flex justify-center w-full">
+              <!-- 一键复制 Base URL (优化超长文本换行) -->
+              <div class="mt-6 flex justify-center w-full">
                 <!-- 修改点：max-w-full (防止撑开) flex-col (手机文字垂直排列) h-auto (高度自适应) -->
                 <button id="copy-base" data-copy="https://happyapi.org/v1"
-                    class="copy-pill group border-sky-300 hover:border-sky-500 bg-white/80 max-w-full h-auto py-2 px-4 flex-col md:flex-row gap-1 md:gap-2">
-                    
-                    <div class="flex items-center gap-2 mb-1 md:mb-0">
-                        <svg class="w-4 h-4 text-sky-600 group-hover:text-sky-800 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" />
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                        </svg>
-                        <span class="font-mono text-xs md:text-sm text-sky-800 font-medium break-all text-left">
-                            (国内)https://cn.happyapi.org/v1
-                        </span>
-                    </div>
+                  class="copy-pill group border-sky-300 hover:border-sky-500 bg-white/80 max-w-full h-auto py-2 px-4 flex-col md:flex-row gap-1 md:gap-2">
 
-                    <!-- 手机端隐藏分隔符，改为换行 -->
-                    <span class="hidden md:inline text-sky-300">|</span>
-                    
+                  <div class="flex items-center gap-2 mb-1 md:mb-0">
+                    <svg class="w-4 h-4 text-sky-600 group-hover:text-sky-800 flex-shrink-0" viewBox="0 0 24 24"
+                      fill="none" stroke="currentColor" stroke-width="2">
+                      <rect x="9" y="9" width="13" height="13" rx="2" />
+                      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                    </svg>
                     <span class="font-mono text-xs md:text-sm text-sky-800 font-medium break-all text-left">
-                        (海外)https://happyapi.org/v1
+                      (国内)https://cn.happyapi.org/v1
                     </span>
-                    
-                    <span class="shine" aria-hidden="true"></span>
+                  </div>
+
+                  <!-- 手机端隐藏分隔符，改为换行 -->
+                  <span class="hidden md:inline text-sky-300">|</span>
+
+                  <span class="font-mono text-xs md:text-sm text-sky-800 font-medium break-all text-left">
+                    (海外)https://happyapi.org/v1
+                  </span>
+
+                  <span class="shine" aria-hidden="true"></span>
                 </button>
+              </div>
+
+              <!-- 信任条 -->
+              <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+                <div class="trust-item text-slate-700 font-semibold border-sky-200">
+                  <span class="dot dot-emerald"></span> <span style="font-weight:800;">8.9K+</span> 活跃用户
+                </div>
+                <div class="trust-item text-slate-700 font-semibold border-sky-200">
+                  <span class="dot dot-sky"></span> 99.9% SLA 稳定
+                </div>
+                <div class="trust-item text-slate-700 font-semibold border-sky-200">
+                  <span class="dot dot-indigo"></span> 高并发 · 低延迟
+                </div>
+              </div>
             </div>
 
-            <!-- 信任条 -->
-            <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
-                <div class="trust-item text-slate-700 font-semibold border-sky-200">
-                    <span class="dot dot-emerald"></span> <span style="font-weight:800;">8.9K+</span> 活跃用户
-                </div>
-                <div class="trust-item text-slate-700 font-semibold border-sky-200">
-                    <span class="dot dot-sky"></span> 99.9% SLA 稳定
-                </div>
-                <div class="trust-item text-slate-700 font-semibold border-sky-200">
-                    <span class="dot dot-indigo"></span> 高并发 · 低延迟
-                </div>
-            </div>
-        </div>
-
-        <!-- 下滑提示 -->
-        <div class="mt-10 flex justify-center">
-            <button id="scroll-cta" type="button" data-target="#api-usage" data-offset="72" class="relative group inline-flex items-center justify-center w-10 h-10 rounded-full
+            <!-- 下滑提示 -->
+            <div class="mt-10 flex justify-center">
+              <button id="scroll-cta" type="button" data-target="#api-usage" data-offset="72" class="relative group inline-flex items-center justify-center w-10 h-10 rounded-full
 border border-sky-300 bg-white/60 text-sky-600 backdrop-blur
 shadow-sm transition-all duration-200
 hover:text-sky-800 hover:border-sky-400 hover:bg-white hover:shadow-md
 active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400" aria-label="下滑查看更多">
-                <span class="pointer-events-none absolute inset-0 rounded-full ring-0 group-hover:ring-4 ring-sky-200/60 transition-all duration-200"></span>
-                <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5 group-active:translate-y-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="m6 9 6 6 6-6" />
+                <span
+                  class="pointer-events-none absolute inset-0 rounded-full ring-0 group-hover:ring-4 ring-sky-200/60 transition-all duration-200"></span>
+                <svg
+                  class="w-4 h-4 transition-transform duration-200 group-hover:translate-y-0.5 group-active:translate-y-1"
+                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="m6 9 6 6 6-6" />
                 </svg>
-            </button>
-        </div>
-    </div>
-</section>
+              </button>
+            </div>
+          </div>
+        </section>
 
         <!-- Announcements Section -->
         <section class="py-16 px-4" id="api-usage">
@@ -1101,7 +1121,8 @@ curl -X POST "$API_HOST/chat/completions" \
                       <li><code class="font-mono" style="font-weight: bolder;">n</code>: 出图数量,默认为1。 使用示例： <code
                           class="bg-slate-200">-n=2</code> 直接放在内容中即可。限制如上。</li>
                       <li><code class="font-mono" style="font-weight: bolder;">watermark</code>: 水印控制参数，默认为false。 使用示例：
-                        <code class="bg-slate-200">-watermark=false</code> 直接放在内容中即可。如果需要生成图片右下角提示AI生成则将其设置为true即可。</li>
+                        <code class="bg-slate-200">-watermark=false</code> 直接放在内容中即可。如果需要生成图片右下角提示AI生成则将其设置为true即可。
+                      </li>
                       <li><code class="font-mono" style="font-weight: bolder;">size</code>: 图片大小控制，默认为1k。 使用示例： <code
                           class="bg-slate-200">-size=2k</code> 或者按照像素 <code class="bg-slate-200">-size=1024x1024</code>
                         直接放在内容中即可。<a href="https://www.volcengine.com/docs/82379/1541523" target="_blank"
@@ -1239,139 +1260,245 @@ curl /v1/images/edits \
                   </div>
                 </div>
               </div>
-              <!-- <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-lg lg:col-span-2 border border-white">
-                                <h3 class="text-xl font-semibold mb-4 text-slate-800 border-b pb-2">5. sora与香蕉模型（gemini 2.5 image）生图说明</h3>
-                                <div class="space-y-4 text-sm md:text-base mt-4">
-                                    <p class="text-slate-700">sora和香蕉模型均支持 <code class="bg-slate-200 px-1.5 py-0.5 rounded">chat</code> 格式和 <code class="bg-slate-200 px-1.5 py-0.5 rounded">dalle</code> 标准格式调用，具体调用规则请查看豆包生图规则。</p>
-                                    <div>
-                                        <p class="font-semibold text-slate-800">chat格式支持参数 -size 例如："画一只猫在树上玩耍 -size=1024x1024" </p>
-                                    </div>
-                                    <br>
-                                    <div>
-                                        <p class="font-semibold text-slate-800">香蕉模型生成无水印，支持size映射如下,不在表格内则默认为自适应</p>
-                                        <br>
-                                        <table style="border-collapse:collapse;width:100%;margin:auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.1);font-family:'Segoe UI',Arial,sans-serif;">
-                                            <thead>
-                                                <tr style="background-color:#0ea5e9;color:white;"> <!-- Changed to Sky Blue -->
-              <th style="padding:14px 20px;text-align:center;">分辨率 (Resolution)</th>
-              <th style="padding:14px 20px;text-align:center;">比例 (Aspect Ratio)</th>
-              </tr>
-              </thead>
-              <tbody>
-                <tr style="border-bottom:1px solid #e5e7eb;">
-                  <td style="padding:14px 20px;text-align:center;">1024x1024</td>
-                  <td style="padding:14px 20px;text-align:center;">1:1</td>
-                </tr>
-                <tr style="border-bottom:1px solid #e5e7eb;">
-                  <td style="padding:14px 20px;text-align:center;">512x512</td>
-                  <td style="padding:14px 20px;text-align:center;">1:1</td>
-                </tr>
-                <tr style="border-bottom:1px solid #e5e7eb;">
-                  <td style="padding:14px 20px;text-align:center;">256x256</td>
-                  <td style="padding:14px 20px;text-align:center;">1:1</td>
-                </tr>
-                <tr style="border-bottom:1px solid #e5e7eb;">
-                  <td style="padding:14px 20px;text-align:center;">1280x720</td>
-                  <td style="padding:14px 20px;text-align:center;">16:9</td>
-                </tr>
-                <tr>
-                  <td style="padding:14px 20px;text-align:center;">720x1280</td>
-                  <td style="padding:14px 20px;text-align:center;">9:16</td>
-                </tr>
-              </tbody>
-              </table>
-            </div>
-          </div>
-    </div> -->
-  </div>
-  </div>
-  </section>
+              <!-- ================= 创建视频生成任务 ================= -->
 
-  <!-- Next-Web Tutorial -->
-  <section class="py-16 px-4 bg-white/60 backdrop-blur">
-    <div class="container mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-4 text-slate-800">Next-Web 对接教程</h2>
-      <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">三步快速将 HappyAPI 对接到 Next-Web / LobeChat 等客户端。</p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div class="flex flex-col items-center">
-          <div
-            class="mb-4 bg-sky-100 p-3 rounded-full text-sky-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
-            1</div>
-          <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
-          <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址`https://cn.happyapi.org` 或者 `https://happyapi.org` 和您的 API
-            Key。</p>
-          <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png" alt="填写接口地址和密钥"
-            class="rounded-lg shadow-md w-full border border-sky-100">
-        </div>
-        <div class="flex flex-col items-center">
-          <div
-            class="mb-4 bg-sky-100 p-3 rounded-full text-sky-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
-            2</div>
-          <h3 class="text-lg font-semibold mb-2">加载自定义模型</h3>
-          <p class="text-sm text-slate-600 mb-4">清空模型列表，然后点击“加载”或“更新列表”按钮。</p>
-          <img src="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png" alt="加载自定义模型"
-            class="rounded-lg shadow-md w-full border border-sky-100">
-        </div>
-        <div class="flex flex-col items-center">
-          <div
-            class="mb-4 bg-sky-100 p-3 rounded-full text-sky-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
-            3</div>
-          <h3 class="text-lg font-semibold mb-2">选择模型开始对话</h3>
-          <p class="text-sm text-slate-600 mb-4">在模型列表中选择您需要的模型，即可开始使用。</p>
-          <img src="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png" alt="选择模型使用"
-            class="rounded-lg shadow-md w-full border border-sky-100">
-        </div>
+
+              <div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-lg lg:col-span-2 border border-white">
+             <!-- ================= 创建视频生成任务 ================= -->
+<div style="width:100%; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,'PingFang SC','Microsoft YaHei',sans-serif; color:#0f172a; line-height:1.7;">
+
+  <div style="font-size:22px; font-weight:800; margin-bottom:10px;">
+    # 创建视频生成任务
+  </div>
+
+  <div style="margin-bottom:14px; padding:10px 12px; border-radius:8px; background:#f8fafc; border:1px dashed #e2e8f0; font-size:12px; color:#475569;">
+    {/* This file was generated by Fumadocs. Do not edit this file directly. Any changes should be made by running the generation command again. */}
+  </div>
+
+  <div style="font-size:14px; color:#334155; margin-bottom:6px;">
+    提交视频生成任务，支持 <b>文生视频</b> 和 <b>图生视频</b>。
+  </div>
+  <div style="font-size:14px; color:#334155; margin-bottom:16px;">
+    接口返回任务 ID，可通过 GET 接口查询任务状态和生成结果。
+  </div>
+
+  <!-- APIPage -->
+  <div style="margin-bottom:20px; padding:14px; border-radius:12px; background:#0b1220; color:#e5e7eb;">
+    <pre style="margin:0; font-size:13px; line-height:1.6;">
+/v1/video/generations POST 
+    </pre>
+  </div>
+
+  <!-- Request -->
+  <div style="padding:16px; border:1px solid #e5e7eb; border-radius:14px; background:#ffffff; margin-bottom:18px;">
+    <div style="font-size:16px; font-weight:700; margin-bottom:10px;">请求示例</div>
+
+    <pre style="margin:0; padding:14px; border-radius:12px; background:#0b1220; color:#e5e7eb; font-size:13px;">
+POST /v1/video/generations
+Content-Type: application/json
+
+{
+  "model": "doubao-seedance-1-0-pro",
+  "prompt": "A panda skating in Times Square",
+  "image": "https://example.com/first.jpg",  // 如果设置首尾帧则此参数为数组，最多两张图片，传url
+  "duration": 6,
+  "ratio": "1:1"  // 仅支持比例，不支持像素乘积格式
+}
+    </pre>
+  </div>
+
+  <!-- Params -->
+  <div style="padding:16px; border:1px solid #e5e7eb; border-radius:14px; background:#ffffff;">
+    <div style="font-size:16px; font-weight:700; margin-bottom:12px;">请求参数说明</div>
+
+    <div style="margin-bottom:12px;">
+      <b>model</b> <span style="color:#64748b; font-size:12px;">string · 必填</span>
+      <div style="font-size:14px; color:#334155;">
+        视频生成模型名称，例如 <code>seedance-1-0-pro</code>。
       </div>
     </div>
-  </section>
 
-  <!-- Use Cases Section with Tabs -->
-  <section class="py-16 px-4">
-    <div class="container mx-auto">
-      <h2 class="text-3xl font-bold text-center mb-4 text-slate-800">从现在开始，让AI成为您的得力助手</h2>
-      <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">零学习成本，在实时聊天中轻松解决问题，覆盖工作与生活的方方面面。</p>
+    <div style="margin-bottom:12px;">
+      <b>prompt</b> <span style="color:#64748b; font-size:12px;">string · 必填</span>
+      <div style="font-size:14px; color:#334155;">
+        视频生成的文本描述（提示词）。
+      </div>
+    </div>
 
-      <div class="max-w-5xl mx-auto">
-        <!-- Tab Buttons -->
-        <div id="tab-buttons" class="flex flex-wrap justify-center gap-2 mb-8">
-          <button data-tab-target="#tab-academic" class="tab-button active">学术论文</button>
-          <button data-tab-target="#tab-coding" class="tab-button">代码编程</button>
-          <button data-tab-target="#tab-writing" class="tab-button">写作助手</button>
-          <button data-tab-target="#tab-editing" class="tab-button">学术编辑</button>
-          <button data-tab-target="#tab-translation" class="tab-button">精准翻译</button>
-          <button data-tab-target="#tab-data" class="tab-button">数据分析</button>
-        </div>
+    <div style="margin-bottom:12px;">
+      <b>image</b> <span style="color:#64748b; font-size:12px;">string · 可选</span>
+      <div style="font-size:14px; color:#334155;">
+        用于图生视频的输入图片 URL 或 Base64。
+        <br/>不传该字段则为文生视频。
+      </div>
+    </div>
 
-        <!-- Tab Content -->
-        <div id="tab-content" class="relative">
-          <!-- Academic Paper -->
-          <div id="tab-academic" class="tab-panel active">
-            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg">
-              <div class="mb-6">
-                <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
-                <p class="text-slate-700 bg-white/50 p-4 rounded-lg border border-sky-50">
-                  我正在写一篇主题为"含油微藻的筛选及其产能性能研究"的论文，请你帮我写一段文字，内容是该课题研究意义。</p>
+    <div style="margin-bottom:12px;">
+      <b>duration</b> <span style="color:#64748b; font-size:12px;">integer · 可选</span>
+      <div style="font-size:14px; color:#334155;">
+        视频时长（秒），不同模型支持的范围不同。
+      </div>
+    </div>
+
+    <div style="margin-bottom:12px;">
+      <b>ratio</b> <span style="color:#64748b; font-size:12px;">string · 可选</span>
+      <div style="font-size:14px; color:#334155;">
+        视频分辨率,仅支持比例形式，例如：
+        <code>1:1</code>、<code>16:9</code>。
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ================= 获取视频生成任务状态 ================= -->
+<div style="width:100%; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,'PingFang SC','Microsoft YaHei',sans-serif; color:#0f172a; line-height:1.7; margin-top:32px;">
+
+  <div style="font-size:22px; font-weight:800; margin-bottom:10px;">
+    # 获取视频生成任务状态
+  </div>
+
+  <div style="margin-bottom:14px; padding:10px 12px; border-radius:8px; background:#f8fafc; border:1px dashed #e2e8f0; font-size:12px; color:#475569;">
+    {/* This file was generated by Fumadocs. Do not edit this file directly. Any changes should be made by running the generation command again. */}
+  </div>
+
+  <div style="font-size:14px; color:#334155; margin-bottom:12px;">
+    查询视频生成任务的状态和结果。 可在网站的任务日志中查看哦。
+  </div>
+
+  <div style="font-size:14px; font-weight:600; margin-bottom:6px;">任务状态：</div>
+  <ul style="margin:0 0 16px 18px; font-size:14px; color:#334155;">
+    <li><code>queued</code>：排队中</li>
+    <li><code>in_progress</code>：生成中</li>
+    <li><code>completed</code>：已完成</li>
+    <li><code>failed</code>：失败</li>
+  </ul>
+
+  <!-- APIPage -->
+  <div style="margin-bottom:20px; padding:14px; border-radius:12px; background:#0b1220; color:#e5e7eb;">
+    <pre style="margin:0; font-size:13px; line-height:1.6;">
+/v1/video/generations/{task_id} GET 
+    </pre>
+  </div>
+
+  <!-- Response -->
+  <div style="padding:16px; border:1px solid #e5e7eb; border-radius:14px; background:#ffffff;">
+    <div style="font-size:16px; font-weight:700; margin-bottom:10px;">响应示例</div>
+
+    <pre style="margin:0; padding:14px; border-radius:12px; background:#0b1220; color:#e5e7eb; font-size:13px;">
+{
+  "id": "video-task-id",
+  "status": "completed",
+  "video_url": "https://example.com/output.mp4",
+  "created_at": 1710000000,
+  "completed_at": 1710000030
+}
+    </pre>
+  </div>
+
+  <div style="margin-top:14px; padding:12px; border-radius:10px; background:#fff7ed; border:1px solid #fed7aa; font-size:13px; color:#9a3412;">
+    详细字段定义与更多示例请参考官方文档：
+    <a href="https://docs.newapi.pro/zh/docs/api/ai-model/videos/get-video-generation"
+       target="_blank"
+       style="color:#9a3412; font-weight:700; text-decoration:underline;">
+      https://docs.newapi.pro/zh/docs/api/ai-model/videos/get-video-generation
+    </a>
+  </div>
+
+</div>
+
               </div>
-              <div>
-                <h3 class="text-lg font-semibold mb-2 text-sky-600">AI 响应：</h3>
-                <p class="text-slate-700 bg-sky-50/70 p-4 rounded-lg">
-                  随着全球能源需求的增加以及化石能源储量的逐渐枯竭，生物质能源作为一种可再生的清洁能源备受关注。含油微藻是一种可生产生物燃料和生物化学产品的重要微生物资源，因其高产油率、生长周期短、对污染物的吸收能力强等特点而备受研究者关注。因此，该研究对于推动可再生能源的发展、提高生物质能源利用效率、缓解能源与环境问题具有重要意义。
-                </p>
+            </div>
+
+
+          </div>
+        </section>
+
+        <!-- Next-Web Tutorial -->
+        <section class="py-16 px-4 bg-white/60 backdrop-blur">
+          <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4 text-slate-800">Next-Web 对接教程</h2>
+            <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">三步快速将 HappyAPI 对接到 Next-Web / LobeChat 等客户端。
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+              <div class="flex flex-col items-center">
+                <div
+                  class="mb-4 bg-sky-100 p-3 rounded-full text-sky-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+                  1</div>
+                <h3 class="text-lg font-semibold mb-2">填写接口与密钥</h3>
+                <p class="text-sm text-slate-600 mb-4">在设置中填入接口地址`https://cn.happyapi.org` 或者 `https://happyapi.org` 和您的
+                  API
+                  Key。</p>
+                <img src="https://photo.459122.xyz/i/638a4a49dacd64c93ddf05bc69df9729.png" alt="填写接口地址和密钥"
+                  class="rounded-lg shadow-md w-full border border-sky-100">
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="mb-4 bg-sky-100 p-3 rounded-full text-sky-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+                  2</div>
+                <h3 class="text-lg font-semibold mb-2">加载自定义模型</h3>
+                <p class="text-sm text-slate-600 mb-4">清空模型列表，然后点击“加载”或“更新列表”按钮。</p>
+                <img src="https://photo.459122.xyz/i/46d008c62984a730b15b4d6fc8fca16e.png" alt="加载自定义模型"
+                  class="rounded-lg shadow-md w-full border border-sky-100">
+              </div>
+              <div class="flex flex-col items-center">
+                <div
+                  class="mb-4 bg-sky-100 p-3 rounded-full text-sky-600 font-bold text-xl w-12 h-12 flex items-center justify-center">
+                  3</div>
+                <h3 class="text-lg font-semibold mb-2">选择模型开始对话</h3>
+                <p class="text-sm text-slate-600 mb-4">在模型列表中选择您需要的模型，即可开始使用。</p>
+                <img src="https://photo.459122.xyz/i/19e47d987c83535cc3127ece82e7ab04.png" alt="选择模型使用"
+                  class="rounded-lg shadow-md w-full border border-sky-100">
               </div>
             </div>
           </div>
-          <!-- Coding -->
-          <div id="tab-coding" class="tab-panel">
-            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg">
-              <div class="mb-6">
-                <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
-                <p class="text-slate-700 bg-white/50 p-4 rounded-lg border border-sky-50">
-                  请帮我写一个Python程序，实现输入两个数，输出它们的和。</p>
+        </section>
+
+        <!-- Use Cases Section with Tabs -->
+        <section class="py-16 px-4">
+          <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-4 text-slate-800">从现在开始，让AI成为您的得力助手</h2>
+            <p class="text-center mb-12 max-w-2xl mx-auto text-slate-600">零学习成本，在实时聊天中轻松解决问题，覆盖工作与生活的方方面面。</p>
+
+            <div class="max-w-5xl mx-auto">
+              <!-- Tab Buttons -->
+              <div id="tab-buttons" class="flex flex-wrap justify-center gap-2 mb-8">
+                <button data-tab-target="#tab-academic" class="tab-button active">学术论文</button>
+                <button data-tab-target="#tab-coding" class="tab-button">代码编程</button>
+                <button data-tab-target="#tab-writing" class="tab-button">写作助手</button>
+                <button data-tab-target="#tab-editing" class="tab-button">学术编辑</button>
+                <button data-tab-target="#tab-translation" class="tab-button">精准翻译</button>
+                <button data-tab-target="#tab-data" class="tab-button">数据分析</button>
               </div>
-              <div>
-                <h3 class="text-lg font-semibold mb-2 text-sky-600">AI 响应：</h3>
-                <div class="bg-slate-900 p-4 rounded-lg">
-                  <pre><code class="language-python">
+
+              <!-- Tab Content -->
+              <div id="tab-content" class="relative">
+                <!-- Academic Paper -->
+                <div id="tab-academic" class="tab-panel active">
+                  <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg">
+                    <div class="mb-6">
+                      <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                      <p class="text-slate-700 bg-white/50 p-4 rounded-lg border border-sky-50">
+                        我正在写一篇主题为"含油微藻的筛选及其产能性能研究"的论文，请你帮我写一段文字，内容是该课题研究意义。</p>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold mb-2 text-sky-600">AI 响应：</h3>
+                      <p class="text-slate-700 bg-sky-50/70 p-4 rounded-lg">
+                        随着全球能源需求的增加以及化石能源储量的逐渐枯竭，生物质能源作为一种可再生的清洁能源备受关注。含油微藻是一种可生产生物燃料和生物化学产品的重要微生物资源，因其高产油率、生长周期短、对污染物的吸收能力强等特点而备受研究者关注。因此，该研究对于推动可再生能源的发展、提高生物质能源利用效率、缓解能源与环境问题具有重要意义。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Coding -->
+                <div id="tab-coding" class="tab-panel">
+                  <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg">
+                    <div class="mb-6">
+                      <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                      <p class="text-slate-700 bg-white/50 p-4 rounded-lg border border-sky-50">
+                        请帮我写一个Python程序，实现输入两个数，输出它们的和。</p>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold mb-2 text-sky-600">AI 响应：</h3>
+                      <div class="bg-slate-900 p-4 rounded-lg">
+                        <pre><code class="language-python">
 def add_two_numbers(a, b):
   """This function returns the sum of two numbers."""
   return a + b
@@ -1383,51 +1510,54 @@ num2 = float(input("Enter the second number: "))
 sum_result = add_two_numbers(num1, num2)
 print(f"The sum of {num1} and {num2} is: {sum_result}")
                                                 </code></pre>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Writing Assistant -->
+                <div id="tab-writing" class="tab-panel">
+                  <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg">
+                    <div class="mb-6">
+                      <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
+                      <p class="text-slate-700 bg-white/50 p-4 rounded-lg border border-sky-50">
+                        我正在写一篇关于人工智能的文章，能否给我一些开头的灵感？</p>
+                    </div>
+                    <div>
+                      <h3 class="text-lg font-semibold mb-2 text-sky-600">AI 响应：</h3>
+                      <p class="text-slate-700 bg-sky-50/70 p-4 rounded-lg">
+                        人工智能（AI）作为一种前沿技术，正逐渐渗透到我们生活的方方面面。它不仅在工业生产、医疗保健、金融服务等领域展现出巨大潜力，还在人类认知、情感交流、社会互动等方面带来了深刻变革。本文将探讨人工智能的发展历程、应用前景以及对人类社会的影响，带您一起领略AI时代的无限可能。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Other tabs content placeholders (Kept as placeholder per original, content logic intact) -->
+                <div id="tab-editing" class="tab-panel">
+                  <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg text-center text-slate-500">内容同上逻辑，此处为演示占位。
+                  </div>
+                </div>
+                <div id="tab-translation" class="tab-panel">
+                  <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg text-center text-slate-500">内容同上逻辑，此处为演示占位。
+                  </div>
+                </div>
+                <div id="tab-data" class="tab-panel">
+                  <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg text-center text-slate-500">内容同上逻辑，此处为演示占位。
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Writing Assistant -->
-          <div id="tab-writing" class="tab-panel">
-            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg">
-              <div class="mb-6">
-                <h3 class="text-lg font-semibold mb-2 text-slate-800">用户输入：</h3>
-                <p class="text-slate-700 bg-white/50 p-4 rounded-lg border border-sky-50">
-                  我正在写一篇关于人工智能的文章，能否给我一些开头的灵感？</p>
-              </div>
-              <div>
-                <h3 class="text-lg font-semibold mb-2 text-sky-600">AI 响应：</h3>
-                <p class="text-slate-700 bg-sky-50/70 p-4 rounded-lg">
-                  人工智能（AI）作为一种前沿技术，正逐渐渗透到我们生活的方方面面。它不仅在工业生产、医疗保健、金融服务等领域展现出巨大潜力，还在人类认知、情感交流、社会互动等方面带来了深刻变革。本文将探讨人工智能的发展历程、应用前景以及对人类社会的影响，带您一起领略AI时代的无限可能。
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- Other tabs content placeholders (Kept as placeholder per original, content logic intact) -->
-          <div id="tab-editing" class="tab-panel">
-            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg text-center text-slate-500">内容同上逻辑，此处为演示占位。</div>
-          </div>
-          <div id="tab-translation" class="tab-panel">
-            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg text-center text-slate-500">内容同上逻辑，此处为演示占位。</div>
-          </div>
-          <div id="tab-data" class="tab-panel">
-            <div class="glass-card p-6 md:p-8 rounded-xl shadow-lg text-center text-slate-500">内容同上逻辑，此处为演示占位。</div>
-          </div>
+        </section>
+
+      </main>
+
+      <!-- Footer -->
+      <footer class="bg-white/70 backdrop-blur border-t border-sky-100">
+        <div class="container mx-auto py-6 px-4 text-center text-sm text-slate-500">
+          <p>© 2024 HappyAPI. All Rights Reserved.</p>
+          <p class="mt-2">致力于提供稳定、高效、便捷的 AI 模型服务</p>
         </div>
-      </div>
+      </footer>
     </div>
-  </section>
-
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-white/70 backdrop-blur border-t border-sky-100">
-    <div class="container mx-auto py-6 px-4 text-center text-sm text-slate-500">
-      <p>© 2024 HappyAPI. All Rights Reserved.</p>
-      <p class="mt-2">致力于提供稳定、高效、便捷的 AI 模型服务</p>
-    </div>
-  </footer>
-  </div>
   </div>
 
   <!-- Prism.js JS -->
