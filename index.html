@@ -1326,10 +1326,8 @@ Content-Type: application/json
 
 {
   "model": "doubao-seedance-1-0-pro",
-  "prompt": "A panda skating in Times Square",
+  "prompt": "A panda skating in Times Square -duration=10 -ratio=1:1",// ratio仅支持比例，不支持像素乘积格式 
   "image": "https://example.com/first.jpg",  // 此参数只能是字符串，如果设置首尾帧则此参数为数组，需要将数组字符串化才行，不能直接传数组，最多两张图片，传url
-  "duration": 6,
-  "ratio": "1:1"  // 仅支持比例，不支持像素乘积格式
 }
     </pre>
                   </div>
@@ -1363,15 +1361,15 @@ Content-Type: application/json
                     <div style="margin-bottom:12px;">
                       <b>duration</b> <span style="color:#64748b; font-size:12px;">integer · 可选</span>
                       <div style="font-size:14px; color:#334155;">
-                        视频时长（秒），不同模型支持的范围不同。
+                        视频时长（秒），不同模型支持的范围不同。这个放在prompt里面，参考上面示例代码
                       </div>
                     </div>
 
                     <div style="margin-bottom:12px;">
                       <b>ratio</b> <span style="color:#64748b; font-size:12px;">string · 可选</span>
                       <div style="font-size:14px; color:#334155;">
-                        视频分辨率,仅支持比例形式，例如：
-                        <code>1:1</code>、<code>16:9</code>。
+                        视频分辨率,仅支持比例形式，例如： 
+                        <code>1:1</code>、<code>16:9</code>。这个放在prompt里面，参考上面示例代码
                       </div>
                     </div>
                   </div>
