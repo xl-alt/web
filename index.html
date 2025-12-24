@@ -1300,7 +1300,7 @@ Content-Type: application/json
 {
   "model": "doubao-seedance-1-0-pro",
   "prompt": "A panda skating in Times Square",
-  "image": "https://example.com/first.jpg",  // 如果设置首尾帧则此参数为数组，最多两张图片，传url
+  "image": "https://example.com/first.jpg",  // 此参数只能是字符串，如果设置首尾帧则此参数为数组，需要将数组字符串化才行，不能直接传数组，最多两张图片，传url
   "duration": 6,
   "ratio": "1:1"  // 仅支持比例，不支持像素乘积格式
 }
@@ -1329,7 +1329,7 @@ Content-Type: application/json
       <b>image</b> <span style="color:#64748b; font-size:12px;">string · 可选</span>
       <div style="font-size:14px; color:#334155;">
         用于图生视频的输入图片 URL 或 Base64。
-        <br/>不传该字段则为文生视频。
+        <br/>不传该字段则为文生视频。此参数只能是字符串，如果设置首尾帧则此参数为数组，需要将数组字符串化才行，不能直接传数组。仅有1-5支持首尾帧，两张图片，其他的模型都是支持一张图片！！！！
       </div>
     </div>
 
