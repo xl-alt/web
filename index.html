@@ -1047,6 +1047,10 @@ curl -X POST "$API_HOST/chat/completions" \
                                             </code></pre>
                     </div>
                   </div>
+                    <div>
+                    <h4 class="font-semibold text-lg text-slate-800 mb-2">qwen 系列模型绘图说明</h4>
+                    <p class="mb-3">qwen 系列绘图模型仅支持按照生成图像比例输入，支持比例有 ["1:1", "3:4", "4:3", "16:9", "9:16"] 其中chat格式设置参数示例为: "画一只小猫 -size=16:9"  编辑图片无法设置比例，会根据您输入图片的大小输出，单次支持最多3张底图</p>
+                  </div>
                 </div>
               </div>
 
