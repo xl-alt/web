@@ -1034,16 +1034,20 @@ curl -X POST "$API_HOST/chat/completions" \
                   <!-- Image Edits Endpoint -->
                   <div>
                     <h4 class="font-semibold text-lg text-slate-800 mb-2">③ 专业图片编辑 (v1/images/edits)</h4>
-                    <p class="mb-3">支持对单张图片进行编辑。图片可以是 URL 或 Base64 字符串。负载示例如下：</p>
+                    <p class="mb-3">支持对单张或者多张图片进行编辑。图片可以是 URL 或 Base64 字符串。负载示例如下：</p>
                     <div class="bg-slate-900 rounded-lg">
                       <pre><code class="language-json">
-{
-  "model": "flux.1-kontext-dev",           // 可选，指定模型的 ID，默认使用 "MODEL_ID_IMG2IMG"
-  "image": "https://xl-files.oss-cn-chengdu.aliyuncs.com/images/img-1756543093582-76007ced-e710-4bc3-92ea-f79ff9304750.jpg",  // 要编辑的图片，可以是 base64 字符串或 URL
-  "prompt": "move to water", // 描述图片编辑的文本，例如：替换背景
-  "size": "1024x1024"             // 可选，生成图片的尺寸，默认为 1024x102
-  "response_format": "b64_json"   // 返回格式，支持 "url"（返回图片 URL）或 "b64_json"（返回 base64 字符串）
-}
+curl /v1/images/edits \
+  -H "Authorization: Bearer $NEWAPI_API_KEY" \
+  -F "model=doubao-seedream-4-0-250828" \
+  -F "image[]=@body-lotion.png" \
+  -F "image[]=@bath-bomb.png" \
+  -F "image[]=@incense-kit.png" \
+  -F "image[]=@soap.png" \
+  -F "prompt=创建一个包含这四个物品的精美礼品篮" \
+  -F "size=1024x1024"\
+  -F "n=2"\
+  -F "type=normal"
                                             </code></pre>
                     </div>
                   </div>
