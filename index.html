@@ -382,6 +382,439 @@
         /* 修改点：落地时稍微保持一点不透明度 */
       }
     }
+
+    /* =========================================================
+       视觉美化增强层：仅覆盖布局与样式，不改动页面内容
+       ========================================================= */
+    :root {
+      --ice-50: #f8fcff;
+      --ice-100: #eef8ff;
+      --ice-200: #d8efff;
+      --ice-300: #b9e5ff;
+      --brand-500: #0ea5e9;
+      --brand-600: #0284c7;
+      --brand-700: #0369a1;
+      --ink-900: #0f172a;
+      --ink-700: #334155;
+      --ink-500: #64748b;
+      --card-border: rgba(186, 230, 253, .72);
+      --card-shadow: 0 22px 70px rgba(14, 165, 233, .13);
+      --card-shadow-hover: 0 28px 90px rgba(14, 165, 233, .20);
+      --radius-xl: 1.4rem;
+    }
+
+    html {
+      background: var(--ice-50);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 15% 6%, rgba(125, 211, 252, .38), transparent 26rem),
+        radial-gradient(circle at 88% 10%, rgba(165, 180, 252, .28), transparent 28rem),
+        linear-gradient(180deg, #eff9ff 0%, #ffffff 44%, #f7fbff 100%) !important;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: .55;
+      background-image:
+        linear-gradient(rgba(14, 165, 233, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 165, 233, .045) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 20%, #000 70%, transparent 100%);
+    }
+
+    ::selection {
+      background: rgba(14, 165, 233, .2);
+      color: var(--ink-900);
+    }
+
+    .container {
+      width: min(100% - 2rem, 1180px);
+      max-width: 1180px;
+    }
+
+    main > section {
+      position: relative;
+      scroll-margin-top: 84px;
+    }
+
+    main > section:not(:first-child) {
+      padding-top: clamp(3.8rem, 6vw, 5.5rem);
+      padding-bottom: clamp(3.8rem, 6vw, 5.5rem);
+    }
+
+    main > section:not(:first-child)::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: min(86vw, 980px);
+      height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(14, 165, 233, .22), transparent);
+    }
+
+    h2, h3, h4 {
+      letter-spacing: -.02em;
+    }
+
+    main > section > .container > h2,
+    #api-usage .glass-card > h2 {
+      position: relative;
+      display: block;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    main > section > .container > h2::after,
+    #api-usage .glass-card > h2::after {
+      content: "";
+      display: block;
+      width: 58%;
+      height: 4px;
+      margin: .65rem auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, #38bdf8, #818cf8, transparent);
+    }
+
+    .glass-card,
+    .bg-white\/80,
+    .bg-white\/90 {
+      border-color: rgba(255, 255, 255, .85) !important;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .86), rgba(248, 252, 255, .72)) !important;
+      box-shadow: var(--card-shadow) !important;
+    }
+
+    .glass-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 18% 0%, rgba(255, 255, 255, .95), transparent 18rem),
+        linear-gradient(135deg, rgba(255, 255, 255, .38), transparent 42%);
+    }
+
+    .glass-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn,
+    .copy-btn,
+    .join-btn,
+    #copyBtn,
+    #scroll-cta {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn {
+      min-height: 44px;
+      justify-content: center;
+      box-shadow: 0 12px 26px rgba(14, 165, 233, .12);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #2563eb) !important;
+      box-shadow: 0 18px 38px rgba(37, 99, 235, .25) !important;
+    }
+
+    .btn-primary:hover,
+    .btn-ghost:hover,
+    .copy-pill:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .9), 0 10px 24px rgba(14, 165, 233, .08);
+    }
+
+    .copy-pill {
+      border-color: rgba(125, 211, 252, .72) !important;
+      box-shadow: 0 14px 38px rgba(14, 165, 233, .16);
+    }
+
+    .trust-item {
+      min-height: 52px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .78);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .trust-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, .55);
+      box-shadow: 0 14px 32px rgba(14, 165, 233, .12);
+    }
+
+    #api-usage .glass-card {
+      border-radius: 1.8rem !important;
+    }
+
+    #api-usage .grid {
+      align-items: stretch;
+    }
+
+    #api-usage table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    #api-usage th,
+    #api-usage td {
+      vertical-align: middle;
+    }
+
+    #api-usage tbody tr {
+      transition: background-color .18s ease, transform .18s ease, box-shadow .18s ease;
+    }
+
+    #api-usage tbody tr:hover {
+      transform: translateX(2px);
+      box-shadow: inset 3px 0 0 rgba(14, 165, 233, .45);
+    }
+
+    #api-usage article,
+    #collapsible-notification {
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    #api-usage article:hover,
+    #collapsible-notification:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 42px rgba(14, 165, 233, .12);
+      border-color: rgba(125, 211, 252, .72);
+    }
+
+    #toast {
+      border: 1px solid rgba(255, 255, 255, .14);
+      box-shadow: 0 18px 42px rgba(15, 23, 42, .22);
+    }
+
+    .grid a.group > div,
+    .grid div.group > div {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .grid a.group > div::after,
+    .grid div.group > div::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -55% 35%;
+      height: 90px;
+      pointer-events: none;
+      transform: rotate(-12deg);
+      background: linear-gradient(90deg, transparent, rgba(125, 211, 252, .16), transparent);
+      transition: transform .28s ease, opacity .28s ease;
+      opacity: 0;
+    }
+
+    .grid a.group:hover > div::after,
+    .grid div.group:hover > div::after {
+      opacity: 1;
+      transform: rotate(-12deg) translateX(-28px);
+    }
+
+    #api-usage1 .max-w-6xl > div {
+      border: 1px solid rgba(186, 230, 253, .62) !important;
+      border-radius: 1.55rem !important;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .90), rgba(248, 252, 255, .76)) !important;
+      box-shadow: var(--card-shadow) !important;
+    }
+
+    #api-usage1 .max-w-6xl > div:hover {
+      box-shadow: var(--card-shadow-hover) !important;
+    }
+
+    #api-usage1 pre,
+    pre[class*="language-"] {
+      overflow: auto !important;
+      max-width: 100%;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 14px 34px rgba(15, 23, 42, .10);
+    }
+
+    #api-usage1 code:not(pre code),
+    section code:not(pre code) {
+      word-break: break-word;
+      border: 1px solid rgba(125, 211, 252, .34);
+    }
+
+    #api-usage1 [style*="max-width: 1000px"] {
+      max-width: 1050px !important;
+      margin-bottom: 4.5rem !important;
+    }
+
+    #api-usage1 [style*="max-width: 1000px"] > a > div {
+      border: 1px solid rgba(186, 230, 253, .75) !important;
+      background:
+        radial-gradient(circle at 16% 14%, rgba(186, 230, 253, .58), transparent 13rem),
+        linear-gradient(180deg, rgba(255, 255, 255, .96), rgba(248, 252, 255, .88)) !important;
+      box-shadow: 0 24px 70px rgba(14, 165, 233, .15) !important;
+    }
+
+    #api-usage1 [style*="max-width: 1000px"] > a > div:hover {
+      box-shadow: 0 32px 88px rgba(14, 165, 233, .22) !important;
+    }
+
+    #api-usage1 [style*="max-width:980px"],
+    #api-usage1 [style*="max-width: 100%"] {
+      border-color: rgba(186, 230, 253, .72) !important;
+      border-radius: 1.35rem !important;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .95), rgba(248, 252, 255, .82)) !important;
+      box-shadow: 0 20px 56px rgba(14, 165, 233, .12);
+    }
+
+    #api-usage1 [style*="border:2px solid #6366f1"] {
+      border-color: rgba(99, 102, 241, .55) !important;
+      background:
+        radial-gradient(circle at 8% 10%, rgba(199, 210, 254, .85), transparent 14rem),
+        linear-gradient(135deg, #eef2ff, #f8fafc) !important;
+      box-shadow: 0 16px 42px rgba(99, 102, 241, .12);
+    }
+
+    #api-usage1 table {
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+
+    #api-usage1 img {
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    #api-usage1 img:hover,
+    section.bg-white\/60 img:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 18px 42px rgba(14, 165, 233, .18);
+    }
+
+    #copyBtn {
+      background: linear-gradient(135deg, #eef2ff, #ffffff) !important;
+      color: #4338ca;
+      font-weight: 800;
+      border-color: rgba(99, 102, 241, .4) !important;
+      box-shadow: 0 12px 28px rgba(99, 102, 241, .12);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    #copyBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 38px rgba(99, 102, 241, .18);
+    }
+
+    [style*="grid-template-columns: repeat(4, 1fr)"],
+    [style*="grid-template-columns:repeat(4, 1fr)"] {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)) !important;
+    }
+
+    #tab-buttons {
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+      padding: .65rem;
+      width: fit-content;
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      border: 1px solid rgba(186, 230, 253, .58);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .66);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 14px 38px rgba(14, 165, 233, .11);
+    }
+
+    .tab-button {
+      min-height: 40px;
+    }
+
+    #tab-content .tab-panel > div {
+      border: 1px solid rgba(186, 230, 253, .6);
+    }
+
+    footer {
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: min(90vw, 900px);
+      height: 1px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent, rgba(14, 165, 233, .3), transparent);
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        width: min(100% - 1.25rem, 1180px);
+      }
+
+      main > section:not(:first-child) {
+        padding-top: 3.4rem;
+        padding-bottom: 3.4rem;
+      }
+
+      .hero-snowflake,
+      .snowflake {
+        opacity: .45 !important;
+      }
+
+      #tab-buttons {
+        position: static;
+        border-radius: 1.25rem;
+      }
+
+      #api-usage table {
+        min-width: 560px;
+      }
+
+      #api-usage .overflow-hidden:has(table) {
+        overflow-x: auto;
+      }
+
+      pre[class*="language-"] {
+        padding: 1rem !important;
+        font-size: .78rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .copy-pill {
+        width: 100%;
+      }
+
+      #api-usage1 [style*="max-width: 1000px"] > a > div {
+        padding: 24px 18px !important;
+      }
+
+      #api-usage1 [style*="display:flex"][style*="justify-content:center"] {
+        align-items: flex-start !important;
+      }
+
+      [style*="grid-template-columns: repeat(4, 1fr)"],
+      [style*="grid-template-columns:repeat(4, 1fr)"] {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      }
+    }
+
   </style>
 </head>
 
@@ -697,7 +1130,7 @@ active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-4
                     【1】模型更新 <span class="text-xs px-1.5 py-0.5 rounded bg-sky-100 text-sky-700">NEW</span>
                   </h4>
                   <p class="text-sm text-slate-600 mt-1">
-                    deepseek-v3.1 新增思考过程（deepseek-ai/DeepSeek-V3.1-Think），非思考模型 DeepSeek-V3.1 火山渠道稳定可用。
+                    gpt-5.5 已可用，支持codex原生适配，支持高缓存率。
                   </p>
                 </article>
 
@@ -705,16 +1138,16 @@ active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-4
                   class="relative p-4 rounded-xl bg-white border border-indigo-100 shadow-sm overflow-hidden group">
                   <span
                     class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-indigo-400 to-violet-400 animate-[pulse_2s_ease-in-out_infinite]"></span>
-                  <h4 class="font-semibold text-slate-800">【2】Claude thinking 系列更新</h4>
-                  <p class="text-sm text-slate-600 mt-1">Claude 系列稳定并发，可使用 Claude 4 thinking。</p>
+                  <h4 class="font-semibold text-slate-800">【2】grok视频与图片系列更新</h4>
+                  <p class="text-sm text-slate-600 mt-1">官方api支持，grok生图模型与生成视频模型已支持，高速AI生成，欢迎对接。</p>
                 </article>
 
                 <article
                   class="relative p-4 rounded-xl bg-white border border-cyan-100 shadow-sm overflow-hidden group">
                   <span
                     class="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-cyan-400 to-teal-400 animate-[pulse_2s_ease-in-out_infinite]"></span>
-                  <h4 class="font-semibold text-slate-800">【3】并发无限制</h4>
-                  <p class="text-sm text-slate-600 mt-1">Grok 系列（含 grok-3 / grok-4）近期存量较大，支持大量并发调用。</p>
+                  <h4 class="font-semibold text-slate-800">【3】grok 文本模型来源已更新</h4>
+                  <p class="text-sm text-slate-600 mt-1">Grok 文本模型目前使用的是官方api，速度很快，支持工具调用支持函数调用，支持缓存，完美适配官方所有参数。</p>
                 </article>
 
                 <!-- 可折叠面板 -->
@@ -933,7 +1366,7 @@ active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-4
                     <div class="flex-1">
                       <h3 class="text-lg font-semibold text-slate-800">速率限制</h3>
                       <p class="mt-1 text-sm text-slate-600">本站对 API 请求限制为 <span
-                          class="font-semibold text-slate-800">500次-1000次 / 分钟</span>。</p>
+                          class="font-semibold text-slate-800">2000次-4000次 / 分钟</span>。</p>
                     </div>
                   </div>
                 </div>
@@ -1164,13 +1597,14 @@ curl -X POST "$API_HOST/chat/completions" \
                     <p class="mb-3">支持对单张图片进行编辑。图片可以是 URL 或 Base64 字符串。负载示例如下：</p>
                     <div class="bg-slate-900 rounded-lg">
                       <pre><code class="language-json">
-{
-  "model": "flux.1-kontext-dev",           // 可选，指定模型的 ID，默认使用 "MODEL_ID_IMG2IMG"
-  "image": "https://xl-files.oss-cn-chengdu.aliyuncs.com/images/img-1756543093582-76007ced-e710-4bc3-92ea-f79ff9304750.jpg",  // 要编辑的图片，可以是 base64 字符串或 URL
-  "prompt": "move to water", // 描述图片编辑的文本，例如：替换背景
-  "size": "1024x1024"             // 可选，生成图片的尺寸，默认为 1024x102
-  "response_format": "b64_json"   // 返回格式，支持 "url"（返回图片 URL）或 "b64_json"（返回 base64 字符串）
-}
+curl -X POST "${baseUrl}/v1/images/edits" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "model=flux.1-kontext-dev" \
+  -F "image=(二进制文件)" \
+  -F "prompt=move to water" \
+  -F "size=1024x1024" \
+  -F "response_format=b64_json"
+
                                             </code></pre>
                     </div>
                   </div>
@@ -1178,6 +1612,36 @@ curl -X POST "$API_HOST/chat/completions" \
                     <h4 class="font-semibold text-lg text-slate-800 mb-2">qwen 系列模型绘图说明</h4>
                     <p class="mb-3">qwen 系列绘图模型仅支持按照生成图像比例输入，支持比例有 ["1:1", "3:4", "4:3", "16:9", "9:16"]
                       其中chat格式设置参数示例为: "画一只小猫 -size=16:9" 编辑图片无法设置比例，会根据您输入图片的大小输出，单次支持最多3张底图</p>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg text-slate-800 mb-2">Grok 绘图参数说明</h4>
+                    <p class="mb-3">grok 绘图模型支持chat格式和dalle格式，支持单次最多8张图片的输出，支持底图上传等等，具体请求参数如下：</p>
+                    <div class="bg-slate-900 rounded-lg">
+                      <pre><code class="language-json">
+${baseUrl}/v1/images/generations
+
+{
+  "model": "grok-4.2-image",           // 可选，指定模型的 ID，默认使用 "MODEL_ID_IMG2IMG"
+  "image": "https://xl-files.oss-cn-chengdu.aliyuncs.com/images/img-1756543093582-76007ced-e710-4bc3-92ea-f79ff9304750.jpg",  // 要编辑的图片，可以是 base64 字符串或 URL,多张图片的时候请使用数组
+  "prompt": "move to water", // 描述图片编辑的文本，例如：替换背景
+  "size": "1:1"             // 可选，生成图片的尺寸，grok 尺寸仅支持比例形式，支持比例如下  "auto","1:1","3:4","4:3","9:16","16:9","2:3","3:2","9:19.5","19.5:9","9:20","20:9","1:2","2:1",
+  "n":1, // 生成图片数量
+  "response_format": "b64_json"   // 返回格式，支持 "url"（返回图片 URL）或 "b64_json"（返回 base64 字符串）
+}
+
+${baseUrl}/v1/images/edits
+
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "model=grok-4.2-image" \
+  -F "image=(二进制文件)" \
+  -F "prompt=move to water" \
+  -F "size=1:1" \
+  -F "n=1" \
+  -F "response_format=b64_json"
+
+
+                                            </code></pre>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1444,8 +1908,9 @@ curl /v1/images/edits \
                       🎬 Sora 视频生成接口说明文档
                     </div>
                     <div style="font-size:22px;font-weight:700;">
-                      如需中转，渠道类型请选择 sora 渠道，然后直接填写本站的url即可👌
+                      如需中转，渠道类型请选择 sora 渠道，然后直接填写本站的url即可👌！！！！视频生成仅支持异步生成
                     </div>
+      
                     <div style="font-size:13px;color:#6b7280;margin-top:6px;">
                       接口路由、参数说明与 <b>prompt 高级能力</b> 使用指南
                     </div>
@@ -1634,6 +2099,19 @@ curl /v1/videos \
   -F "seconds=5" \
   -F "input_reference=https://example.com/cat.png"
 
+
+// GROK 视频生成兼容上述参数，支持ratio，resolution，seconds以及传图逻辑一样
+// 以下是grok独有的扩展视频接口说明
+curl /v1/videos \ 文生视频
+ -H "Content-Type: application/json" \
+ -H "Authorization: Bearer $NEWAPI_API_KEY" \
+ -d '{
+    "model": "grok-imagine-video",
+    "prompt": "扩展",
+    "seconds": "10",
+    "extensions": true, // 如果扩展视频必须要为true
+    "video": "https://vidgen.x.ai/xai-vidgen-bucket/xai-video-4da243c1-e25f-4c0b-8cae-e2e7074db2bd.mp4"  // video最多只能传一个，只支持视频传入，可以传base64或者url
+}'
 
 
 </code></pre>
