@@ -1586,10 +1586,10 @@ curl -X POST "$API_HOST/chat/completions" \
                   <div>
                     <h4 class="font-semibold text-lg text-slate-800 mb-2">① 对话式生成 (v1/chat/completions)</h4>
                     <p class="mb-3">通过标准对话接口即可生成图片，支持图生图（叠图）。传图格式与 OpenAI 官方文档完全一致。</p>
-                    <p class="mb-3">注意: 图片宽高比仅支持像素比。例如1024:1024，是指宽1024，高1024像素。</p>
-                    <p>在提示词末尾（提示词使用英文效果更好哦！），使用英文中括号和冒号指定宽高比，例如：<br>
+                    <p class="mb-3">注意: 图片宽高比支持像素比和比例，具体模型支持请查看上述表格。例如16:9</p>
+                    <p>在提示词末尾（提示词使用英文效果更好哦！），使用英文空格加-size，例如：<br>
                       <code
-                        class="bg-sky-100 text-sky-800 text-sm p-2 rounded-md block mt-2">帮我画一只宇航猫在月球漫步[1024:1024]</code>
+                        class="bg-sky-100 text-sky-800 text-sm p-2 rounded-md block mt-2">帮我画一只宇航猫在月球漫步 -size=16:9 或者 -size=2048x1024</code>
                     </p>
                   </div>
 
@@ -1601,7 +1601,7 @@ curl -X POST "$API_HOST/chat/completions" \
                       <pre><code class="language-json">
 
 {
-  "model": "flux.1-kontext-dev",           // 可选，指定模型的 ID，默认使用 "MODEL_ID_IMG2IMG"
+  "model": "gpt-image-2",           // 可选，指定模型的 ID，默认使用 "MODEL_ID_IMG2IMG"
   "prompt": "a cat", // 描述图片编辑的文本，例如：替换背景
   "size": "1024x1024",             // 可选，生成图片的尺寸，默认为 1024x1024
   "response_format": "url"       // 返回格式，支持 "url"（返回图片 URL）或 "b64_json"（返回 base64 字符串）
@@ -1619,7 +1619,7 @@ curl -X POST "$API_HOST/chat/completions" \
 curl -X POST "${baseUrl}/v1/images/edits" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -F "model=flux.1-kontext-dev" \
-  -F "image=(二进制文件)" \
+  -F "image=(二进制文件)" \ //或者使用images/images[]均支持
   -F "prompt=move to water" \
   -F "size=1024x1024" \
   -F "response_format=b64_json"
