@@ -1443,10 +1443,6 @@ active:scale-95 focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-4
         gap:14px;
         margin-bottom:14px;
       ">
-        <img
-          src="https://apifox.com/favicon.ico"
-          style="width:48px;height:48px;"
-        />
         <div style="
           font-size:20px;
           font-weight:700;
@@ -1576,7 +1572,358 @@ curl -X POST "$API_HOST/chat/completions" \
                                     </code></pre>
                 </div>
               </div>
+<!-- ================= 绘画模型尺寸支持速查表 ================= -->
+<!-- 请将本段代码插入到「3. 绘画模型使用说明」卡片之前 -->
+<div class="bg-white/80 backdrop-blur p-6 rounded-2xl shadow-lg col-span-1 lg:col-span-2 border border-white">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-b pb-3 mb-4">
+    <h3 class="text-xl font-semibold text-slate-800">绘画模型尺寸支持速查表</h3>
 
+    <a
+      href="https://xl-alt.github.io/happydraw/"
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 shadow-lg shadow-sky-300/40 transition"
+    >
+      🎨 在线测试所有绘画模型
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="mb-4 rounded-xl border border-emerald-200 bg-emerald-50/80 text-emerald-800 p-4 text-sm leading-relaxed">
+    <p class="font-semibold mb-1">在线测试说明</p>
+    <p>
+      <a
+        href="https://xl-alt.github.io/happydraw/"
+        target="_blank"
+        rel="noopener"
+        class="font-semibold underline decoration-emerald-400 underline-offset-4 hover:text-emerald-900"
+      >
+        https://xl-alt.github.io/happydraw/
+      </a>
+      已兼容所有绘画模型，可以直接在该网站上选择模型、填写提示词、上传图片并测试生成效果。
+    </p>
+  </div>
+
+  <p class="text-sm text-slate-600 mb-4">
+    下表对应 AI Image Studio 前端页面中的绘画模型。不同模型对
+    <code class="bg-slate-200 px-1.5 py-0.5 rounded">size</code>
+    的支持方式不同：部分模型支持像素尺寸，部分模型仅支持比例，部分模型支持 1K / 2K / 4K 档位。
+  </p>
+
+  <div class="overflow-x-auto rounded-xl border border-sky-100 bg-white/50">
+    <table class="min-w-full text-sm text-left">
+      <thead class="bg-sky-50 text-slate-600 uppercase tracking-wider">
+        <tr>
+          <th class="py-3 px-4 font-semibold">模型</th>
+          <th class="py-3 px-4 font-semibold">支持的 Size / 比例</th>
+          <th class="py-3 px-4 font-semibold">说明</th>
+        </tr>
+      </thead>
+
+      <tbody class="bg-white/40 divide-y divide-sky-100 text-slate-700">
+        <!-- gpt-image-2-pro -->
+        <tr class="hover:bg-sky-50 transition">
+          <td class="py-3 px-4 font-medium text-slate-800 whitespace-nowrap">
+            gpt-image-2-pro
+          </td>
+          <td class="py-3 px-4">
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1024x1024</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1536x1024</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1024x1536</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2048x2048</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2048x1152</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3840x2160</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2160x3840</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">auto</code>
+          </td>
+          <td class="py-3 px-4">
+            GPT 绘画 Pro 版本，支持像素尺寸和
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">auto</code>。
+            适合方形、横版、竖版、超宽屏以及 4K 高清图生成场景。
+          </td>
+        </tr>
+
+        <!-- gpt-image-2 -->
+        <tr class="hover:bg-sky-50 transition">
+          <td class="py-3 px-4 font-medium text-slate-800 whitespace-nowrap">
+            gpt-image-2
+          </td>
+          <td class="py-3 px-4">
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1024x1024</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1536x1024</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1024x1536</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2048x2048</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2048x1152</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3840x2160</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2160x3840</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">auto</code>
+          </td>
+          <td class="py-3 px-4">
+            GPT 绘画标准版本，size 规则与 GPT 绘画系列一致。支持常见方形、横版、竖版以及 4K 尺寸。
+          </td>
+        </tr>
+
+        <!-- grok-imagine-image -->
+        <tr class="hover:bg-sky-50 transition">
+          <td class="py-3 px-4 font-medium text-slate-800 whitespace-nowrap">
+            grok-imagine-image
+          </td>
+          <td class="py-3 px-4">
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">auto</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:1</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:4</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:16</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">16:9</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:2</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:19.5</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">19.5:9</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:20</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">20:9</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:2</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2:1</code>
+          </td>
+          <td class="py-3 px-4">
+            Grok 绘图模型的 size 仅支持比例形式，不支持任意像素尺寸直传。文档支持单次最多 8 张图片输出，但前端页面目前 N 支持 1、2、3。
+          </td>
+        </tr>
+
+        <!-- grok-imagine-image-quality -->
+        <tr class="hover:bg-sky-50 transition">
+          <td class="py-3 px-4 font-medium text-slate-800 whitespace-nowrap">
+            grok-imagine-image-quality
+          </td>
+          <td class="py-3 px-4">
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">auto</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:1</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:4</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:16</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">16:9</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:2</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:19.5</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">19.5:9</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:20</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">20:9</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:2</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2:1</code>
+          </td>
+          <td class="py-3 px-4">
+            属于 Grok 图像模型的质量增强版本，size 规则与 Grok 绘图模型一致，仅支持比例形式。
+          </td>
+        </tr>
+
+        <!-- qwen-image-max -->
+        <tr class="hover:bg-sky-50 transition">
+          <td class="py-3 px-4 font-medium text-slate-800 whitespace-nowrap">
+            qwen-image-max
+          </td>
+          <td class="py-3 px-4">
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:1</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:4</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">16:9</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:16</code>
+          </td>
+          <td class="py-3 px-4">
+            Qwen 系列绘图模型仅支持按照生成图像比例输入。例如：
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">画一只小猫 -size=16:9</code>。
+            编辑图片时无法设置比例，会根据输入图片大小输出，单次最多支持 3 张底图。
+          </td>
+        </tr>
+
+        <!-- doubao-seedream-4-0 -->
+        <tr class="hover:bg-sky-50 transition">
+          <td class="py-3 px-4 font-medium text-slate-800 whitespace-nowrap">
+            doubao-seedream-4-0
+          </td>
+          <td class="py-3 px-4">
+            <p class="mb-1">档位形式：</p>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1k</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2k</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4k</code>
+
+            <p class="mt-2 mb-1">像素形式示例：</p>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1024x1024</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1280x720</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2560x1440</code>
+
+            <p class="mt-2 mb-1">比例形式示例：</p>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:1</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:4</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">16:9</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:16</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:2</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">21:9</code>
+          </td>
+          <td class="py-3 px-4">
+            豆包绘画模型支持档位、像素、比例三种 size 输入形式。像素形式要求宽度约
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1280 ~ 4096</code>，高度约
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">720 ~ 4096</code>，宽高比在
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1/16 ~ 16</code>
+            之间。非法输入会默认回退到
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1024x1024</code>。
+          </td>
+        </tr>
+
+        <!-- doubao-seedream-4-5 -->
+        <tr class="hover:bg-sky-50 transition">
+          <td class="py-3 px-4 font-medium text-slate-800 whitespace-nowrap">
+            doubao-seedream-4-5
+          </td>
+          <td class="py-3 px-4">
+            <p class="mb-1">按豆包 Seedream 系列规则理解：</p>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1k</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2k</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4k</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">像素尺寸</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">比例尺寸</code>
+          </td>
+          <td class="py-3 px-4">
+            页面中该模型属于豆包 Seedream 系列。建议使用
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1k</code>、
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2k</code>、
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4k</code>
+            或文档推荐比例，例如
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">16:9</code>、
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:16</code>、
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:1</code>。
+          </td>
+        </tr>
+
+        <!-- doubao-seedream-5-0 -->
+        <tr class="hover:bg-sky-50 transition">
+          <td class="py-3 px-4 font-medium text-slate-800 whitespace-nowrap">
+            doubao-seedream-5-0
+          </td>
+          <td class="py-3 px-4">
+            <p class="mb-1">按豆包 Seedream 系列规则理解：</p>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1k</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2k</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4k</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">像素尺寸</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">比例尺寸</code>
+          </td>
+          <td class="py-3 px-4">
+            同上。若后端未识别自定义像素，可能会回退到默认
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1024x1024</code>。
+          </td>
+        </tr>
+
+        <!-- nano-banana-2-2k -->
+        <tr class="hover:bg-sky-50 transition">
+          <td class="py-3 px-4 font-medium text-slate-800 whitespace-nowrap">
+            nano-banana-2-2k
+          </td>
+          <td class="py-3 px-4">
+            <p class="mb-1">2K 档位，页面未单独列出完整比例。可参考 Banana 2 系列 4K 支持比例：</p>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:1</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:4</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:8</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:2</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:4</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4:1</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4:5</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">5:4</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">8:1</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:16</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">16:9</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">21:9</code>
+          </td>
+          <td class="py-3 px-4">
+            模型名带有 2K，主要面向 2K 分辨率生成场景。若后端与 4K 版本同系列处理，可参考上述比例，建议以实际接口返回为准。
+          </td>
+        </tr>
+
+        <!-- nano-banana-2-4k -->
+        <tr class="hover:bg-sky-50 transition">
+          <td class="py-3 px-4 font-medium text-slate-800 whitespace-nowrap">
+            nano-banana-2-4k
+          </td>
+          <td class="py-3 px-4">
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:1</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:4</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">1:8</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">2:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:2</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">3:4</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4:1</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4:3</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">4:5</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">5:4</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">8:1</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">9:16</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">16:9</code>
+            <code class="bg-slate-200 px-1.5 py-0.5 rounded">21:9</code>
+          </td>
+          <td class="py-3 px-4">
+            香蕉 2 系列 4K 档位，支持上述比例。适合高清、超宽、竖屏、方形等多种图片生成场景。
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="mt-4 rounded-xl border border-sky-200 bg-sky-50/80 text-sky-800 p-4 text-sm leading-relaxed">
+    <p class="font-semibold mb-2">Size 使用建议</p>
+    <ul class="list-disc list-inside space-y-1">
+      <li>
+        GPT 绘画系列：支持像素尺寸，例如
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">1024x1024</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">3840x2160</code>，也支持
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">auto</code>。
+      </li>
+      <li>
+        Grok 系列：请使用比例形式，例如
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">16:9</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">9:16</code>。
+      </li>
+      <li>
+        Qwen 系列：仅支持
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">1:1</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">3:4</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">4:3</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">16:9</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">9:16</code>。
+      </li>
+      <li>
+        豆包系列：支持
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">1k</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">2k</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">4k</code>、像素尺寸以及比例尺寸。
+      </li>
+      <li>
+        Nano Banana 系列：4K 已明确支持
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">1:1</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">16:9</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">9:16</code>、
+        <code class="bg-white/70 px-1.5 py-0.5 rounded">21:9</code>
+        等比例。
+      </li>
+      <li>
+        所有绘画模型均可前往
+        <a
+          href="https://xl-alt.github.io/happydraw/"
+          target="_blank"
+          rel="noopener"
+          class="font-semibold underline decoration-sky-400 underline-offset-4 hover:text-sky-900"
+        >
+          https://xl-alt.github.io/happydraw/
+        </a>
+        进行在线测试。
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- ================= 绘画模型尺寸支持速查表结束 ================= -->
               <!-- Painting Model Guide Card -->
               <div
                 class="bg-white/80 backdrop-blur p-8 rounded-2xl shadow-lg col-span-1 lg:col-span-2 border border-white">
